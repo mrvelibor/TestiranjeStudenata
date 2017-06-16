@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .enableSessionUrlRewriting(false) // TODO: Not working, jsessionid still shows up
             .and()
             .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS,"**").permitAll()

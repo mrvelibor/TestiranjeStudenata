@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map'
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class PhpService {
 
-  //protected static _host: string = "";
-  protected static _host: string = "http://localhost:8080/TestiranjeStudenata/api";
+  protected static _host: string = environment.apiUrl;
 
   constructor(protected http: Http) {
   }
