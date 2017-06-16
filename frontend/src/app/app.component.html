@@ -1,0 +1,38 @@
+﻿<overlay>
+  <div class="overlay">
+    <h4>Loading...</h4>
+    <img src="/assets/spinner48.svg"/>
+  </div>
+</overlay>
+<div class="main-wrapper">
+  <header>
+    <ul class="navigation">
+      <li class="nav-title">
+        <a [routerLink]="['/']">Testiranje</a>
+      </li>
+      <ul class="nav-start">
+        <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
+          <a [routerLink]="['/']">Home</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.userRoleList[0].roleId == 2" [routerLinkActive]="['active']">
+          <a [routerLink]="['/overview']">Pregled</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.userRoleList[0].roleId == 3" [routerLinkActive]="['active']">
+          <a [routerLink]="['/exams']">Ispiti</a>
+        </li>
+      </ul>
+      <ul class="nav-end">
+        <li *ngIf="currentUser">
+          <a>{{currentUser.username}}</a>
+        </li>
+        <li *ngIf="currentUser">
+          <a (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </ul>
+  </header>
+  <alert></alert>
+  <div class="container">
+    <router-outlet style="flex: 0"></router-outlet>
+  </div>
+</div>

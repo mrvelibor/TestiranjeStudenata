@@ -1,0 +1,27 @@
+<div *ngIf="announcements && announcements.length > 0" class="announcement-panel">
+  <h1 (click)="displayAsList = !displayAsList">Announcements ({{announcements.length}})</h1>
+  <div *ngIf="displayAsList">
+    <ul>
+      <li *ngFor="let announcement of announcements" class="announcement-message">
+        <a (click)="openActionLink(announcement.actionLink)">{{announcement.message}}</a>
+        <div class="announcement-nav">
+          <a></a>
+          <a (click)="dismissAnnouncement(announcements[currentAnnouncementIndex])">dismiss</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="!displayAsList" class="announcement-message">
+    <p class="announcement-text">{{announcements[currentAnnouncementIndex].message}}</p>
+    <p class="action-link" (click)="openActionLink(announcements[currentAnnouncementIndex].actionLink)"><a>{{announcements[currentAnnouncementIndex].actionLink}}</a>
+    </p>
+    <div class="announcement-nav">
+      <div style="display: inline">
+        <a [ngClass]="{'nav-disabled': currentAnnouncementIndex <= 0}" (click)="previousAnnouncement()">previous</a>
+        <a [ngClass]="{'nav-disabled': currentAnnouncementIndex >= announcements.length - 1}"
+           (click)="nextAnnouncement()">next</a>
+      </div>
+      <a (click)="dismissAnnouncement(announcements[currentAnnouncementIndex])">dismiss</a>
+    </div>
+  </div>
+</div>

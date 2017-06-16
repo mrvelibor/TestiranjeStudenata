@@ -1,0 +1,47 @@
+<div *ngIf="!exam" class="exam-wrapper">
+  <p>
+    Kada počnete ispit, trenutak započinjanja ispita biće zabeležen i nećete moći da pokušate ponovo.
+    <br/>
+    U slučaju greške u sistemu molimo vas da to što pre prijavite administratoru.
+  </p>
+  <a (click)="startExam()">Kliknite ovde da počnete.</a>
+</div>
+<div *ngIf="exam" class="exam-wrapper">
+  <div class="exam-details">
+    <h2>Ispit: {{exam.examId.name}} - <small>{{exam.examId.description}}</small></h2>
+    <p>Ispit započet: {{exam.startTime | date:'medium'}}</p>
+  </div>
+  <div class="exam-test">
+    <div *ngFor="let question of exam.studentExamQuestionList" class="exam-question">
+      <h4>{{question.questionId.text}}</h4>
+      <div *ngIf="question.questionId.questionType === 'truefalse'">
+        <md-radio-group class="example-radio-group" [(ngModel)]="answers[question.questionId.questionId].answerStatement">
+          <md-radio-button class="example-radio-button" [value]="true">
+            Tačno
+          </md-radio-button>
+          <md-radio-button class="example-radio-button" [value]="false">
+            Netačno
+          </md-radio-button>
+        </md-radio-group>
+      </div>
+      <div *ngIf="question.questionId.questionType === 'numerical'">
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Odgovor" [(ngModel)]="answers[question.questionId.questionId].answerValue">
+        </md-input-container>
+      </div>
+      <div *ngIf="question.questionId.questionType === 'single'">
+        <md-radio-group class="example-radio-group" [(ngModel)]="answers[question.questionId.questionId].singleChoiceAnswerId">
+          <md-radio-button *ngFor="let answer of question.questionId.singleChoiceAnswerList" class="example-radio-button" [value]="answer.singleChoiceAnswerId">
+            {{answer.text}}
+          </md-radio-button>
+        </md-radio-group>
+      </div>
+      <div *ngIf="question.questionId.questionType === 'multiple'">
+        <md-checkbox *ngFor="let answer of question.questionId.multipleChoiceAnswerList" class="example-radio-button" [value]="answer.multipleChoiceAnswerId" [(ngModel)]="answers[question.questionId.questionId].multipleChoiceAnswers[answer.multipleChoiceAnswerId]">
+          {{answer.text}}
+        </md-checkbox>
+      </div>
+    </div>
+  </div>
+  <button md-raised-button (click)="finishExam()">Završi</button>
+</div>

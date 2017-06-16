@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let exam of exams">
+    <a [routerLink]="['/exams', exam.examId]">{{exam.name}}</a> - {{exam.description}}
+  </li>
+</ul>
