@@ -1,8 +1,9 @@
-﻿export class User {
+﻿import {UserRole} from "./user-role";
+export class User {
   userId: number;
   username: string;
   fullName: string;
   email: string;
-  userRoleList: any[];
+  userRole: UserRole;
   password: string;
 }
