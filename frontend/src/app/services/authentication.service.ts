@@ -4,7 +4,6 @@ import 'rxjs/add/operator/map'
 import {PhpService} from "./php.service";
 import {BehaviorSubject} from "rxjs";
 import {User} from "../models/user";
-import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class AuthenticationService extends PhpService {
@@ -15,26 +14,23 @@ export class AuthenticationService extends PhpService {
 
   constructor(http: Http) {
     super(http);
-    let userdata = JSON.parse(localStorage.getItem('userdata'));
-    let user = null;
-    if(userdata) {
-      user = userdata.user;
-    }
+    let user = JSON.parse(localStorage.getItem('user'));
     this._userSource = new BehaviorSubject<User>(user);
     this.user$ = this._userSource.asObservable();
     this.user$.subscribe(user => this._user = user);
   }
 
   private handleResponse(res: Response) {
-    let user = res.json();
     console.log(res);
-    if (!user) {
+    let userData = res.json();
+    if (!userData) {
       return;
     }
+    let user = userData.user;
+    user.token = userData.token;
 
-    localStorage.setItem('userdata', JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     this._userSource.next(user.user);
-
     return user;
   }
 
@@ -56,7 +52,7 @@ export class AuthenticationService extends PhpService {
   }
 
   logout() {
-    localStorage.removeItem('userdata');
+    localStorage.removeItem('user');
     this._userSource.next(null);
   }
 }

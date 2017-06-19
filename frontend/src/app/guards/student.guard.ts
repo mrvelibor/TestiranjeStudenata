@@ -11,7 +11,7 @@ export class StudentGuard implements CanActivate {
     let user = localStorage.getItem('user');
     if (user) {
       let userObj = JSON.parse(user);
-      if (userObj.type == 3) {
+      if (userObj.userRole.roleId == 3) {
         return true;
       }
     }

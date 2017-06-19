@@ -11,7 +11,7 @@ export class ProfesorGuard implements CanActivate {
     let user = localStorage.getItem('user');
     if (user) {
       let userObj = JSON.parse(user);
-      if (userObj.type == 2) {
+      if (userObj.userRole.roleId == 2) {
         return true;
       }
     }
