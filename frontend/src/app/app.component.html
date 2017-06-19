@@ -12,12 +12,12 @@
       </li>
       <ul class="nav-start">
         <li [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']">
-          <a [routerLink]="['/']">Home</a>
+          <a [routerLink]="['/']">Glavna</a>
         </li>
-        <li *ngIf="currentUser && currentUser.userRoleList[0].roleId == 2" [routerLinkActive]="['active']">
+        <li *ngIf="currentUser && currentUser.userRole.roleId == 2" [routerLinkActive]="['active']">
           <a [routerLink]="['/overview']">Pregled</a>
         </li>
-        <li *ngIf="currentUser && currentUser.userRoleList[0].roleId == 3" [routerLinkActive]="['active']">
+        <li *ngIf="currentUser && currentUser.userRole.roleId == 3" [routerLinkActive]="['active']">
           <a [routerLink]="['/exams']">Ispiti</a>
         </li>
       </ul>

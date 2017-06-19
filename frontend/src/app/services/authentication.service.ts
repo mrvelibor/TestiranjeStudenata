@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/map'
-import {PhpService} from "./php.service";
+import {RestService} from "./rest.service";
 import {BehaviorSubject} from "rxjs";
 import {User} from "../models/user";
 
 @Injectable()
-export class AuthenticationService extends PhpService {
+export class AuthenticationService extends RestService {
 
   private _userSource;
   private _user;
@@ -30,7 +30,7 @@ export class AuthenticationService extends PhpService {
     user.token = userData.token;
 
     localStorage.setItem('user', JSON.stringify(user));
-    this._userSource.next(user.user);
+    this._userSource.next(user);
     return user;
   }
 
@@ -41,9 +41,9 @@ export class AuthenticationService extends PhpService {
     let body = JSON.stringify(params);
     console.log(body);
 
-    let options = PhpService.createOptions();
+    let options = RestService.createOptions();
     return this.http.post(
-      `${PhpService._host}/auth`,
+      `${RestService._host}/auth`,
       body,
       options
     ).map((res: Response) => {

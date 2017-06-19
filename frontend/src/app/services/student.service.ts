@@ -1,38 +1,35 @@
 import { Injectable } from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http} from '@angular/http';
 import 'rxjs/add/operator/map'
-import {PhpService} from "./php.service";
-import {BehaviorSubject} from "rxjs";
-import {User} from "../models/user";
-import { Observable } from "rxjs/Observable";
+import {RestService} from "./rest.service";
 
 @Injectable()
-export class StudentService extends PhpService {
+export class StudentService extends RestService {
 
   constructor(http: Http) {
     super(http);
   }
 
   getExams() {
-    let options = PhpService.createOptions();
+    let options = RestService.createOptions();
     return this.http.get(
-      `${PhpService._host}/exams`,
+      `${RestService._host}/exams`,
       options
     ).map(res => res.json());
   }
 
   getStudentExams() {
-    let options = PhpService.createOptions();
+    let options = RestService.createOptions();
     return this.http.get(
-      `${PhpService._host}/studentexam`,
+      `${RestService._host}/studentexam`,
       options
     ).map(res => res.json());
   }
 
   getStudentExam(studentExamId) {
-    let options = PhpService.createOptions();
+    let options = RestService.createOptions();
     return this.http.get(
-      `${PhpService._host}/studentexam/${studentExamId}`,
+      `${RestService._host}/studentexam/${studentExamId}`,
       options
     ).map(res => res.json());
   }
@@ -44,9 +41,9 @@ export class StudentService extends PhpService {
     let body = JSON.stringify(params);
     console.log(body);
 
-    let options = PhpService.createOptions();
+    let options = RestService.createOptions();
     return this.http.post(
-      `${PhpService._host}/testing/${examId}/start`,
+      `${RestService._host}/testing/${examId}/start`,
       body,
       options
     ).map(res => res.json());
@@ -59,9 +56,9 @@ export class StudentService extends PhpService {
     let body = JSON.stringify(params);
     console.log(body);
 
-    let options = PhpService.createOptions();
+    let options = RestService.createOptions();
     return this.http.post(
-      `${PhpService._host}/testing/${exam.studentExamId}/finish`,
+      `${RestService._host}/testing/${exam.studentExamId}/finish`,
       body,
       options
     ).map(res => res.json());

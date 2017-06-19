@@ -1,0 +1,14 @@
+<div style="text-align: center;">
+  <div *ngIf="currentUser" class="main-panel">
+    <h2>
+      Dobrodošli, {{currentUser.fullName}}!<br>
+    </h2>
+  </div>
+  <div *ngIf="!currentUser">
+    <h2 class="text-center">
+      Pozdrav!<br>
+      <small>Ulogujte se da biste pristupili stranici za testiranje.</small>
+    </h2>
+    <login></login>
+  </div>
+</div>

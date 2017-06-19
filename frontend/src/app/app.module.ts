@@ -8,25 +8,24 @@ import {routing}        from './app.routing';
 import {AlertComponent} from './directives/alert.component';
 import {AuthGuard} from './guards/auth.guard';
 import {AlertService} from './services/alert.service';
-import {LoginComponent} from './pages/login/login.component';
-import {HomeComponent} from "./pages/home/home.component";
+import {LoginComponent} from './pages/main-panel/login/login.component';
+import {HomeComponent} from "./pages/main-panel/home/home.component";
 import {AuthenticationService} from "./services/authentication.service";
-import {PhpService} from "./services/php.service";
+import {RestService} from "./services/rest.service";
 import {NospaceValidator} from "./directives/nospace.validator";
 import {UserTypePipe} from "./directives/user_type.pipe";
 import {OverlayService} from "./services/overlay.service";
 import {OverlayComponent} from "./directives/overlay.component";
-import {AnnouncementsComponent} from "./pages/announcements/announcements.component";
 import {AdminGuard} from "./guards/admin.guard";
 import {ProfesorGuard} from "./guards/profesor.guard";
 import {StudentGuard} from "./guards/student.guard";
 import {StudentService} from "./services/student.service";
-import {ExamSelectorComponent} from "./pages/studentpanel/examselector/examselector.component";
-import {ExamTestComponent} from "./pages/studentpanel/examtest/examtest.component";
+import {ExamSelectorComponent} from "./pages/student-panel/exam-selector/examselector.component";
+import {ExamTestComponent} from "./pages/student-panel/exam-test/examtest.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule} from "@angular/material";
-import {ExamOverviewComponent} from "./pages/profesorpanel/examoverview/examoverview.component";
-import {CompletedExamSelectorComponent} from "./pages/profesorpanel/completedexamselector/completedexamselector.component";
+import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/examoverview.component";
+import {CompletedExamSelectorComponent} from "./pages/profesor-panel/completed-exam-selector/completedexamselector.component";
 
 @NgModule({
   imports: [
@@ -47,7 +46,6 @@ import {CompletedExamSelectorComponent} from "./pages/profesorpanel/completedexa
     OverlayComponent,
     HomeComponent,
     LoginComponent,
-    AnnouncementsComponent,
     ExamSelectorComponent,
     ExamTestComponent,
     ExamOverviewComponent,
@@ -62,7 +60,7 @@ import {CompletedExamSelectorComponent} from "./pages/profesorpanel/completedexa
     StudentGuard,
     AlertService,
     OverlayService,
-    PhpService,
+    RestService,
     AuthenticationService,
     StudentService
   ],

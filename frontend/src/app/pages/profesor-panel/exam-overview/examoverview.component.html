@@ -1,0 +1,44 @@
+<div *ngIf="!exam" class="exam-wrapper">
+  Učitava se...
+</div>
+<div *ngIf="exam" class="exam-wrapper">
+  <div class="exam-details">
+    <h2>Ispit: {{exam.examId.name}} - <small>{{exam.examId.description}}</small></h2>
+    <h2>Student: {{exam.userId.fullName}} <small>({{exam.userId.email}})</small></h2>
+    <h3>Bodovi: {{exam.points}}</h3>
+    <p>Ispit započet: {{exam.startTime | date:'medium'}}</p>
+    <p>Ispit završen: {{exam.endTime | date:'medium'}}</p>
+  </div>
+  <div *ngIf="currentUser && currentUser.userRoleList[0].roleId == 2" class="exam-test">
+    <div *ngFor="let question of exam.studentExamQuestionList" class="exam-question">
+      <h4>{{question.questionId.text}}</h4>
+      <div *ngIf="question.questionId.questionType === 'truefalse'">
+        <md-radio-group class="example-radio-group" [(ngModel)]="question.selectedStatement">
+          <md-radio-button disabled class="example-radio-button" [value]="true">
+            Tačno
+          </md-radio-button>
+          <md-radio-button disabled class="example-radio-button" [value]="false">
+            Netačno
+          </md-radio-button>
+        </md-radio-group>
+      </div>
+      <div *ngIf="question.questionId.questionType === 'numerical'">
+        <md-input-container class="example-full-width">
+          <input disabled mdInput placeholder="Odgovor" [(ngModel)]="question.selectedValue">
+        </md-input-container>
+      </div>
+      <div *ngIf="question.questionId.questionType === 'single'">
+        <md-radio-group class="example-radio-group" [(ngModel)]="question.singleChoiceAnswerId.singleChoiceAnswerId">
+          <md-radio-button disabled *ngFor="let answer of question.questionId.singleChoiceAnswerList" class="example-radio-button" [value]="answer.singleChoiceAnswerId">
+            {{answer.text}}
+          </md-radio-button>
+        </md-radio-group>
+      </div>
+      <div *ngIf="question.questionId.questionType === 'multiple'">
+        <md-checkbox disabled *ngFor="let answer of question.questionId.multipleChoiceAnswerList" class="example-radio-button" [value]="answer.multipleChoiceAnswerId" [(ngModel)]="question.multipleChoiceAnswers[answer.multipleChoiceAnswerId]">
+          {{answer.text}}
+        </md-checkbox>
+      </div>
+    </div>
+  </div>
+</div>
