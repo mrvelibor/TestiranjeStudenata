@@ -20,7 +20,7 @@ import {AdminGuard} from "./guards/admin.guard";
 import {ProfesorGuard} from "./guards/profesor.guard";
 import {StudentGuard} from "./guards/student.guard";
 import {StudentService} from "./services/student.service";
-import {ExamListComponent} from "./pages/student-panel/exam-selector/exam-list.component";
+import {ExamListComponent} from "./pages/student-panel/exam-list/exam-list.component";
 import {ExamTestComponent} from "./pages/student-panel/exam-test/exam-test.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule} from "@angular/material";

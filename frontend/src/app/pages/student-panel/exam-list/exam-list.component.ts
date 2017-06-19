@@ -4,6 +4,8 @@ import {AlertService} from "../../../services/alert.service";
 import {Subscription} from "rxjs";
 import {User} from "../../../models/user";
 import {AuthenticationService} from "../../../services/authentication.service";
+import {Exam} from "../../../models/exam";
+import {Course} from "../../../models/course";
 
 @Component({
   selector: 'app-exam-list',
@@ -16,7 +18,7 @@ export class ExamListComponent implements OnInit, OnDestroy {
   currentUser: User;
   subscription: Subscription;
 
-  exams: any[] = [];
+  courses: Course[] = [];
   loading: boolean;
 
   constructor(private authService: AuthenticationService,
@@ -44,12 +46,28 @@ export class ExamListComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           console.log(data);
-          this.exams = data;
+          this.processExams(data);
+          this.loading = false;
         },
         error => {
           this.alertService.error(error);
           this.loading = false;
         });
+  }
+
+  private processExams(exams: Exam[]) {
+    let courses = [];
+    exams.forEach(exam => {
+      let course = courses.find(c => c.courseId == exam.course.courseId);
+      if(!course) {
+        course = Object.assign(exam.course);
+        course.exams = [];
+        courses.push(course);
+      }
+      course.exams.push(exam);
+    });
+    this.courses = courses;
+    console.log(courses);
   }
 
 }

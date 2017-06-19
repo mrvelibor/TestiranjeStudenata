@@ -13,7 +13,7 @@ export class StudentService extends RestService {
   getExams() {
     let options = RestService.createOptions();
     return this.http.get(
-      `${RestService._host}/exams`,
+      `${RestService._host}/student/myexams`,
       options
     ).map(res => res.json());
   }
