@@ -8,6 +8,11 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-<app-root>Loading...</app-root>
+  <app-root>
+    <div *ngIf="message" class="overlay">
+      <h4>Aplikacija se učitava...</h4>
+      <img src="/assets/spinner48.svg"/>
+    </div>
+  </app-root>
 </body>
 </html>

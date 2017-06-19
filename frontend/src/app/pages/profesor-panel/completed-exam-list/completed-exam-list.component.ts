@@ -1,20 +1,15 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StudentService} from "../../../services/student.service";
 import {AlertService} from "../../../services/alert.service";
-import {Subscription} from "rxjs";
-import {User} from "../../../models/user";
 import {AuthenticationService} from "../../../services/authentication.service";
 
 @Component({
-  selector: 'exam-selector',
-  templateUrl: 'examselector.component.html',
-  styleUrls: ['examselector.component.scss']
+  selector: 'app-completed-exam-list',
+  templateUrl: 'completed-exam-list.component.html',
+  styleUrls: ['completed-exam-list.component.scss']
 })
 
-export class ExamSelectorComponent implements OnInit, OnDestroy {
-
-  currentUser: User;
-  subscription: Subscription;
+export class CompletedExamListComponent implements OnInit {
 
   exams: any[] = [];
   loading: boolean;
@@ -25,22 +20,13 @@ export class ExamSelectorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.authService.user$.subscribe(
-      user => {
-        this.currentUser = user;
-      }
-    );
     this.loadExams();
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   loadExams() {
     this.loading = true;
     this.alertService.clearMessage();
-    this.studentService.getExams()
+    this.studentService.getStudentExams()
       .subscribe(
         data => {
           console.log(data);

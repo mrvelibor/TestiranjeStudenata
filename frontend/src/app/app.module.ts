@@ -20,12 +20,12 @@ import {AdminGuard} from "./guards/admin.guard";
 import {ProfesorGuard} from "./guards/profesor.guard";
 import {StudentGuard} from "./guards/student.guard";
 import {StudentService} from "./services/student.service";
-import {ExamSelectorComponent} from "./pages/student-panel/exam-selector/examselector.component";
-import {ExamTestComponent} from "./pages/student-panel/exam-test/examtest.component";
+import {ExamListComponent} from "./pages/student-panel/exam-selector/exam-list.component";
+import {ExamTestComponent} from "./pages/student-panel/exam-test/exam-test.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule} from "@angular/material";
-import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/examoverview.component";
-import {CompletedExamSelectorComponent} from "./pages/profesor-panel/completed-exam-selector/completedexamselector.component";
+import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/exam-overview.component";
+import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-list/completed-exam-list.component";
 
 @NgModule({
   imports: [
@@ -46,10 +46,10 @@ import {CompletedExamSelectorComponent} from "./pages/profesor-panel/completed-e
     OverlayComponent,
     HomeComponent,
     LoginComponent,
-    ExamSelectorComponent,
+    ExamListComponent,
     ExamTestComponent,
     ExamOverviewComponent,
-    CompletedExamSelectorComponent,
+    CompletedExamListComponent,
     NospaceValidator,
     UserTypePipe
   ],

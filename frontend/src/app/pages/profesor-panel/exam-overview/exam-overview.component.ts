@@ -7,9 +7,9 @@ import {User} from "../../../models/user";
 import {AuthenticationService} from "../../../services/authentication.service";
 
 @Component({
-  selector: 'exam-overview',
-  templateUrl: 'examoverview.component.html',
-  styleUrls: ['examoverview.component.scss']
+  selector: 'app-exam-overview',
+  templateUrl: 'exam-overview.component.html',
+  styleUrls: ['exam-overview.component.scss']
 })
 
 export class ExamOverviewComponent implements OnInit, OnDestroy {
