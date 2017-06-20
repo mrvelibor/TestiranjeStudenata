@@ -23,7 +23,7 @@ import {StudentService} from "./services/student.service";
 import {ExamListComponent} from "./pages/student-panel/exam-list/exam-list.component";
 import {ExamTestComponent} from "./pages/student-panel/exam-test/exam-test.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule} from "@angular/material";
+import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule, MdProgressBarModule} from "@angular/material";
 import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/exam-overview.component";
 import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-list/completed-exam-list.component";
 
@@ -38,7 +38,8 @@ import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-
     MdButtonModule,
     MdRadioModule,
     MdCheckboxModule,
-    MdInputModule
+    MdInputModule,
+    MdProgressBarModule
   ],
   declarations: [
     AppComponent,

@@ -18,10 +18,10 @@ export class StudentService extends RestService {
     ).map(res => res.json());
   }
 
-  getStudentExams() {
+  getExam(examId: number) {
     let options = RestService.createOptions();
     return this.http.get(
-      `${RestService._host}/studentexam`,
+      `${RestService._host}/exams/${examId}`,
       options
     ).map(res => res.json());
   }
@@ -29,7 +29,7 @@ export class StudentService extends RestService {
   getStudentExam(studentExamId) {
     let options = RestService.createOptions();
     return this.http.get(
-      `${RestService._host}/studentexam/${studentExamId}`,
+      `${RestService._host}/student/exams/${studentExamId}`,
       options
     ).map(res => res.json());
   }
@@ -43,7 +43,7 @@ export class StudentService extends RestService {
 
     let options = RestService.createOptions();
     return this.http.post(
-      `${RestService._host}/testing/${examId}/start`,
+      `${RestService._host}/student/exams/${examId}/start`,
       body,
       options
     ).map(res => res.json());

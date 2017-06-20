@@ -46,7 +46,7 @@ export class ExamListComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           console.log(data);
-          this.processExams(data);
+          this.courses = this.processExams(data);
           this.loading = false;
         },
         error => {
@@ -55,7 +55,7 @@ export class ExamListComponent implements OnInit, OnDestroy {
         });
   }
 
-  private processExams(exams: Exam[]) {
+  processExams(exams: Exam[]) {
     let courses = [];
     exams.forEach(exam => {
       let course = courses.find(c => c.courseId == exam.course.courseId);
@@ -66,8 +66,7 @@ export class ExamListComponent implements OnInit, OnDestroy {
       }
       course.exams.push(exam);
     });
-    this.courses = courses;
-    console.log(courses);
+    return courses;
   }
 
 }

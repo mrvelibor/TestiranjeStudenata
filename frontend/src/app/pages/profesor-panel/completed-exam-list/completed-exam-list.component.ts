@@ -24,7 +24,7 @@ export class CompletedExamListComponent implements OnInit {
   }
 
   loadExams() {
-    this.loading = true;
+    /*this.loading = true;
     this.alertService.clearMessage();
     this.studentService.getStudentExams()
       .subscribe(
@@ -35,7 +35,7 @@ export class CompletedExamListComponent implements OnInit {
         error => {
           this.alertService.error(error);
           this.loading = false;
-        });
+        });*/
   }
 
 }
