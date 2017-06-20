@@ -8,12 +8,12 @@ import {Exam} from "../../../models/exam";
 import {Course} from "../../../models/course";
 
 @Component({
-  selector: 'app-exam-list',
-  templateUrl: 'exam-list.component.html',
-  styleUrls: ['exam-list.component.scss']
+  selector: 'app-available-exams',
+  templateUrl: 'available-exams.component.html',
+  styleUrls: ['available-exams.component.scss']
 })
 
-export class ExamListComponent implements OnInit, OnDestroy {
+export class AvailableExamsComponent implements OnInit, OnDestroy {
 
   currentUser: User;
   subscription: Subscription;
@@ -42,7 +42,7 @@ export class ExamListComponent implements OnInit, OnDestroy {
   loadExams() {
     this.loading = true;
     this.alertService.clearMessage();
-    this.studentService.getExams()
+    this.studentService.getAvailableExams()
       .subscribe(
         data => {
           console.log(data);

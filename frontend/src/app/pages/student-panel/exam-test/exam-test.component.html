@@ -21,24 +21,24 @@
         <h4>{{examQuestion.question.text}}</h4>
 
         <div *ngIf="examQuestion.question.questionType === 'truefalse'">
-          <md-radio-group class="example-radio-group" [(ngModel)]="answers[examQuestion.studentExamQuestionId].answerStatement">
-            <md-radio-button class="example-radio-button" [value]="true">
+          <md-radio-group [(ngModel)]="answers[examQuestion.studentExamQuestionId].answerStatement">
+            <md-radio-button [value]="true">
               Tačno
             </md-radio-button>
-            <md-radio-button class="example-radio-button" [value]="false">
+            <md-radio-button [value]="false">
               Netačno
             </md-radio-button>
           </md-radio-group>
         </div>
 
         <div *ngIf="examQuestion.question.questionType === 'numerical'">
-          <md-input-container class="example-full-width">
+          <md-input-container>
             <input mdInput placeholder="Odgovor" [(ngModel)]="answers[examQuestion.studentExamQuestionId].answerValue">
           </md-input-container>
         </div>
 
         <div *ngIf="examQuestion.question.questionType === 'single'">
-          <md-radio-group class="example-radio-group" [(ngModel)]="answers[examQuestion.studentExamQuestionId].singleChoiceAnswerId">
+          <md-radio-group [(ngModel)]="answers[examQuestion.studentExamQuestionId].singleChoiceAnswerId">
             <md-radio-button *ngFor="let answer of examQuestion.question.singleChoiceAnswers" [value]="answer.singleChoiceAnswerId">
               {{answer.text}}
             </md-radio-button>

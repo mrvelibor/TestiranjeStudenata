@@ -18,7 +18,10 @@
           <a [routerLink]="['/overview']">Pregled</a>
         </li>
         <li *ngIf="currentUser && currentUser.userRole.roleId == 3" [routerLinkActive]="['active']">
-          <a [routerLink]="['/exams']">Ispiti</a>
+          <a [routerLink]="['/exams/available']">Preostali ispiti</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.userRole.roleId == 3" [routerLinkActive]="['active']">
+          <a [routerLink]="['/exams/completed']">Urađeni ispiti</a>
         </li>
       </ul>
       <ul class="nav-end">

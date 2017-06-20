@@ -20,12 +20,13 @@ import {AdminGuard} from "./guards/admin.guard";
 import {ProfesorGuard} from "./guards/profesor.guard";
 import {StudentGuard} from "./guards/student.guard";
 import {StudentService} from "./services/student.service";
-import {ExamListComponent} from "./pages/student-panel/exam-list/exam-list.component";
+import {AvailableExamsComponent} from "./pages/student-panel/available-exams/available-exams.component";
 import {ExamTestComponent} from "./pages/student-panel/exam-test/exam-test.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule, MdProgressBarModule} from "@angular/material";
 import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/exam-overview.component";
 import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-list/completed-exam-list.component";
+import {CompletedExamsComponent} from "./pages/student-panel/completed-exams/completed-exams.component";
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-
     OverlayComponent,
     HomeComponent,
     LoginComponent,
-    ExamListComponent,
+    AvailableExamsComponent,
+    CompletedExamsComponent,
     ExamTestComponent,
     ExamOverviewComponent,
     CompletedExamListComponent,

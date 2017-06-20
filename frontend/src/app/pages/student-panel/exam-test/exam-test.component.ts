@@ -109,7 +109,7 @@ export class ExamTestComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigate(['overview', this.studentExam.studentExamId]);
+          this.router.navigate(['exams/completed', this.studentExam.studentExamId]);
         },
         error => {
           this.alertService.error(error);
