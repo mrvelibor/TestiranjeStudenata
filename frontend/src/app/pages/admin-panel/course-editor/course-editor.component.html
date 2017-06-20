@@ -1,15 +1,17 @@
 <div *ngIf="loading">
   <md-progress-bar mode="indeterminate"></md-progress-bar>
 </div>
-<md-sidenav-container>
+<md-sidenav-container class="editor-container">
   <md-sidenav class="editor-sidenav" #sidenav mode="side" disableClose="true" >
+    <h2>Predmeti</h2>
     <md-input-container>
       <input mdInput placeholder="Šifra predmeta" [(ngModel)]="course.courseCode">
     </md-input-container>
     <md-input-container>
       <input mdInput placeholder="Naziv predmeta" [(ngModel)]="course.name">
     </md-input-container>
-    <button md-raised-button (click)="addCourse()">Dodaj predmet</button>
+    <button *ngIf="!working" md-raised-button (click)="addCourse()">Dodaj predmet</button>
+    <md-spinner *ngIf="working"></md-spinner>
   </md-sidenav>
   <ng2-md-datatable *ngIf="!loading" selectable="false">
     <ng2-md-datatable-header>

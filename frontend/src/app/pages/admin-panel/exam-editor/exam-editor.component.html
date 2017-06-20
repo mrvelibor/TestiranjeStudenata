@@ -1,27 +1,41 @@
 <div *ngIf="loading">
   <md-progress-bar mode="indeterminate"></md-progress-bar>
 </div>
-<md-sidenav-container>
+<md-sidenav-container class="editor-container">
   <md-sidenav class="editor-sidenav" #sidenav mode="side" disableClose="true" >
+    <h2>Ispiti</h2>
+    <md-select placeholder="Predmet" [(ngModel)]="exam.course">
+      <md-option *ngFor="let course of courses" [value]="course">
+        {{course.courseCode}}
+      </md-option>
+    </md-select>
     <md-input-container>
-      <input mdInput placeholder="Šifra predmeta" [(ngModel)]="course.courseCode">
+      <input mdInput placeholder="Naziv ispita" [(ngModel)]="exam.name">
     </md-input-container>
     <md-input-container>
-      <input mdInput placeholder="Naziv predmeta" [(ngModel)]="course.name">
+      <textarea mdInput placeholder="Opis ispita" [(ngModel)]="exam.description"></textarea>
     </md-input-container>
-    <button md-raised-button (click)="addCourse()">Dodaj predmet</button>
+    <md-input-container>
+      <input mdInput placeholder="Broj pitanja" [(ngModel)]="exam.numberOfQuestions">
+    </md-input-container>
+    <button *ngIf="!working" md-raised-button (click)="addExam()">Dodaj ispit</button>
+    <md-spinner *ngIf="working"></md-spinner>
   </md-sidenav>
   <ng2-md-datatable *ngIf="!loading" selectable="false">
     <ng2-md-datatable-header>
-      <ng2-md-datatable-column>Šifra predmeta</ng2-md-datatable-column>
-      <ng2-md-datatable-column>Naziv predmeta</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Predmet</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Naziv ispita</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Opis ispita</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Broj pitanja</ng2-md-datatable-column>
       <ng2-md-datatable-column>Akcije</ng2-md-datatable-column>
     </ng2-md-datatable-header>
     <tbody>
-    <ng2-md-datatable-row *ngFor="let course of courses">
-      <td>{{course.courseCode}}</td>
-      <td>{{course.name}}</td>
-      <td><a (click)="deleteCourse(course)"><md-icon>delete</md-icon></a></td>
+    <ng2-md-datatable-row *ngFor="let exam of exams">
+      <td>{{exam.course.courseCode}}</td>
+      <td>{{exam.name}}</td>
+      <td>{{exam.description}}</td>
+      <td>{{exam.numberOfQuestions}}</td>
+      <td><a (click)="deleteExam(exam)"><md-icon>delete</md-icon></a></td>
     </ng2-md-datatable-row>
     </tbody>
   </ng2-md-datatable>

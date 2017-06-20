@@ -1,8 +1,9 @@
 <div *ngIf="loading">
   <md-progress-bar mode="indeterminate"></md-progress-bar>
 </div>
-<md-sidenav-container>
+<md-sidenav-container class="editor-container">
   <md-sidenav class="editor-sidenav" #sidenav mode="side" disableClose="true" >
+    <h2>Korisnici</h2>
     <md-input-container>
       <input mdInput placeholder="Puno ime" [(ngModel)]="user.fullName">
     </md-input-container>
@@ -20,7 +21,8 @@
         {{role | user_type}}
       </md-option>
     </md-select>
-    <button md-raised-button (click)="addUser()">Dodaj korisnika</button>
+    <button *ngIf="!working" md-raised-button (click)="addUser()">Dodaj korisnika</button>
+    <md-spinner *ngIf="working"></md-spinner>
   </md-sidenav>
   <ng2-md-datatable *ngIf="!loading" selectable="false">
     <ng2-md-datatable-header>
@@ -35,7 +37,7 @@
       <td>{{user.fullName}}</td>
       <td>{{user.username}}</td>
       <td>{{user.email}}</td>
-      <td>{{user.role | user_type}}</td>
+      <td>{{user.userRole | user_type}}</td>
       <td><a (click)="deleteUser(user)"><md-icon>delete</md-icon></a></td>
     </ng2-md-datatable-row>
     </tbody>
