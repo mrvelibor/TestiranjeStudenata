@@ -28,6 +28,7 @@ import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/exam-o
 import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-list/completed-exam-list.component";
 import {CompletedExamsComponent} from "./pages/student-panel/completed-exams/completed-exams.component";
 import {AdminService} from "./services/admin.service";
+import {CourseEditorComponent} from "./pages/admin-panel/course-editor/course-editor.component";
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import {AdminService} from "./services/admin.service";
     ExamTestComponent,
     ExamOverviewComponent,
     CompletedExamListComponent,
+    CourseEditorComponent,
     NospaceValidator,
     UserTypePipe
   ],

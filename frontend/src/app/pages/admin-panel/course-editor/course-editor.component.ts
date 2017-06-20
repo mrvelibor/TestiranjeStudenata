@@ -29,7 +29,7 @@ export class CourseEditorComponent implements OnInit {
   loadCourses() {
     this.loading = true;
     this.alertService.clearMessage();
-    this.adminService.getExams()
+    this.adminService.getCourses()
       .subscribe(
         data => {
           console.log(data);
