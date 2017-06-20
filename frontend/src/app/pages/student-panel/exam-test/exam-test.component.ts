@@ -141,7 +141,7 @@ export class ExamTestComponent implements OnInit, OnDestroy {
           }
           break;
         case 'multiple':
-          answer['multipleChoiceAnswers'] = Object.keys(answer.multipleChoiceAnswerMap).filter(mc => answer.multipleChoiceAnswerMap[mc]);
+          answer.multipleChoiceAnswerIds = Object.keys(answer['multipleChoiceAnswerMap']).filter(mc => answer['multipleChoiceAnswerMap'][mc]);
           break;
       }
       answers.push(answer);

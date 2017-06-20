@@ -7,5 +7,7 @@ export class StudentExamQuestion {
   selectedStatement: boolean;
   selectedValue: number;
   singleChoiceAnswer: SingleChoiceAnswer;
+  singleChoiceAnswerId: number;
   multipleChoiceAnswers: MultipleChoiceAnswer[];
+  multipleChoiceAnswerIds: number[];
 }

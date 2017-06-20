@@ -2,6 +2,14 @@
   padding: 20px;
 }
 
+.exam-wrapper p {
+  margin-bottom: 10px;
+}
+
+.exam-wrapper a {
+  color: #31708f;
+}
+
 .exam-details {
   margin-bottom: 20px;
 }
@@ -10,16 +18,30 @@
   font-size: 30px;
 }
 
-.exam-details h2 small {
-  font-size: 25px;
+.exam-description {
+  font-style: italic;
+  margin-bottom: 10px;
 }
 
-.exam-details h3 {
-  font-size: 25px;
+.student-name {
+
+}
+
+.exam-points {
+
+}
+
+.exam-time {
+  color: #b0b0b0;
+  font-size: 13px;
 }
 
 .exam-question {
-  margin-bottom: 20px;
+
+}
+
+.exam-question-margin {
+  height: 20px;
 }
 
 .exam-question h4 {
@@ -27,10 +49,20 @@
   margin-bottom: 5px;
 }
 
-md-checkbox {
-  display: block;
+.exam-answer-correct {
+  background: green;
 }
 
-md-radio-button {
+.exam-answer-incorrect {
+  background: red;
+}
+
+.exam-question md-checkbox {
   display: block;
+  margin-bottom: 2px;
+}
+
+.exam-question md-radio-button {
+  display: block;
+  margin-bottom: 2px;
 }

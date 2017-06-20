@@ -9,5 +9,6 @@ export class Question {
   correctValue: number;
   singleChoiceAnswers: SingleChoiceAnswer[];
   singleChoiceCorrectAnswer: SingleChoiceAnswer;
+  singleChoiceCorrectAnswerId: number;
   multipleChoiceAnswers: MultipleChoiceAnswer[];
 }

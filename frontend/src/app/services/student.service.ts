@@ -51,7 +51,7 @@ export class StudentService extends RestService {
 
     let options = RestService.createOptions();
     return this.http.post(
-      `${RestService._host}/student/exams/${examId}/start`,
+      `${RestService._host}/exams/${examId}/start`,
       body,
       options
     ).map(res => res.json());

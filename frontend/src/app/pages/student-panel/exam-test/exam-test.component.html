@@ -4,8 +4,9 @@
 <div *ngIf="!loading" class="exam-wrapper">
   <div *ngIf="exam" class="exam-details">
     <h2>{{exam.name}}</h2>
-    <h3>{{exam.description}}</h3>
-    <p *ngIf="studentExam">Ispit započet: {{studentExam.startTime | date:'medium'}}</p>
+    <div class="exam-description">{{exam.description}}</div>
+    <div class="exam-points">Maksimum bodova: {{exam.numberOfQuestions}}</div>
+    <div *ngIf="studentExam" class="exam-time">Ispit započet: {{studentExam.startTime | date:'medium'}}</div>
   </div>
   <div *ngIf="!studentExam">
     <p>
@@ -50,6 +51,8 @@
             {{answer.text}}
           </md-checkbox>
         </div>
+
+        <div *ngIf="examQuestion.question.questionType !== 'numerical'" class="exam-question-margin"></div>
 
       </div>
     </div>
