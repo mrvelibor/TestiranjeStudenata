@@ -46,7 +46,7 @@
         </div>
 
         <div *ngIf="examQuestion.question.questionType === 'multiple'">
-          <md-checkbox *ngFor="let answer of examQuestion.question.multipleChoiceAnswers" [value]="answer.multipleChoiceAnswerId" [(ngModel)]="answers[examQuestion.studentExamQuestionId].multipleChoiceAnswers[answer.multipleChoiceAnswerId]">
+          <md-checkbox *ngFor="let answer of examQuestion.question.multipleChoiceAnswers" [(ngModel)]="answers[examQuestion.studentExamQuestionId].multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]">
             {{answer.text}}
           </md-checkbox>
         </div>

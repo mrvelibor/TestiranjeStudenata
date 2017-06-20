@@ -93,7 +93,7 @@ export class ExamTestComponent implements OnInit, OnDestroy {
       };
       switch(question.questionType) {
         case 'multiple':
-          answer['multipleChoiceAnswers'] = {};
+          answer['multipleChoiceAnswerMap'] = {};
       };
       answers[examQuestion.studentExamQuestionId] = answer;
     });
@@ -104,6 +104,7 @@ export class ExamTestComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.alertService.clearMessage();
     let answers = this.processAnswers();
+    console.log(answers);
     this.studentService.finishExam(this.studentExam, answers)
       .subscribe(
         data => {
@@ -121,17 +122,26 @@ export class ExamTestComponent implements OnInit, OnDestroy {
     Object.keys(this.answers).forEach(key => {
       let answer = this.answers[key];
       switch(answer.question.questionType) {
+        case 'truefalse':
+          if(answer.answerStatement == null) {
+            // TODO: Display confirmation
+          }
+          break;
         case 'numerical':
-          answer.answerValue = +answer.answerValue;
+          if(answer.answerValue == null) {
+            // TODO: Display confirmation
+          }
+          else {
+            answer.answerValue = +answer.answerValue;
+          }
+          break;
+        case 'single':
+          if(answer.singleChoiceAnswerId == null) {
+            // TODO: Display confirmation
+          }
           break;
         case 'multiple':
-          let answerIds = [];
-          Object.keys(answer.multipleChoiceAnswers).forEach(mc => {
-            if(answer.multipleChoiceAnswers[mc]) {
-              answerIds.push(mc);
-            }
-          });
-          answer['multipleChoiceAnswerIds'] = answerIds;
+          answer['multipleChoiceAnswers'] = Object.keys(answer.multipleChoiceAnswerMap).filter(mc => answer.multipleChoiceAnswerMap[mc]);
           break;
       }
       answers.push(answer);
