@@ -1,0 +1,43 @@
+<div *ngIf="loading">
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+</div>
+<md-sidenav-container>
+  <md-sidenav class="editor-sidenav" #sidenav mode="side" disableClose="true" >
+    <md-input-container>
+      <input mdInput placeholder="Puno ime" [(ngModel)]="user.fullName">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Korisničko ime" [(ngModel)]="user.username">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Imejl adresa" [(ngModel)]="user.email">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Šifra" [(ngModel)]="user.password">
+    </md-input-container>
+    <md-select placeholder="Tip korisnika" [(ngModel)]="user.role">
+      <md-option *ngFor="let role of roles" [value]="role">
+        {{role | user_type}}
+      </md-option>
+    </md-select>
+    <button md-raised-button (click)="addUser()">Dodaj korisnika</button>
+  </md-sidenav>
+  <ng2-md-datatable *ngIf="!loading" selectable="false">
+    <ng2-md-datatable-header>
+      <ng2-md-datatable-column>Puno ime</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Korisničko ime</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Imejl adresa</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Tip korisnika</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Akcije</ng2-md-datatable-column>
+    </ng2-md-datatable-header>
+    <tbody>
+    <ng2-md-datatable-row *ngFor="let user of users">
+      <td>{{user.fullName}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.role | user_type}}</td>
+      <td><a (click)="deleteUser(user)"><md-icon>delete</md-icon></a></td>
+    </ng2-md-datatable-row>
+    </tbody>
+  </ng2-md-datatable>
+</md-sidenav-container>

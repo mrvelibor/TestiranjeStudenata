@@ -15,7 +15,13 @@
           <a [routerLink]="['/']">Glavna</a>
         </li>
         <li *ngIf="currentUser && currentUser.userRole.roleId == 1" [routerLinkActive]="['active']">
+          <a [routerLink]="['/users']">Korisnici</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.userRole.roleId == 1" [routerLinkActive]="['active']">
           <a [routerLink]="['/courses']">Predmeti</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.userRole.roleId == 1" [routerLinkActive]="['active']">
+          <a [routerLink]="['/exams']">Ispiti</a>
         </li>
         <li *ngIf="currentUser && currentUser.userRole.roleId == 2" [routerLinkActive]="['active']">
           <a [routerLink]="['/overview']">Pregled</a>

@@ -3,6 +3,8 @@ import {Http} from '@angular/http';
 import 'rxjs/add/operator/map'
 import {RestService} from "./rest.service";
 import {Course} from "../models/course";
+import {Exam} from "../models/exam";
+import {User} from "../models/user";
 
 @Injectable()
 export class AdminService extends RestService {
@@ -47,6 +49,26 @@ export class AdminService extends RestService {
     ).map(res => res.json());
   }
 
+  createExam(exam: Exam) {
+    let body = JSON.stringify(exam);
+    console.log(body);
+
+    let options = RestService.createOptions();
+    return this.http.post(
+      `${RestService._host}/exams`,
+      body,
+      options
+    ).map(res => res.json());
+  }
+
+  deleteExam(exam: Exam) {
+    let options = RestService.createOptions();
+    return this.http.delete(
+      `${RestService._host}/exams/${exam.examId}`,
+      options
+    ).map(res => res.json());
+  }
+
   getUsers() {
     let options = RestService.createOptions();
     return this.http.get(
@@ -55,25 +77,30 @@ export class AdminService extends RestService {
     ).map(res => res.json());
   }
 
-  getRoles() {
-    let options = RestService.createOptions();
-    return this.http.get(
-      `${RestService._host}/roles`,
-      options
-    ).map(res => res.json());
-  }
-
-  startExam(user, examId) {
-    let params = {
-      "user": user
-    };
-    let body = JSON.stringify(params);
+  createUser(user: User) {
+    let body = JSON.stringify(user);
     console.log(body);
 
     let options = RestService.createOptions();
     return this.http.post(
-      `${RestService._host}/exams/${examId}/start`,
+      `${RestService._host}/users`,
       body,
+      options
+    ).map(res => res.json());
+  }
+
+  deleteUser(user: User) {
+    let options = RestService.createOptions();
+    return this.http.delete(
+      `${RestService._host}/users/${user.userId}`,
+      options
+    ).map(res => res.json());
+  }
+
+  getRoles() {
+    let options = RestService.createOptions();
+    return this.http.get(
+      `${RestService._host}/roles`,
       options
     ).map(res => res.json());
   }
