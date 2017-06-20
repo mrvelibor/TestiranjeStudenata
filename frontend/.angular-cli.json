@@ -19,8 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "reset.min.css",
-        "deeppurple-amber.css",
+        "theme.scss",
         "styles.css"
       ],
       "scripts": [],

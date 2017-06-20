@@ -1,0 +1,28 @@
+<div *ngIf="loading">
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+</div>
+<md-sidenav-container>
+  <md-sidenav class="editor-sidenav" #sidenav mode="side" disableClose="true" >
+    <md-input-container>
+      <input mdInput placeholder="Šifra predmeta" [(ngModel)]="course.courseCode">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Naziv predmeta" [(ngModel)]="course.name">
+    </md-input-container>
+    <button md-raised-button (click)="addCourse()">Dodaj predmet</button>
+  </md-sidenav>
+  <ng2-md-datatable *ngIf="!loading" selectable="false">
+    <ng2-md-datatable-header>
+      <ng2-md-datatable-column>Šifra predmeta</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Naziv predmeta</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Akcije</ng2-md-datatable-column>
+    </ng2-md-datatable-header>
+    <tbody>
+    <ng2-md-datatable-row *ngFor="let course of courses">
+      <td>{{course.courseCode}}</td>
+      <td>{{course.name}}</td>
+      <td><a (click)="deleteCourse(course)"><md-icon>delete</md-icon></a></td>
+    </ng2-md-datatable-row>
+    </tbody>
+  </ng2-md-datatable>
+</md-sidenav-container>

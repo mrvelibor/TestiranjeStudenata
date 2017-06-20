@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AlertService} from "../../../services/alert.service";
 import {Course} from "../../../models/course";
 import {AdminService} from "../../../services/admin.service";
+import {MdSidenav} from "@angular/material"
 
 @Component({
   selector: 'app-course-editor',
@@ -10,6 +11,9 @@ import {AdminService} from "../../../services/admin.service";
 })
 
 export class CourseEditorComponent implements OnInit {
+
+  @ViewChild(MdSidenav)
+  sidenav: MdSidenav;
 
   courses: Course[] = [];
 
@@ -24,6 +28,7 @@ export class CourseEditorComponent implements OnInit {
 
   ngOnInit() {
     this.loadCourses();
+    this.sidenav.open();
   }
 
   loadCourses() {
@@ -33,8 +38,7 @@ export class CourseEditorComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.courses.push(this.course);
-          this.course = new Course();
+          this.courses = data;
           this.loading = false;
         },
         error => {
@@ -51,6 +55,7 @@ export class CourseEditorComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
+          this.course.courseId = data.id;
           this.courses.push(this.course);
           this.course = new Course();
           this.working = false;

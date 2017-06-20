@@ -10,14 +10,17 @@ import {StudentGuard} from "./guards/student.guard";
 import {ProfesorGuard} from "./guards/profesor.guard";
 import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-list/completed-exam-list.component";
 import {CompletedExamsComponent} from "./pages/student-panel/completed-exams/completed-exams.component";
+import {CourseEditorComponent} from "./pages/admin-panel/course-editor/course-editor.component";
+import {AdminGuard} from "./guards/admin.guard";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'exams/available', component: AvailableExamsComponent, canActivate: [AuthGuard]},
-  {path: 'exams/available/:id', component: ExamTestComponent, canActivate: [AuthGuard]},
-  {path: 'exams/completed', component: CompletedExamsComponent, canActivate: [AuthGuard]},
-  {path: 'exams/completed/:id', component: ExamOverviewComponent, canActivate: [AuthGuard]},
+  {path: 'courses', component: CourseEditorComponent, canActivate: [AdminGuard]},
+  {path: 'exams/available', component: AvailableExamsComponent, canActivate: [StudentGuard]},
+  {path: 'exams/available/:id', component: ExamTestComponent, canActivate: [StudentGuard]},
+  {path: 'exams/completed', component: CompletedExamsComponent, canActivate: [StudentGuard]},
+  {path: 'exams/completed/:id', component: ExamOverviewComponent, canActivate: [StudentGuard]},
   {path: 'overview', component: CompletedExamListComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: ''}
 ];

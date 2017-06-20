@@ -23,12 +23,14 @@ import {StudentService} from "./services/student.service";
 import {AvailableExamsComponent} from "./pages/student-panel/available-exams/available-exams.component";
 import {ExamTestComponent} from "./pages/student-panel/exam-test/exam-test.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule, MdProgressBarModule} from "@angular/material";
+import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule, MdProgressBarModule, MdIconModule, MdSidenavModule} from "@angular/material";
+import { MdDataTableModule } from 'ng2-md-datatable';
 import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/exam-overview.component";
 import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-list/completed-exam-list.component";
 import {CompletedExamsComponent} from "./pages/student-panel/completed-exams/completed-exams.component";
 import {AdminService} from "./services/admin.service";
 import {CourseEditorComponent} from "./pages/admin-panel/course-editor/course-editor.component";
+import 'hammerjs';
 
 @NgModule({
   imports: [
@@ -42,7 +44,10 @@ import {CourseEditorComponent} from "./pages/admin-panel/course-editor/course-ed
     MdRadioModule,
     MdCheckboxModule,
     MdInputModule,
-    MdProgressBarModule
+    MdProgressBarModule,
+    MdDataTableModule,
+    MdIconModule,
+    MdSidenavModule
   ],
   declarations: [
     AppComponent,
