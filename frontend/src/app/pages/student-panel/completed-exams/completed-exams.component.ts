@@ -20,6 +20,7 @@ export class CompletedExamsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   courses: Course[] = [];
+
   loading: boolean;
 
   constructor(private authService: AuthenticationService,

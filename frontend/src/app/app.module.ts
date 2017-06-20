@@ -27,6 +27,7 @@ import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule, MdProgre
 import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/exam-overview.component";
 import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-list/completed-exam-list.component";
 import {CompletedExamsComponent} from "./pages/student-panel/completed-exams/completed-exams.component";
+import {AdminService} from "./services/admin.service";
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import {CompletedExamsComponent} from "./pages/student-panel/completed-exams/com
     OverlayService,
     RestService,
     AuthenticationService,
-    StudentService
+    StudentService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

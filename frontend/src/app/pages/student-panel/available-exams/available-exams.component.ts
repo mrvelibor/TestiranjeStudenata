@@ -19,6 +19,7 @@ export class AvailableExamsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   courses: Course[] = [];
+
   loading: boolean;
 
   constructor(private authService: AuthenticationService,

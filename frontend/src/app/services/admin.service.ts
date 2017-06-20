@@ -1,0 +1,81 @@
+import { Injectable } from '@angular/core';
+import {Http} from '@angular/http';
+import 'rxjs/add/operator/map'
+import {RestService} from "./rest.service";
+import {Course} from "../models/course";
+
+@Injectable()
+export class AdminService extends RestService {
+
+  constructor(http: Http) {
+    super(http);
+  }
+
+  getCourses() {
+    let options = RestService.createOptions();
+    return this.http.get(
+      `${RestService._host}/courses`,
+      options
+    ).map(res => res.json());
+  }
+
+  createCourse(course: Course) {
+    let body = JSON.stringify(course);
+    console.log(body);
+
+    let options = RestService.createOptions();
+    return this.http.post(
+      `${RestService._host}/courses`,
+      body,
+      options
+    ).map(res => res.json());
+  }
+
+  deleteCourse(course: Course) {
+    let options = RestService.createOptions();
+    return this.http.delete(
+      `${RestService._host}/courses/${course.courseId}`,
+      options
+    ).map(res => res.json());
+  }
+
+  getExams() {
+    let options = RestService.createOptions();
+    return this.http.get(
+      `${RestService._host}/exams`,
+      options
+    ).map(res => res.json());
+  }
+
+  getUsers() {
+    let options = RestService.createOptions();
+    return this.http.get(
+      `${RestService._host}/users`,
+      options
+    ).map(res => res.json());
+  }
+
+  getRoles() {
+    let options = RestService.createOptions();
+    return this.http.get(
+      `${RestService._host}/roles`,
+      options
+    ).map(res => res.json());
+  }
+
+  startExam(user, examId) {
+    let params = {
+      "user": user
+    };
+    let body = JSON.stringify(params);
+    console.log(body);
+
+    let options = RestService.createOptions();
+    return this.http.post(
+      `${RestService._host}/exams/${examId}/start`,
+      body,
+      options
+    ).map(res => res.json());
+  }
+
+}
