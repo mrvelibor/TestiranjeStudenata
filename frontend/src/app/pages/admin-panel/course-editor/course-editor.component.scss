@@ -15,3 +15,11 @@
   margin-bottom: 20px;
   display: block;
 }
+
+.course-code-column {
+  cursor: pointer;
+}
+
+.course-code-column:hover {
+  font-weight: bold;
+}
