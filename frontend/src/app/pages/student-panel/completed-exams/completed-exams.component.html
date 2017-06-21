@@ -1,21 +1,23 @@
 <div *ngIf="loading">
   <md-progress-bar mode="indeterminate"></md-progress-bar>
 </div>
-<div *ngIf="!loading" class="exam-list-wrapper">
-  <div *ngFor="let course of courses" class="course">
-    <h2>{{course.courseCode}} - {{course.name}}</h2>
-    <ul>
-      <li *ngFor="let studentExam of course.studentExams" class="exam">
-        <div class="exam-name">
-          <a [routerLink]="['/exams/completed', studentExam.studentExamId]">{{studentExam.exam.name}}</a>
-        </div>
-        <div class="exam-points">
-          Bodovi: {{studentExam.points}}/{{studentExam.exam.numberOfQuestions}}
-        </div>
-        <div class="exam-time">
-          Završen: {{studentExam.endTime | date:'medium'}}
-        </div>
-      </li>
-    </ul>
-  </div>
+<div *ngIf="!loading">
+  <ng2-md-datatable selectable="false">
+    <ng2-md-datatable-header>
+      <ng2-md-datatable-column>Predmet</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Ispit</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Ispit započet</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Ispit završen</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Bodovi</ng2-md-datatable-column>
+    </ng2-md-datatable-header>
+    <tbody>
+    <ng2-md-datatable-row *ngFor="let studentExam of studentExams" [routerLink]="['/exams/completed', studentExam.studentExamId]" class="exam-column" >
+      <td>{{studentExam.exam.course.courseCode}} - {{studentExam.exam.course.name}}</td>
+      <td class="exam-name">{{studentExam.exam.name}}</td>
+      <td>{{studentExam.startTime}}</td>
+      <td>{{studentExam.endTime}}</td>
+      <td>{{studentExam.points}}/{{studentExam.exam.numberOfQuestions}}</td>
+    </ng2-md-datatable-row>
+    </tbody>
+  </ng2-md-datatable>
 </div>

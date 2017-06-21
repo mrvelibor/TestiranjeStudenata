@@ -21,8 +21,8 @@
         <ng2-md-datatable-column>Bodovi</ng2-md-datatable-column>
       </ng2-md-datatable-header>
       <tbody>
-      <ng2-md-datatable-row *ngFor="let studentExam of selectedCourse.studentExams">
-        <td>{{studentExam.exam.name}}</td>
+      <ng2-md-datatable-row *ngFor="let studentExam of selectedCourse.studentExams" [routerLink]="['/overview', studentExam.studentExamId]" class="exam-column" >
+        <td class="exam-name">{{studentExam.exam.name}}</td>
         <td>{{studentExam.student.fullName}}</td>
         <td>{{studentExam.startTime}}</td>
         <td>{{studentExam.endTime}}</td>

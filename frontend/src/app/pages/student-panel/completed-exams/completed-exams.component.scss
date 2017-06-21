@@ -1,36 +1,7 @@
-.exam-list-wrapper {
-  padding: 20px;
+.exam-column {
+  cursor: pointer;
 }
 
-.course {
-  margin-bottom: 20px;
-}
-
-.course h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.exam {
-  margin-bottom: 10px;
-}
-
-.exam p b {
+.exam-column:hover .exam-name {
   font-weight: bold;
-}
-
-.exam-name a {
-  color: #31708f;
-  font-style: normal;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.exam-points {
-
-}
-
-.exam-time {
-  color: #b0b0b0;
-  font-size: 13px;
 }

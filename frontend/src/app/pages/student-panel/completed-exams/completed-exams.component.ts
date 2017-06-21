@@ -4,8 +4,6 @@ import {AlertService} from "../../../services/alert.service";
 import {Subscription} from "rxjs";
 import {User} from "../../../models/user";
 import {AuthenticationService} from "../../../services/authentication.service";
-import {Exam} from "../../../models/exam";
-import {Course} from "../../../models/course";
 import {StudentExam} from "../../../models/student-exam";
 
 @Component({
@@ -19,7 +17,7 @@ export class CompletedExamsComponent implements OnInit, OnDestroy {
   currentUser: User;
   subscription: Subscription;
 
-  courses: Course[] = [];
+  studentExams: StudentExam[];
 
   loading: boolean;
 
@@ -48,27 +46,13 @@ export class CompletedExamsComponent implements OnInit, OnDestroy {
       .subscribe(
         data => {
           console.log(data);
-          this.courses = this.processExams(data);
+          this.studentExams = data;
           this.loading = false;
         },
         error => {
           this.alertService.error(error);
           this.loading = false;
         });
-  }
-
-  processExams(studentExams: StudentExam[]) {
-    let courses = [];
-    studentExams.forEach(studentExam => {
-      let course = courses.find(c => c.courseId == studentExam.exam.course.courseId);
-      if(!course) {
-        course = Object.assign(studentExam.exam.course);
-        course.studentExams = [];
-        courses.push(course);
-      }
-      course.studentExams.push(studentExam);
-    });
-    return courses;
   }
 
 }

@@ -15,3 +15,11 @@
   margin-bottom: 20px;
   display: block;
 }
+
+.exam-column {
+  cursor: pointer;
+}
+
+.exam-column:hover .exam-name {
+  font-weight: bold;
+}

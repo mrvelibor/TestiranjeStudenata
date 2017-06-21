@@ -6,7 +6,12 @@
     <h2>{{course.courseCode}} - {{course.name}}</h2>
     <ul>
       <li *ngFor="let exam of course.exams" class="exam">
-        <a [routerLink]="['/exams/available', exam.examId]">{{exam.name}}</a> - {{exam.description}}
+        <div class="exam-name">
+          <a [routerLink]="['/exams/available', exam.examId]">{{exam.name}}</a>
+        </div>
+        <div class="exam-description">
+          {{exam.description}}
+        </div>
       </li>
     </ul>
   </div>
