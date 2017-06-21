@@ -24,7 +24,7 @@
           <a [routerLink]="['/exams']">Ispiti</a>
         </li>
         <li *ngIf="currentUser && currentUser.userRole.roleId == 2" [routerLinkActive]="['active']">
-          <a [routerLink]="['/overview']">Pregled</a>
+          <a [routerLink]="['/overview']">Urađeni ispiti</a>
         </li>
         <li *ngIf="currentUser && currentUser.userRole.roleId == 3" [routerLinkActive]="['active']">
           <a [routerLink]="['/exams/available']">Preostali ispiti</a>

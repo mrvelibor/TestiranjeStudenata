@@ -29,7 +29,6 @@ import {
 } from "@angular/material";
 import { MdDataTableModule } from 'ng2-md-datatable';
 import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/exam-overview.component";
-import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-list/completed-exam-list.component";
 import {CompletedExamsComponent} from "./pages/student-panel/completed-exams/completed-exams.component";
 import {AdminService} from "./services/admin.service";
 import {CourseEditorComponent} from "./pages/admin-panel/course-editor/course-editor.component";
@@ -37,6 +36,7 @@ import 'hammerjs';
 import {UserEditorComponent} from "./pages/admin-panel/user-editor/user-editor.component";
 import {ExamEditorComponent} from "./pages/admin-panel/exam-editor/exam-editor.component";
 import {CourseUsersListComponent} from "./pages/admin-panel/course-users-list/course-users-list.component";
+import {StudentExamsComponent} from "./pages/profesor-panel/student-exams/student-exams.component";
 
 @NgModule({
   imports: [
@@ -68,7 +68,7 @@ import {CourseUsersListComponent} from "./pages/admin-panel/course-users-list/co
     CompletedExamsComponent,
     ExamTestComponent,
     ExamOverviewComponent,
-    CompletedExamListComponent,
+    StudentExamsComponent,
     UserEditorComponent,
     CourseEditorComponent,
     CourseUsersListComponent,

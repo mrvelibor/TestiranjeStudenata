@@ -1,0 +1,16 @@
+<div *ngIf="loading">
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+</div>
+<div *ngIf="!loading" class="exam-list-wrapper">
+  <div *ngFor="let course of courses" class="course">
+    <h2>{{course.courseCode}} - {{course.name}}</h2>
+    <div *ngFor="let exam of course.exams">
+      <h3>{{exam.name}}</h3>
+      <ul>
+        <li *ngFor="let studentExam of exam.studentExams" class="exam">
+          <a [routerLink]="['/exams/available', studentExam.studentExamId]">{{studentExam.student.fullName}}</a> ({{studentExam.student.email}})
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

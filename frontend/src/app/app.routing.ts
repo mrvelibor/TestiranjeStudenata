@@ -15,6 +15,7 @@ import {AdminGuard} from "./guards/admin.guard";
 import {UserEditorComponent} from "./pages/admin-panel/user-editor/user-editor.component";
 import {ExamEditorComponent} from "./pages/admin-panel/exam-editor/exam-editor.component";
 import {CourseUsersListComponent} from "./pages/admin-panel/course-users-list/course-users-list.component";
+import {StudentExamsComponent} from "./pages/profesor-panel/student-exams/student-exams.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
   {path: 'exams/available/:id', component: ExamTestComponent, canActivate: [StudentGuard]},
   {path: 'exams/completed', component: CompletedExamsComponent, canActivate: [StudentGuard]},
   {path: 'exams/completed/:id', component: ExamOverviewComponent, canActivate: [StudentGuard]},
-  {path: 'overview', component: CompletedExamListComponent, canActivate: [AuthGuard]},
+  {path: 'overview', component: StudentExamsComponent, canActivate: [ProfesorGuard]},
+  {path: 'overview/:id', component: ExamOverviewComponent, canActivate: [ProfesorGuard]},
   {path: '**', redirectTo: ''}
 ];
 
