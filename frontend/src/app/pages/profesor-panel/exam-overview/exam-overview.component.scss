@@ -49,12 +49,34 @@
   margin-bottom: 5px;
 }
 
-.exam-answer-correct {
-  background: green;
+.material-icons {
+  direction: ltr;
+  display: inline-flex;
+  align-content: center;
+  vertical-align: middle;
+  font-family: 'Material Icons';
+  font-size: 30px;
+  margin-left: 5px;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }
 
-.exam-answer-incorrect {
-  background: red;
+.exam-answer-correct::after {
+  @extend .material-icons;
+  content: 'check';
+  color: #388e3c;
+}
+
+.exam-answer-missed::after {
+  @extend .material-icons;
+  content: 'label';
+  color: #fdd835;
+}
+
+.exam-answer-incorrect::after {
+  @extend .material-icons;
+  content: 'close';
+  color: #d32f2f;
 }
 
 .exam-question md-checkbox {
@@ -65,4 +87,8 @@
 .exam-question md-radio-button {
   display: block;
   margin-bottom: 2px;
+}
+
+.exam-question md-input-container {
+  //display: block;
 }

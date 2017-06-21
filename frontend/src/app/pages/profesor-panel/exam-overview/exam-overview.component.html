@@ -17,16 +17,31 @@
 
         <div *ngIf="examQuestion.question.questionType === 'truefalse'">
           <md-radio-group [(ngModel)]="examQuestion.answerStatement">
-            <md-radio-button disabled [value]="true">
+            <md-radio-button #rdbTrue disabled [value]="true"
+                             [ngClass]="{
+                             'exam-answer-correct': rdbTrue.checked && examQuestion.answerStatement === examQuestion.question.correctStatement,
+                             'exam-answer-incorrect': rdbTrue.checked && examQuestion.answerStatement !== examQuestion.question.correctStatement,
+                             'exam-answer-missed': examQuestion.answerStatement == null && examQuestion.question.correctStatement
+                             }">
               Tačno
             </md-radio-button>
-            <md-radio-button disabled [value]="false">
+            <md-radio-button #rdbFalse disabled [value]="false"
+                             [ngClass]="{
+                             'exam-answer-correct': rdbFalse.checked && examQuestion.answerStatement === examQuestion.question.correctStatement,
+                             'exam-answer-incorrect': rdbFalse.checked && examQuestion.answerStatement !== examQuestion.question.correctStatement,
+                             'exam-answer-missed': examQuestion.answerStatement == null && !examQuestion.question.correctStatement
+                             }">
               Netačno
             </md-radio-button>
           </md-radio-group>
         </div>
 
-        <div *ngIf="examQuestion.question.questionType === 'numerical'">
+        <div *ngIf="examQuestion.question.questionType === 'numerical'"
+                             [ngClass]="{
+                             'exam-answer-correct': examQuestion.answerValue === examQuestion.question.correctValue,
+                             'exam-answer-incorrect': examQuestion.answerValue != null && examQuestion.answerValue !== examQuestion.question.correctValue,
+                             'exam-answer-missed': examQuestion.answerValue == null
+                             }">
           <md-input-container>
             <input mdInput disabled placeholder="Odgovor" [(ngModel)]="examQuestion.answerValue">
           </md-input-container>
@@ -34,14 +49,24 @@
 
         <div *ngIf="examQuestion.question.questionType === 'single'">
           <md-radio-group [(ngModel)]="examQuestion.singleChoiceAnswerId">
-            <md-radio-button *ngFor="let answer of examQuestion.question.singleChoiceAnswers" disabled [value]="answer.singleChoiceAnswerId">
+            <md-radio-button #rdbSingle *ngFor="let answer of examQuestion.question.singleChoiceAnswers" disabled [value]="answer.singleChoiceAnswerId"
+                             [ngClass]="{
+                             'exam-answer-correct': rdbSingle.checked && examQuestion.singleChoiceAnswerId === examQuestion.question.singleChoiceCorrectAnswerId,
+                             'exam-answer-incorrect': rdbSingle.checked && examQuestion.singleChoiceAnswerId !== examQuestion.question.singleChoiceCorrectAnswerId,
+                             'exam-answer-missed': examQuestion.singleChoiceAnswerId == null && answer.singleChoiceAnswerId === examQuestion.question.singleChoiceCorrectAnswerId
+                             }">
               {{answer.text}}
             </md-radio-button>
           </md-radio-group>
         </div>
 
         <div *ngIf="examQuestion.question.questionType === 'multiple'">
-          <md-checkbox *ngFor="let answer of examQuestion.question.multipleChoiceAnswers" disabled [(ngModel)]="examQuestion.multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]">
+          <md-checkbox #chbMultiple *ngFor="let answer of examQuestion.question.multipleChoiceAnswers; let i = index" disabled [(ngModel)]="examQuestion.multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]"
+                             [ngClass]="{
+                             'exam-answer-correct': chbMultiple.checked && examQuestion.question.multipleChoiceAnswers[i].answerCorrect,
+                             'exam-answer-incorrect': chbMultiple.checked && !examQuestion.question.multipleChoiceAnswers[i].answerCorrect,
+                             'exam-answer-missed': !chbMultiple.checked && examQuestion.question.multipleChoiceAnswers[i].answerCorrect
+                             }">
             {{answer.text}}
           </md-checkbox>
         </div>

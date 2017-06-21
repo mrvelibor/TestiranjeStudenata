@@ -4,8 +4,8 @@ import {MultipleChoiceAnswer} from "./multiple-choice-answer";
 export class StudentExamQuestion {
   studentExamQuestionId: number;
   question: Question;
-  selectedStatement: boolean;
-  selectedValue: number;
+  answerStatement: boolean;
+  answerValue: number;
   singleChoiceAnswer: SingleChoiceAnswer;
   singleChoiceAnswerId: number;
   multipleChoiceAnswers: MultipleChoiceAnswer[];
