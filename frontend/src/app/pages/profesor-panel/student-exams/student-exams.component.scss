@@ -3,7 +3,20 @@
 }
 
 .editor-sidenav {
-  padding: 10px;
+  padding-right: 10px;
+  min-width: 200px;
+}
+
+.course {
+  margin-bottom: 10px;
+}
+
+.course-name a {
+  font-weight: bold;
+}
+
+.course-description {
+  font-style: italic;
 }
 
 .editor-sidenav md-input-container {
@@ -22,4 +35,9 @@
 
 .exam-column:hover .exam-name {
   font-weight: bold;
+}
+
+h2 {
+  margin-top: 10px;
+  margin-left: 10px;
 }

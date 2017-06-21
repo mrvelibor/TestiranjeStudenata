@@ -5,8 +5,13 @@
   <md-sidenav class="editor-sidenav" #sidenav mode="side" disableClose="true" >
     <h2>Predmeti</h2>
     <ul>
-      <li *ngFor="let course of courses" (click)="selectCourse(course)">
-        {{course.courseCode}} - {{course.name}}
+      <li *ngFor="let course of courses" class="course">
+        <div class="course-name">
+          <a (click)="selectCourse(course)">{{course.courseCode}}</a>
+        </div>
+        <div class="course-description">
+          {{course.name}}
+        </div>
       </li>
     </ul>
   </md-sidenav>
