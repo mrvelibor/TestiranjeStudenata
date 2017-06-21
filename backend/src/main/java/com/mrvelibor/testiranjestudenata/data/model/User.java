@@ -7,19 +7,7 @@ package com.mrvelibor.testiranjestudenata.data.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
@@ -53,11 +41,9 @@ public class User implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "EMAIL")
     private String email;
-    @JoinTable(name = "user_roles", joinColumns = {
-        @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "ROLE_ID", referencedColumnName = "ROLE_ID")})
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<UserRole> userRoleList;
+    @JoinColumn(name = "USER_ROLE", referencedColumnName = "ROLE_ID")
+    @ManyToOne(optional = false)
+    private UserRole userRole;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private List<StudentExam> studentExamList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -109,12 +95,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public List<UserRole> getUserRoleList() {
-        return userRoleList;
+    public UserRole getUserRole() {
+        return userRole;
     }
 
-    public void setUserRoleList(List<UserRole> userRoleList) {
-        this.userRoleList = userRoleList;
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     @XmlTransient

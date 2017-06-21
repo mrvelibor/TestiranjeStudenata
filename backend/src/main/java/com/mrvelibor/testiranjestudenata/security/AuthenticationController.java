@@ -1,5 +1,7 @@
 package com.mrvelibor.testiranjestudenata.security;
 
+import com.mrvelibor.testiranjestudenata.data.model.User;
+import com.mrvelibor.testiranjestudenata.data.model.UserRole;
 import com.mrvelibor.testiranjestudenata.security.json.AuthenticationRequestJson;
 import com.mrvelibor.testiranjestudenata.security.json.AuthenticationResponseJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +54,12 @@ public class AuthenticationController {
         claims.put("sub", authenticationRequest.getUsername());
 
         String token = tokenUtils.generateToken(claims);
+        User user = new User();
+        user.setUsername(authenticationRequest.getUsername());
+        user.setEmail("velibor.bacujkov.2493@metropolitan.ac.rs");
+        user.setUserRole(new UserRole(3, "ROLE_STUDENT"));
 
-        AuthenticationResponseJson response = new AuthenticationResponseJson(token, authenticationRequest.getUsername(), "1");
+        AuthenticationResponseJson response = new AuthenticationResponseJson(user, token);
         return ResponseEntity.ok(response);
     }
 

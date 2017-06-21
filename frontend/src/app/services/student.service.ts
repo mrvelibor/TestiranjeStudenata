@@ -11,7 +11,7 @@ export class StudentService extends RestService {
   }
 
   getAvailableExams() {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.get(
       `${RestService._host}/student/exams/available`,
       options
@@ -19,7 +19,7 @@ export class StudentService extends RestService {
   }
 
   getCompletedExams() {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.get(
       `${RestService._host}/student/exams/completed`,
       options
@@ -27,7 +27,7 @@ export class StudentService extends RestService {
   }
 
   getExam(examId: number) {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.get(
       `${RestService._host}/exams/${examId}`,
       options
@@ -35,7 +35,7 @@ export class StudentService extends RestService {
   }
 
   getStudentExam(studentExamId) {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.get(
       `${RestService._host}/student/exams/${studentExamId}`,
       options
@@ -49,7 +49,7 @@ export class StudentService extends RestService {
     let body = JSON.stringify(params);
     console.log(body);
 
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.post(
       `${RestService._host}/exams/${examId}/start`,
       body,
@@ -64,7 +64,7 @@ export class StudentService extends RestService {
     let body = JSON.stringify(params);
     console.log(body);
 
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.post(
       `${RestService._host}/student/exams/${exam.studentExamId}/finish`,
       body,

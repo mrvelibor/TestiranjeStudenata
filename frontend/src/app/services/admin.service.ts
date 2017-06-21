@@ -14,7 +14,7 @@ export class AdminService extends RestService {
   }
 
   getCourses() {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.get(
       `${RestService._host}/courses`,
       options
@@ -22,7 +22,7 @@ export class AdminService extends RestService {
   }
 
   getCourse(courseId: number) {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.get(
       `${RestService._host}/courses/${courseId}`,
       options
@@ -33,7 +33,7 @@ export class AdminService extends RestService {
     let body = JSON.stringify(course);
     console.log(body);
 
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.post(
       `${RestService._host}/courses`,
       body,
@@ -45,7 +45,7 @@ export class AdminService extends RestService {
     let body = JSON.stringify(selectedUsers);
     console.log(body);
 
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.post(
       `${RestService._host}/courses/${course.courseId}/users`,
       body,
@@ -54,7 +54,7 @@ export class AdminService extends RestService {
   }
 
   deleteCourse(course: Course) {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.delete(
       `${RestService._host}/courses/${course.courseId}`,
       options
@@ -62,7 +62,7 @@ export class AdminService extends RestService {
   }
 
   getExams() {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.get(
       `${RestService._host}/exams`,
       options
@@ -73,7 +73,7 @@ export class AdminService extends RestService {
     let body = JSON.stringify(exam);
     console.log(body);
 
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.post(
       `${RestService._host}/exams`,
       body,
@@ -82,7 +82,7 @@ export class AdminService extends RestService {
   }
 
   deleteExam(exam: Exam) {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.delete(
       `${RestService._host}/exams/${exam.examId}`,
       options
@@ -90,7 +90,7 @@ export class AdminService extends RestService {
   }
 
   getUsers() {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.get(
       `${RestService._host}/users`,
       options
@@ -101,7 +101,7 @@ export class AdminService extends RestService {
     let body = JSON.stringify(user);
     console.log(body);
 
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.post(
       `${RestService._host}/users`,
       body,
@@ -110,7 +110,7 @@ export class AdminService extends RestService {
   }
 
   deleteUser(user: User) {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.delete(
       `${RestService._host}/users/${user.userId}`,
       options
@@ -118,7 +118,7 @@ export class AdminService extends RestService {
   }
 
   getRoles() {
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.get(
       `${RestService._host}/roles`,
       options

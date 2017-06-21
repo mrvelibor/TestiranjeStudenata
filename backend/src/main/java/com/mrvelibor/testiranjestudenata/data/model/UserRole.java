@@ -34,8 +34,6 @@ public class UserRole implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "ROLE_NAME")
     private String roleName;
-    @ManyToMany(mappedBy = "userRoleList")
-    private List<User> userList;
 
     public UserRole() {
     }
@@ -63,15 +61,6 @@ public class UserRole implements Serializable {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
-    }
-
-    @XmlTransient
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
     }
 
     @Override

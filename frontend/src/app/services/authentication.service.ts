@@ -27,9 +27,9 @@ export class AuthenticationService extends RestService {
       return;
     }
     let user = userData.user;
-    user.token = userData.token;
-
+    let token = userData.token;
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('token', token);
     this._userSource.next(user);
     return user;
   }
@@ -41,9 +41,9 @@ export class AuthenticationService extends RestService {
     let body = JSON.stringify(params);
     console.log(body);
 
-    let options = RestService.createOptions();
+    let options = RestService.options();
     return this.http.post(
-      `${RestService._host}/auth`,
+      `${RestService._host}/login`,
       body,
       options
     ).map((res: Response) => {
@@ -53,6 +53,7 @@ export class AuthenticationService extends RestService {
 
   logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     this._userSource.next(null);
   }
 }

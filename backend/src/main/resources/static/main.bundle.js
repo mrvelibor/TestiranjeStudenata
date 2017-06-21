@@ -2038,59 +2038,59 @@ var AdminService = (function (_super) {
         return _super.call(this, http) || this;
     }
     AdminService.prototype.getCourses = function () {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/courses", options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.getCourse = function (courseId) {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/courses/" + courseId, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.createCourse = function (course) {
         var body = JSON.stringify(course);
         console.log(body);
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/courses", body, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.updateCourse = function (course, selectedUsers) {
         var body = JSON.stringify(selectedUsers);
         console.log(body);
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/courses/" + course.courseId + "/users", body, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.deleteCourse = function (course) {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/courses/" + course.courseId, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.getExams = function () {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams", options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.createExam = function (exam) {
         var body = JSON.stringify(exam);
         console.log(body);
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams", body, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.deleteExam = function (exam) {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams/" + exam.examId, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.getUsers = function () {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/users", options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.createUser = function (user) {
         var body = JSON.stringify(user);
         console.log(body);
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/users", body, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.deleteUser = function (user) {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/users/" + user.userId, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.getRoles = function () {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/roles", options).map(function (res) { return res.json(); });
     };
     return AdminService;
@@ -2245,8 +2245,9 @@ var AuthenticationService = (function (_super) {
             return;
         }
         var user = userData.user;
-        user.token = userData.token;
+        var token = userData.token;
         localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('token', token);
         this._userSource.next(user);
         return user;
     };
@@ -2257,13 +2258,14 @@ var AuthenticationService = (function (_super) {
         params.password = password;
         var body = JSON.stringify(params);
         console.log(body);
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/auth", body, options).map(function (res) {
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/login", body, options).map(function (res) {
             return _this.handleResponse(res);
         });
     };
     AuthenticationService.prototype.logout = function () {
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         this._userSource.next(null);
     };
     return AuthenticationService;
@@ -2348,12 +2350,12 @@ var RestService = (function () {
     function RestService(http) {
         this.http = http;
     }
-    RestService.createOptions = function (token) {
-        if (token === void 0) { token = null; }
+    RestService.options = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Headers */]();
         headers.append('Content-Type', 'application/json');
+        var token = localStorage.getItem('token');
         if (token) {
-            headers.append('Authentication', 'Bearer ' + token);
+            headers.append('Authorization', 'Bearer ' + token);
         }
         return new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({ headers: headers, withCredentials: token != null });
     };
@@ -2409,19 +2411,19 @@ var StudentService = (function (_super) {
         return _super.call(this, http) || this;
     }
     StudentService.prototype.getAvailableExams = function () {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/student/exams/available", options).map(function (res) { return res.json(); });
     };
     StudentService.prototype.getCompletedExams = function () {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/student/exams/completed", options).map(function (res) { return res.json(); });
     };
     StudentService.prototype.getExam = function (examId) {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams/" + examId, options).map(function (res) { return res.json(); });
     };
     StudentService.prototype.getStudentExam = function (studentExamId) {
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/student/exams/" + studentExamId, options).map(function (res) { return res.json(); });
     };
     StudentService.prototype.startExam = function (user, examId) {
@@ -2430,7 +2432,7 @@ var StudentService = (function (_super) {
         };
         var body = JSON.stringify(params);
         console.log(body);
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams/" + examId + "/start", body, options).map(function (res) { return res.json(); });
     };
     StudentService.prototype.finishExam = function (exam, answers) {
@@ -2439,7 +2441,7 @@ var StudentService = (function (_super) {
         };
         var body = JSON.stringify(params);
         console.log(body);
-        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].createOptions();
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/student/exams/" + exam.studentExamId + "/finish", body, options).map(function (res) { return res.json(); });
     };
     return StudentService;
@@ -2461,7 +2463,7 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 var environment = {
     production: true,
-    apiUrl: "/api"
+    apiUrl: ""
 };
 //# sourceMappingURL=environment.js.map
 

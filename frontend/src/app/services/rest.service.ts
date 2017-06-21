@@ -11,11 +11,12 @@ export class RestService {
   constructor(protected http: Http) {
   }
 
-  protected static createOptions(token = null) {
+  protected static options() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    let token = localStorage.getItem('token');
     if (token) {
-      headers.append('Authentication', 'Bearer ' + token);
+      headers.append('Authorization', 'Bearer ' + token);
     }
     return new RequestOptions({headers: headers, withCredentials: token != null});
   }
