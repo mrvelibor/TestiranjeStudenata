@@ -1,9 +1,9 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {StudentService} from "../../../services/student.service";
 import {AlertService} from "../../../services/alert.service";
-import {Exam} from "../../../models/exam";
 import {Course} from "../../../models/course";
 import {StudentExam} from "../../../models/student-exam";
+import {MdSidenav} from "@angular/material";
 
 @Component({
   selector: 'app-student-exams',
@@ -13,7 +13,11 @@ import {StudentExam} from "../../../models/student-exam";
 
 export class StudentExamsComponent implements OnInit, OnDestroy {
 
+  @ViewChild(MdSidenav)
+  sidenav: MdSidenav;
+
   courses: Course[] = [];
+  selectedCourse: Course;
 
   loading: boolean;
 
@@ -23,6 +27,7 @@ export class StudentExamsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadStudentExams();
+    this.sidenav.open();
   }
 
   ngOnDestroy() {
@@ -36,6 +41,10 @@ export class StudentExamsComponent implements OnInit, OnDestroy {
         data => {
           console.log(data);
           this.courses = this.processStudentExams(data);
+          if(this.courses.length > 0) {
+            this.selectCourse(this.courses[0]);
+          }
+          console.log(this.courses);
           this.loading = false;
         },
         error => {
@@ -45,31 +54,21 @@ export class StudentExamsComponent implements OnInit, OnDestroy {
   }
 
   processStudentExams(studentExams: StudentExam[]) {
-    let exams = [];
-    studentExams.forEach(studentExam => {
-      let exam = exams.find(e => e.examId == studentExam.exam.examId);
-      if(!exam) {
-        exam = Object.assign(studentExam.exam);
-        exam.studentExams = [];
-        exams.push(exam);
-      }
-      exam.studentExams.push(studentExam);
-    });
-    return this.processExams(exams);
-  }
-
-  processExams(exams: Exam[]) {
     let courses = [];
-    exams.forEach(exam => {
-      let course = courses.find(c => c.courseId == exam.course.courseId);
+    studentExams.forEach(studentExam => {
+      let course = courses.find(c => c.courseId == studentExam.exam.course.courseId);
       if(!course) {
-        course = Object.assign(exam.course);
-        course.exams = [];
+        course = Object.assign(studentExam.exam.course);
+        course.studentExams = [];
         courses.push(course);
       }
-      course.exams.push(exam);
+      course.studentExams.push(studentExam);
     });
     return courses;
+  }
+
+  selectCourse(course: Course) {
+    this.selectedCourse = course;
   }
 
 }

@@ -1,22 +1,17 @@
-.exam-list-wrapper {
-  padding: 20px;
+.editor-container {
+  min-height: 100%;
 }
 
-.course {
-  margin-bottom: 10px;
+.editor-sidenav {
+  padding: 10px;
 }
 
-.course h2 {
-  font-size: 20px;
-  margin-bottom: 5px;
+.editor-sidenav md-input-container {
+  display: block;
 }
 
-.exam {
-  font-style: italic;
-}
-
-.exam a {
-  color: #31708f;
-  font-style: normal;
-  text-decoration: none;
+.editor-sidenav md-select {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: block;
 }

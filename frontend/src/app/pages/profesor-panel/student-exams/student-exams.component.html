@@ -1,16 +1,37 @@
 <div *ngIf="loading">
   <md-progress-bar mode="indeterminate"></md-progress-bar>
 </div>
-<div *ngIf="!loading" class="exam-list-wrapper">
-  <div *ngFor="let course of courses" class="course">
-    <h2>{{course.courseCode}} - {{course.name}}</h2>
-    <div *ngFor="let exam of course.exams">
-      <h3>{{exam.name}}</h3>
-      <ul>
-        <li *ngFor="let studentExam of exam.studentExams" class="exam">
-          <a [routerLink]="['/exams/available', studentExam.studentExamId]">{{studentExam.student.fullName}}</a> ({{studentExam.student.email}})
-        </li>
-      </ul>
-    </div>
+<md-sidenav-container class="editor-container">
+  <md-sidenav class="editor-sidenav" #sidenav mode="side" disableClose="true" >
+    <h2>Predmeti</h2>
+    <ul>
+      <li *ngFor="let course of courses" (click)="selectCourse(course)">
+        {{course.courseCode}} - {{course.name}}
+      </li>
+    </ul>
+  </md-sidenav>
+  <div *ngIf="selectedCourse">
+    <h2>{{selectedCourse.courseCode}} - {{selectedCourse.name}}</h2>
+    <ng2-md-datatable selectable="false">
+      <ng2-md-datatable-header>
+        <ng2-md-datatable-column>Ispit</ng2-md-datatable-column>
+        <ng2-md-datatable-column>Student</ng2-md-datatable-column>
+        <ng2-md-datatable-column>Ispit započet</ng2-md-datatable-column>
+        <ng2-md-datatable-column>Ispit završen</ng2-md-datatable-column>
+        <ng2-md-datatable-column>Bodovi</ng2-md-datatable-column>
+      </ng2-md-datatable-header>
+      <tbody>
+      <ng2-md-datatable-row *ngFor="let studentExam of selectedCourse.studentExams">
+        <td>{{studentExam.exam.name}}</td>
+        <td>{{studentExam.student.fullName}}</td>
+        <td>{{studentExam.startTime}}</td>
+        <td>{{studentExam.endTime}}</td>
+        <td>{{studentExam.points}}/{{studentExam.exam.numberOfQuestions}}</td>
+      </ng2-md-datatable-row>
+      </tbody>
+    </ng2-md-datatable>
   </div>
-</div>
+  <div *ngIf="!selectedCourse">
+
+  </div>
+</md-sidenav-container>
