@@ -14,8 +14,8 @@
     <ng2-md-datatable-row *ngFor="let studentExam of studentExams" [routerLink]="['/exams/completed', studentExam.studentExamId]" class="exam-column" >
       <td>{{studentExam.exam.course.courseCode}} - {{studentExam.exam.course.name}}</td>
       <td class="exam-name">{{studentExam.exam.name}}</td>
-      <td>{{studentExam.startTime}}</td>
-      <td>{{studentExam.endTime}}</td>
+      <td>{{studentExam.startTime | date:'dd.MM.yyyy. hh:mm:ss'}}</td>
+      <td>{{studentExam.endTime | date:'dd.MM.yyyy. hh:mm:ss'}}</td>
       <td>{{studentExam.points}}/{{studentExam.exam.numberOfQuestions}}</td>
     </ng2-md-datatable-row>
     </tbody>

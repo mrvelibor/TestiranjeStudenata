@@ -7,8 +7,8 @@
     <div class="exam-description">{{studentExam.exam.description}}</div>
     <div class="student-name">Student: {{studentExam.student.fullName}} <small>({{studentExam.student.email}})</small></div>
     <div class="exam-points">Bodovi: {{studentExam.points}}/{{studentExam.exam.numberOfQuestions}}</div>
-    <div class="exam-time">Ispit započet: {{studentExam.startTime | date:'medium'}}</div>
-    <div class="exam-time">Ispit završen: {{studentExam.endTime | date:'medium'}}</div>
+    <div class="exam-time">Ispit započet: {{studentExam.startTime | date:'dd.MM.yyyy. hh:mm:ss'}}</div>
+    <div class="exam-time">Ispit završen: {{studentExam.endTime | date:'dd.MM.yyyy. hh:mm:ss'}}</div>
   </div>
   <div *ngIf="studentExam.questions">
     <div class="exam-test">

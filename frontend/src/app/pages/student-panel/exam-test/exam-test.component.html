@@ -6,7 +6,7 @@
     <h2>{{exam.name}}</h2>
     <div class="exam-description">{{exam.description}}</div>
     <div class="exam-points">Maksimum bodova: {{exam.numberOfQuestions}}</div>
-    <div *ngIf="studentExam" class="exam-time">Ispit započet: {{studentExam.startTime | date:'medium'}}</div>
+    <div *ngIf="studentExam" class="exam-time">Ispit započet: {{studentExam.startTime | date:'dd.MM.yyyy. hh:mm:ss'}}</div>
   </div>
   <div *ngIf="!studentExam">
     <p>

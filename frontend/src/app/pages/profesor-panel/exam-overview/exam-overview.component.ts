@@ -6,7 +6,6 @@ import {Subscription} from "rxjs";
 import {User} from "../../../models/user";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {StudentExam} from "../../../models/student-exam";
-import {Exam} from "../../../models/exam";
 
 @Component({
   selector: 'app-exam-overview',
