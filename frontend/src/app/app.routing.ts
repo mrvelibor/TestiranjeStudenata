@@ -14,12 +14,14 @@ import {CourseEditorComponent} from "./pages/admin-panel/course-editor/course-ed
 import {AdminGuard} from "./guards/admin.guard";
 import {UserEditorComponent} from "./pages/admin-panel/user-editor/user-editor.component";
 import {ExamEditorComponent} from "./pages/admin-panel/exam-editor/exam-editor.component";
+import {CourseUsersListComponent} from "./pages/admin-panel/course-users-list/course-users-list.component";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'users', component: UserEditorComponent, canActivate: [AdminGuard]},
   {path: 'courses', component: CourseEditorComponent, canActivate: [AdminGuard]},
+  {path: 'courses/:id', component: CourseUsersListComponent, canActivate: [AdminGuard]},
   {path: 'exams', component: ExamEditorComponent, canActivate: [AdminGuard]},
   {path: 'exams/available', component: AvailableExamsComponent, canActivate: [StudentGuard]},
   {path: 'exams/available/:id', component: ExamTestComponent, canActivate: [StudentGuard]},

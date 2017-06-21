@@ -21,13 +21,35 @@ export class AdminService extends RestService {
     ).map(res => res.json());
   }
 
+  getCourse(courseId: number) {
+    let options = RestService.createOptions();
+    return this.http.get(
+      `${RestService._host}/courses/${courseId}`,
+      options
+    ).map(res => res.json());
+  }
+
   createCourse(course: Course) {
     let body = JSON.stringify(course);
     console.log(body);
 
     let options = RestService.createOptions();
     return this.http.post(
-      `${RestService._host}/courses`,
+      `${RestService._host}/create`,
+      //`${RestService._host}/courses`,
+      body,
+      options
+    ).map(res => res.json());
+  }
+
+  updateCourse(course: Course, selectedUsers: User[]) {
+    let body = JSON.stringify(selectedUsers);
+    console.log(body);
+
+    let options = RestService.createOptions();
+    return this.http.post(
+      `${RestService._host}/create`,
+      //`${RestService._host}/courses/${course.courseId}/users`,
       body,
       options
     ).map(res => res.json());
@@ -36,7 +58,8 @@ export class AdminService extends RestService {
   deleteCourse(course: Course) {
     let options = RestService.createOptions();
     return this.http.delete(
-      `${RestService._host}/courses/${course.courseId}`,
+      `${RestService._host}/delete`,
+      //`${RestService._host}/courses/${course.courseId}`,
       options
     ).map(res => res.json());
   }
@@ -55,7 +78,8 @@ export class AdminService extends RestService {
 
     let options = RestService.createOptions();
     return this.http.post(
-      `${RestService._host}/exams`,
+      `${RestService._host}/create`,
+      //`${RestService._host}/exams`,
       body,
       options
     ).map(res => res.json());
@@ -64,7 +88,8 @@ export class AdminService extends RestService {
   deleteExam(exam: Exam) {
     let options = RestService.createOptions();
     return this.http.delete(
-      `${RestService._host}/exams/${exam.examId}`,
+      `${RestService._host}/delete`,
+      //`${RestService._host}/exams/${exam.examId}`,
       options
     ).map(res => res.json());
   }
@@ -83,7 +108,8 @@ export class AdminService extends RestService {
 
     let options = RestService.createOptions();
     return this.http.post(
-      `${RestService._host}/users`,
+      `${RestService._host}/create`,
+      //`${RestService._host}/users`,
       body,
       options
     ).map(res => res.json());
@@ -92,7 +118,8 @@ export class AdminService extends RestService {
   deleteUser(user: User) {
     let options = RestService.createOptions();
     return this.http.delete(
-      `${RestService._host}/users/${user.userId}`,
+      `${RestService._host}/delete`,
+      //`${RestService._host}/users/${user.userId}`,
       options
     ).map(res => res.json());
   }

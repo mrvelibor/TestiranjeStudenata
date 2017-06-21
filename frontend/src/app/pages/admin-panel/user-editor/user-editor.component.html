@@ -16,7 +16,7 @@
     <md-input-container>
       <input mdInput placeholder="Šifra" [(ngModel)]="user.password">
     </md-input-container>
-    <md-select placeholder="Tip korisnika" [(ngModel)]="user.role">
+    <md-select placeholder="Tip korisnika" [(ngModel)]="user.userRole">
       <md-option *ngFor="let role of roles" [value]="role">
         {{role | user_type}}
       </md-option>

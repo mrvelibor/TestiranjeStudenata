@@ -23,7 +23,10 @@ import {StudentService} from "./services/student.service";
 import {AvailableExamsComponent} from "./pages/student-panel/available-exams/available-exams.component";
 import {ExamTestComponent} from "./pages/student-panel/exam-test/exam-test.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule, MdProgressBarModule, MdProgressSpinnerModule, MdIconModule, MdSidenavModule, MdSelectModule} from "@angular/material";
+import {
+  MdButtonModule, MdCheckboxModule, MdInputModule, MdRadioModule, MdProgressBarModule, MdProgressSpinnerModule,
+  MdIconModule, MdSidenavModule, MdSelectModule, MaterialModule
+} from "@angular/material";
 import { MdDataTableModule } from 'ng2-md-datatable';
 import {ExamOverviewComponent} from "./pages/profesor-panel/exam-overview/exam-overview.component";
 import {CompletedExamListComponent} from "./pages/profesor-panel/completed-exam-list/completed-exam-list.component";
@@ -33,6 +36,7 @@ import {CourseEditorComponent} from "./pages/admin-panel/course-editor/course-ed
 import 'hammerjs';
 import {UserEditorComponent} from "./pages/admin-panel/user-editor/user-editor.component";
 import {ExamEditorComponent} from "./pages/admin-panel/exam-editor/exam-editor.component";
+import {CourseUsersListComponent} from "./pages/admin-panel/course-users-list/course-users-list.component";
 
 @NgModule({
   imports: [
@@ -42,6 +46,7 @@ import {ExamEditorComponent} from "./pages/admin-panel/exam-editor/exam-editor.c
     JsonpModule,
     routing,
     BrowserAnimationsModule,
+    MaterialModule,
     MdButtonModule,
     MdRadioModule,
     MdCheckboxModule,
@@ -66,6 +71,7 @@ import {ExamEditorComponent} from "./pages/admin-panel/exam-editor/exam-editor.c
     CompletedExamListComponent,
     UserEditorComponent,
     CourseEditorComponent,
+    CourseUsersListComponent,
     ExamEditorComponent,
     NospaceValidator,
     UserTypePipe

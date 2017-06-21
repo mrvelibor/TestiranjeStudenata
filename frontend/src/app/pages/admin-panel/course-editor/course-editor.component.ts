@@ -74,7 +74,10 @@ export class CourseEditorComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.courses.splice(this.courses.indexOf(course));
+          let index = this.courses.indexOf(course);
+          if(index >= 0) {
+            this.courses.splice(index, 1);
+          }
           this.working = false;
         },
         error => {

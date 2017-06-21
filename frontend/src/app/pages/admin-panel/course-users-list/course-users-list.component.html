@@ -1,0 +1,31 @@
+<div *ngIf="loading">
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+</div>
+<md-sidenav-container class="editor-container">
+  <md-sidenav class="editor-sidenav" #sidenav mode="side" disableClose="true" >
+    <h2>Predmet</h2>
+    <md-input-container>
+      <input mdInput placeholder="Šifra predmeta" disabled [(ngModel)]="course.courseCode">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Naziv predmeta" disabled [(ngModel)]="course.name">
+    </md-input-container>
+    <button *ngIf="!loading" md-raised-button (click)="updateCourse()">Sačuvaj korisnike</button>
+  </md-sidenav>
+  <ng2-md-datatable *ngIf="!loading" selectable="true" (selectionChange)="onUserSelectionChanged($event)">
+    <ng2-md-datatable-header>
+      <ng2-md-datatable-column>Puno ime</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Korisničko ime</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Imejl adresa</ng2-md-datatable-column>
+      <ng2-md-datatable-column>Tip korisnika</ng2-md-datatable-column>
+    </ng2-md-datatable-header>
+    <tbody>
+    <ng2-md-datatable-row *ngFor="let user of allUsers" [selectableValue]="user">
+      <td>{{user.fullName}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.userRole | user_type}}</td>
+    </ng2-md-datatable-row>
+    </tbody>
+  </ng2-md-datatable>
+</md-sidenav-container>

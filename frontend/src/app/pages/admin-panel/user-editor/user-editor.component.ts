@@ -94,7 +94,10 @@ export class UserEditorComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.users.splice(this.users.indexOf(user));
+          let index = this.users.indexOf(user);
+          if(index >= 0) {
+            this.users.splice(index, 1);
+          }
           this.working = false;
         },
         error => {

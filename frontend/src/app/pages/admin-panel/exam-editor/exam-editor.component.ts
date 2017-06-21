@@ -94,7 +94,10 @@ export class ExamEditorComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data);
-          this.exams.splice(this.exams.indexOf(exam));
+          let index = this.exams.indexOf(exam);
+          if(index >= 0) {
+            this.exams.splice(index, 1);
+          }
           this.working = false;
         },
         error => {
