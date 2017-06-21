@@ -102,7 +102,9 @@ public class ExamTestingRestController {
                         }
                         break;
                     case "single":
-                        examQuestion.setSingleChoiceAnswerId(new SingleChoiceAnswer(answer.singleChoiceAnswerId));
+                        SingleChoiceAnswer singleChoiceAnswer = new SingleChoiceAnswer();
+                        singleChoiceAnswer.setSingleChoiceAnswerId(answer.singleChoiceAnswerId);
+                        examQuestion.setSingleChoiceAnswerId(singleChoiceAnswer);
                         if(Objects.equals(answer.singleChoiceAnswerId, question.getSingleChoiceAnswerId().getSingleChoiceAnswerId())) {
                             points = points.add(BigDecimal.ONE);
                         }
@@ -113,10 +115,10 @@ public class ExamTestingRestController {
                                 .collect(Collectors.toList());
                         examQuestion.setMultipleChoiceAnswerList(mcAnswers);
                         long totalCorrectAnswers = question.getMultipleChoiceAnswerList().stream()
-                                .filter(a -> a.getAnswerCorrect())
+                                .filter(a -> a.isAnswerCorrect())
                                 .count();
                         long correctAnswers = mcAnswers.stream()
-                                .filter(a -> a.getAnswerCorrect())
+                                .filter(a -> a.isAnswerCorrect())
                                 .count();
                         if(correctAnswers == mcAnswers.size()) {
                             points = points.add(BigDecimal.ONE.divide(new BigDecimal(totalCorrectAnswers)).multiply(new BigDecimal(correctAnswers)));

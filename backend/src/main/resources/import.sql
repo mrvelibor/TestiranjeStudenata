@@ -1,0 +1,3 @@
+INSERT INTO user_role(ROLE_ID, ROLE_NAME) values(1, 'ROLE_ADMIN');
+INSERT INTO user_role(ROLE_ID, ROLE_NAME) values(2, 'ROLE_PROFESOR');
+INSERT INTO user_role(ROLE_ID, ROLE_NAME) values(3, 'ROLE_STUDENT');
