@@ -23,10 +23,11 @@ public class StudentCoursePK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "USER_ID")
-    private int userId;
+    private Long userId;
+
     @Basic(optional = false)
     @NotNull
     @Column(name = "COURSE_ID")
-    private int courseId;
+    private Long courseId;
     
 }

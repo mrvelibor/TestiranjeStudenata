@@ -31,7 +31,7 @@ public class UserRole implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ROLE_ID")
-    private Integer roleId;
+    private Long roleId;
 
     @Basic(optional = false)
     @NotNull

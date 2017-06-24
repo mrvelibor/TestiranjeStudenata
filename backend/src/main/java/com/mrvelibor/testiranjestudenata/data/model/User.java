@@ -27,7 +27,7 @@ public class User implements Serializable {
     @NotNull
     @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userId;
+    private Long userId;
 
     @Basic(optional = false)
     @NotNull

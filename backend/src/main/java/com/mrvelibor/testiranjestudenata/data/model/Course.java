@@ -34,7 +34,7 @@ public class Course {
     @NotNull
     @Column(name = "COURSE_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer courseId;
+    private Long courseId;
 
     @Basic(optional = false)
     @NotNull

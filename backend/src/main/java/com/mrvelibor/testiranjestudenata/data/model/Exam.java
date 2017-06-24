@@ -32,17 +32,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "exam")
 public class Exam {
 
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "NUMBER_OF_QUESTIONS")
-    private int numberOfQuestions;
-
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "EXAM_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer examId;
+    private Long examId;
 
     @Basic(optional = false)
     @NotNull
@@ -54,6 +49,11 @@ public class Exam {
     @Size(max = 65535)
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "NUMBER_OF_QUESTIONS")
+    private Integer numberOfQuestions;
 
     @JoinColumn(name = "COURSE_ID", referencedColumnName = "COURSE_ID")
     @ManyToOne(optional = false)

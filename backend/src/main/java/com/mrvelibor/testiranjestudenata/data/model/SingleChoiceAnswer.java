@@ -35,7 +35,7 @@ public class SingleChoiceAnswer implements Serializable {
     @NotNull
     @Column(name = "SINGLE_CHOICE_ANSWER_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer singleChoiceAnswerId;
+    private Long singleChoiceAnswerId;
 
     @Lob
     @Size(max = 65535)

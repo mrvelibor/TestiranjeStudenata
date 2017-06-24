@@ -37,7 +37,7 @@ public class StudentExamQuestion implements Serializable {
     @NotNull
     @Column(name = "STUDEN_EXAM_QUESTION_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer studenExamQuestionId;
+    private Long studenExamQuestionId;
 
     @Column(name = "SELECTED_STATEMENT")
     private Boolean selectedStatement;

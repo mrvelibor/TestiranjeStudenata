@@ -37,7 +37,7 @@ public class Question {
     @NotNull
     @Column(name = "QUESTION_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer questionId;
+    private Long questionId;
 
     @Size(max = 10)
     @Column(name = "QUESTION_TYPE")

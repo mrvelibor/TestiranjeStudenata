@@ -34,7 +34,7 @@ public class MultipleChoiceAnswer {
     @NotNull
     @Column(name = "MULTIPLE_CHOICE_ANSWER_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer multipleChoiceAnswerId;
+    private Long multipleChoiceAnswerId;
 
     @Lob
     @Size(max = 65535)

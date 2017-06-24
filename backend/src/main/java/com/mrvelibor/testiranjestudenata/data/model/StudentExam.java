@@ -41,7 +41,7 @@ public class StudentExam {
     @NotNull
     @Column(name = "STUDENT_EXAM_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer studentExamId;
+    private Long studentExamId;
 
     @Column(name = "START_TIME")
     @Temporal(TemporalType.TIMESTAMP)
