@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/**
- * Created by Velibor on 24-Jun-17.
- */
-@RestController("users")
+@RestController()
+@RequestMapping(path = "users")
 public class UserRestController {
 
     @Autowired
@@ -21,10 +19,10 @@ public class UserRestController {
         return userRepository.findAll();
     }
 
-    /*@GetMapping("/{userId}")
-    public User getUser(@RequestParam Long userId) {
+    @GetMapping("{userId}")
+    public User getUser(@PathVariable Long userId) {
         return userRepository.findOne(userId);
-    }*/
+    }
 
     @PostMapping
     public User createUser(@RequestBody User user) {

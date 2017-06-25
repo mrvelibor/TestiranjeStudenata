@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by Velibor on 16-Jun-17.
  */
 @Controller
-public class TestiranjeMvcConfig {
+public class TestiranjeViewController {
 
     @RequestMapping(value={"/testiranje/**"})
     public String angular(Model model) {
