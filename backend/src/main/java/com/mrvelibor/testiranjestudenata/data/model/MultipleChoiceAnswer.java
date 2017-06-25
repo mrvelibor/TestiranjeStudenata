@@ -1,5 +1,6 @@
 package com.mrvelibor.testiranjestudenata.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,7 +31,6 @@ public class MultipleChoiceAnswer {
 
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "MULTIPLE_CHOICE_ANSWER_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long multipleChoiceAnswerId;
@@ -48,11 +47,11 @@ public class MultipleChoiceAnswer {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ANSWER_CORRECT")
-    private boolean answerCorrect;
+    private Boolean answerCorrect;
 
+    @JsonIgnore
     @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
     @ManyToOne(optional = false)
-    @XmlTransient
-    private Question questionId;
+    private Question question;
     
 }

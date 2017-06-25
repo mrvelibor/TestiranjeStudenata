@@ -26,9 +26,6 @@ public class StudentCourse implements Serializable {
     @EmbeddedId
     protected StudentCoursePK studentCoursePK;
 
-    @Column(name = "COMPLETED")
-    private Boolean completed;
-
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private User user;
@@ -36,5 +33,8 @@ public class StudentCourse implements Serializable {
     @JoinColumn(name = "COURSE_ID", referencedColumnName = "COURSE_ID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Course course;
+
+    @Column(name = "COMPLETED")
+    private Boolean completed;
     
 }

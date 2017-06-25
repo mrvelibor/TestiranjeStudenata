@@ -1,5 +1,7 @@
 package com.mrvelibor.testiranjestudenata;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by Velibor on 16-Jun-17.
  */
 @Controller
-public class TestiranjeViewController {
+public class TestiranjeMvcConfig {
 
     @RequestMapping(value={"/testiranje/**"})
     public String angular(Model model) {

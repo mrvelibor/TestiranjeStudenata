@@ -34,10 +34,20 @@ public class StudentExamQuestion implements Serializable {
 
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "STUDEN_EXAM_QUESTION_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long studenExamQuestionId;
+
+    @NotNull
+    @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
+    @ManyToOne(optional = false)
+    private Question question;
+
+    @NotNull
+    @JoinColumn(name = "STUDENT_EXAM_ID", referencedColumnName = "STUDENT_EXAM_ID")
+    @ManyToOne(optional = false)
+    @XmlTransient
+    private StudentExam studentExam;
 
     @Column(name = "SELECTED_STATEMENT")
     private Boolean selectedStatement;
@@ -45,20 +55,12 @@ public class StudentExamQuestion implements Serializable {
     @Column(name = "SELECTED_VALUE")
     private BigDecimal selectedValue;
 
-    @JoinTable(name = "student_multiple_choice_answers", joinColumns = {
-        @JoinColumn(name = "STUDEN_EXAM_QUESTION_ID", referencedColumnName = "STUDEN_EXAM_QUESTION_ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "MULTIPLE_CHOICE_ANSWER_ID", referencedColumnName = "MULTIPLE_CHOICE_ANSWER_ID")})
+    @JoinTable(name = "student_multiple_choice_answers",
+            joinColumns = {@JoinColumn(name = "STUDEN_EXAM_QUESTION_ID", referencedColumnName = "STUDEN_EXAM_QUESTION_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "MULTIPLE_CHOICE_ANSWER_ID", referencedColumnName = "MULTIPLE_CHOICE_ANSWER_ID")}
+            )
     @ManyToMany
     private List<MultipleChoiceAnswer> multipleChoiceAnswerList;
-
-    @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
-    @ManyToOne(optional = false)
-    private Question questionId;
-
-    @JoinColumn(name = "STUDENT_EXAM_ID", referencedColumnName = "STUDENT_EXAM_ID")
-    @ManyToOne(optional = false)
-    @XmlTransient
-    private StudentExam studentExamId;
 
     @JoinColumn(name = "SINGLE_CHOICE_ANSWER_ID", referencedColumnName = "SINGLE_CHOICE_ANSWER_ID")
     @ManyToOne

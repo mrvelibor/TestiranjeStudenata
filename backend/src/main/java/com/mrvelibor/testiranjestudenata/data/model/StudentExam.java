@@ -33,15 +33,21 @@ import javax.validation.constraints.NotNull;
 @Table(name = "student_exam")
 public class StudentExam {
 
-    @Column(name = "POINTS")
-    private BigDecimal points;
-
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "STUDENT_EXAM_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long studentExamId;
+
+    @NotNull
+    @JoinColumn(name = "EXAM_ID", referencedColumnName = "EXAM_ID")
+    @ManyToOne(optional = false)
+    private Exam exam;
+
+    @NotNull
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+    @ManyToOne(optional = false)
+    private User student;
 
     @Column(name = "START_TIME")
     @Temporal(TemporalType.TIMESTAMP)
@@ -51,15 +57,10 @@ public class StudentExam {
     @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
 
-    @JoinColumn(name = "EXAM_ID", referencedColumnName = "EXAM_ID")
-    @ManyToOne(optional = false)
-    private Exam examId;
+    @Column(name = "POINTS")
+    private BigDecimal points;
 
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
-    @ManyToOne(optional = false)
-    private User userId;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentExamId")
-    private List<StudentExamQuestion> studentExamQuestionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentExam")
+    private List<StudentExamQuestion> studentExamQuestions;
     
 }

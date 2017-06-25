@@ -1,5 +1,6 @@
 package com.mrvelibor.testiranjestudenata.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,7 +31,6 @@ public class Course {
 
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "COURSE_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long courseId;
@@ -39,15 +38,16 @@ public class Course {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 5)
-    @Column(name = "COURSE_CODE")
+    @Column(name = "COURSE_CODE", unique = true)
     private String courseCode;
 
+    @NotNull
     @Size(max = 100)
     @Column(name = "NAME")
     private String name;
 
-    @XmlTransient
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseId")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
     private List<Exam> examList;
     
 }

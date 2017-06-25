@@ -55,9 +55,10 @@ public class AuthenticationController {
 
         String token = tokenUtils.generateToken(claims);
         User user = new User();
+        user.setUserId(123l);
         user.setUsername(authenticationRequest.getUsername());
         user.setEmail("velibor.bacujkov.2493@metropolitan.ac.rs");
-        user.setUserRole(new UserRole(3, "ROLE_STUDENT"));
+        user.setUserRole(new UserRole(3l, "ROLE_STUDENT"));
 
         AuthenticationResponseJson response = new AuthenticationResponseJson(user, token);
         return ResponseEntity.ok(response);

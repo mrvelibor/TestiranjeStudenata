@@ -1,5 +1,6 @@
 package com.mrvelibor.testiranjestudenata.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,6 @@ public class SingleChoiceAnswer implements Serializable {
 
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "SINGLE_CHOICE_ANSWER_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long singleChoiceAnswerId;
@@ -46,8 +46,10 @@ public class SingleChoiceAnswer implements Serializable {
     @Column(name = "IMAGE_URL")
     private String imageUrl;
 
+    @JsonIgnore
+    @NotNull
     @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
     @ManyToOne(optional = false)
-    private Question questionId;
+    private Question question;
     
 }

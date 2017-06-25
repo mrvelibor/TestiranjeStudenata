@@ -1,5 +1,6 @@
 package com.mrvelibor.testiranjestudenata.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,10 +35,14 @@ public class Question {
 
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "QUESTION_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long questionId;
+
+    @JsonIgnore
+    @JoinColumn(name = "EXAM_ID", referencedColumnName = "EXAM_ID")
+    @ManyToOne(optional = false)
+    private Exam exam;
 
     @Size(max = 10)
     @Column(name = "QUESTION_TYPE")
@@ -58,18 +63,14 @@ public class Question {
     @Column(name = "CORRECT_VALUE")
     private BigDecimal correctValue;
 
-    @JoinColumn(name = "EXAM_ID", referencedColumnName = "EXAM_ID")
-    @ManyToOne(optional = false)
-    private Exam examId;
-
     @JoinColumn(name = "SINGLE_CHOICE_ANSWER_ID", referencedColumnName = "SINGLE_CHOICE_ANSWER_ID")
     @ManyToOne
-    private SingleChoiceAnswer singleChoiceAnswerId;
+    private SingleChoiceAnswer singleChoiceAnswer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "questionId")
-    private List<MultipleChoiceAnswer> multipleChoiceAnswerList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    private List<MultipleChoiceAnswer> multipleChoiceAnswers;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "questionId")
-    private List<SingleChoiceAnswer> singleChoiceAnswerList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    private List<SingleChoiceAnswer> singleChoiceAnswers;
     
 }

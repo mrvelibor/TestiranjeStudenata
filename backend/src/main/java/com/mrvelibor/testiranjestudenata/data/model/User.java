@@ -1,5 +1,6 @@
 package com.mrvelibor.testiranjestudenata.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,15 +25,14 @@ public class User implements Serializable {
 
     @Id
     @Basic(optional = false)
-    @NotNull
     @Column(name = "USER_ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME", unique = true, updatable = false)
     private String username;
 
     @Basic(optional = false)
@@ -51,19 +51,20 @@ public class User implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", unique = true)
     private String email;
 
+    @NotNull
     @JoinColumn(name = "USER_ROLE", referencedColumnName = "ROLE_ID")
     @ManyToOne(optional = false)
     private UserRole userRole;
 
-    @XmlTransient
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<StudentExam> studentExamList;
 
-    @XmlTransient
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<StudentCourse> studentCourseList;
+    private List<StudentCourse> studentCourses;
     
 }

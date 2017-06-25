@@ -1,5 +1,6 @@
 package com.mrvelibor.testiranjestudenata.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,14 +25,8 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /*@Autowired
-    private DataSource dataSource;*/
-
-    @Value("${spring.queries.users-query}")
-    private String usersQuery;
-
-    @Value("${spring.queries.roles-query}")
-    private String rolesQuery;
+    @Autowired
+    private DataSource dataSource;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -69,12 +64,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("velja").password("passw0rd").roles("USER");
-        /*auth.jdbcAuthentication()
-                .usersByUsernameQuery(usersQuery)
-                .authoritiesByUsernameQuery(rolesQuery)
-                .dataSource(dataSource)
-                .passwordEncoder(passwordEncoder());*/
+        //auth.inMemoryAuthentication().withUser("velja").password("passw0rd").roles("USER");
+        auth.jdbcAuthentication()
+                .usersByUsernameQuery("select username, password, 1 from users where username=?")
+                .authoritiesByUsernameQuery("select 'ROLE_ADMIN'")
+                //.authoritiesByUsernameQuery("select role_name from users left join user_role on user.user_role=user_role.role_id where username=?")
+                .dataSource(dataSource);
+                //.passwordEncoder(passwordEncoder());
     }
 
     @Bean

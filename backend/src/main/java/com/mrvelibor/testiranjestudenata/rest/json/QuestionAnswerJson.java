@@ -17,6 +17,6 @@ public class QuestionAnswerJson {
     public Question question;
     public Boolean answerStatement;
     public BigDecimal answerValue;
-    public Integer singleChoiceAnswerId;
-    public List<Integer> multipleChoiceAnswerIds;
+    public Long singleChoiceAnswerId;
+    public List<Long> multipleChoiceAnswerIds;
 }

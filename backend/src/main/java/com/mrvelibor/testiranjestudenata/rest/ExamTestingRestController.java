@@ -52,12 +52,12 @@ public class ExamTestingRestController {
         User user = em.find(User.class, entity.user.getUserId());
         
         StudentExam studentExam = new StudentExam();
-        studentExam.setExamId(exam);
-        studentExam.setUserId(user);
+        studentExam.setExam(exam);
+        studentExam.setStudent(user);
         studentExam.setStartTime(new Date());        
         em.persist(studentExam);
         
-        List<Question> allQuestions = exam.getQuestionList();
+        List<Question> allQuestions = exam.getQuestions();
         Set<Question> questions = new HashSet<>(exam.getNumberOfQuestions());
         Random rand = new Random();
         while(questions.size() < exam.getNumberOfQuestions()) {
@@ -67,12 +67,12 @@ public class ExamTestingRestController {
         List<StudentExamQuestion> examQuestions = new ArrayList<>();
         for(Question question : questions) {
             StudentExamQuestion examQuestion = new StudentExamQuestion();
-            examQuestion.setQuestionId(question);
-            examQuestion.setStudentExamId(studentExam);
+            examQuestion.setQuestion(question);
+            examQuestion.setStudentExam(studentExam);
             em.persist(examQuestion);
             examQuestions.add(examQuestion);
         }
-        studentExam.setStudentExamQuestionList(examQuestions);
+        studentExam.setStudentExamQuestions(examQuestions);
         
         return studentExam;
     }
@@ -82,9 +82,9 @@ public class ExamTestingRestController {
         StudentExam studentExam = em.find(StudentExam.class, studentExamId);        
         BigDecimal points = new BigDecimal(0);
         
-        for(StudentExamQuestion examQuestion : studentExam.getStudentExamQuestionList()) {
+        for(StudentExamQuestion examQuestion : studentExam.getStudentExamQuestions()) {
             try {
-                Question question = examQuestion.getQuestionId();
+                Question question = examQuestion.getQuestion();
                 QuestionAnswerJson answer = entity.answers.stream()
                     .filter(a -> Objects.equals(a.question.getQuestionId(), question.getQuestionId()))
                     .findFirst().get();
@@ -105,20 +105,20 @@ public class ExamTestingRestController {
                         SingleChoiceAnswer singleChoiceAnswer = new SingleChoiceAnswer();
                         singleChoiceAnswer.setSingleChoiceAnswerId(answer.singleChoiceAnswerId);
                         examQuestion.setSingleChoiceAnswerId(singleChoiceAnswer);
-                        if(Objects.equals(answer.singleChoiceAnswerId, question.getSingleChoiceAnswerId().getSingleChoiceAnswerId())) {
+                        if(Objects.equals(answer.singleChoiceAnswerId, question.getSingleChoiceAnswer().getSingleChoiceAnswerId())) {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
                     case "multiple":
-                        List<MultipleChoiceAnswer> mcAnswers = question.getMultipleChoiceAnswerList().stream()
+                        List<MultipleChoiceAnswer> mcAnswers = question.getMultipleChoiceAnswers().stream()
                                 .filter(a -> answer.multipleChoiceAnswerIds.contains(a.getMultipleChoiceAnswerId()))
                                 .collect(Collectors.toList());
                         examQuestion.setMultipleChoiceAnswerList(mcAnswers);
-                        long totalCorrectAnswers = question.getMultipleChoiceAnswerList().stream()
-                                .filter(a -> a.isAnswerCorrect())
+                        long totalCorrectAnswers = question.getMultipleChoiceAnswers().stream()
+                                .filter(a -> a.getAnswerCorrect())
                                 .count();
                         long correctAnswers = mcAnswers.stream()
-                                .filter(a -> a.isAnswerCorrect())
+                                .filter(a -> a.getAnswerCorrect())
                                 .count();
                         if(correctAnswers == mcAnswers.size()) {
                             points = points.add(BigDecimal.ONE.divide(new BigDecimal(totalCorrectAnswers)).multiply(new BigDecimal(correctAnswers)));
