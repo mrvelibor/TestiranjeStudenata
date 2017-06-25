@@ -1,6 +1,7 @@
 package com.mrvelibor.testiranjestudenata.data.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,7 +41,7 @@ public class User implements Serializable, UserDetails {
     @Column(name = "USERNAME", unique = true, updatable = false)
     private String username;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 256)

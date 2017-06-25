@@ -58,7 +58,7 @@ export class AdminService extends RestService {
     return this.http.delete(
       `${RestService._host}/courses/${course.courseId}`,
       options
-    ).map(res => res.json());
+    );
   }
 
   getExams() {
@@ -86,7 +86,7 @@ export class AdminService extends RestService {
     return this.http.delete(
       `${RestService._host}/exams/${exam.examId}`,
       options
-    ).map(res => res.json());
+    );
   }
 
   getUsers() {
@@ -114,7 +114,7 @@ export class AdminService extends RestService {
     return this.http.delete(
       `${RestService._host}/users/${user.userId}`,
       options
-    ).map(res => res.json());
+    );
   }
 
   getRoles() {

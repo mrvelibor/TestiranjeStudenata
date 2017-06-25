@@ -2059,7 +2059,7 @@ var AdminService = (function (_super) {
     };
     AdminService.prototype.deleteCourse = function (course) {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
-        return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/courses/" + course.courseId, options).map(function (res) { return res.json(); });
+        return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/courses/" + course.courseId, options);
     };
     AdminService.prototype.getExams = function () {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
@@ -2073,7 +2073,7 @@ var AdminService = (function (_super) {
     };
     AdminService.prototype.deleteExam = function (exam) {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
-        return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams/" + exam.examId, options).map(function (res) { return res.json(); });
+        return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams/" + exam.examId, options);
     };
     AdminService.prototype.getUsers = function () {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
@@ -2087,7 +2087,7 @@ var AdminService = (function (_super) {
     };
     AdminService.prototype.deleteUser = function (user) {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
-        return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/users/" + user.userId, options).map(function (res) { return res.json(); });
+        return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/users/" + user.userId, options);
     };
     AdminService.prototype.getRoles = function () {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
