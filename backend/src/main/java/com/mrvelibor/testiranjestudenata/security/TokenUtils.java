@@ -55,8 +55,8 @@ public class TokenUtils {
                 .signWith(SignatureAlgorithm.HS512, this.secret)
                 .compact();
 
-        String userGuid = (String) claims.get("sub");
         // TODO: Save token to database
+        //String username = (String) claims.get("sub");
 
         return token;
     }
@@ -70,8 +70,8 @@ public class TokenUtils {
     }
 
     public void removeToken(String token) {
-        String userGuid = getClaimsFromToken(token).getSubject();
         // TODO: Remove token from database
+        //String username = getClaimsFromToken(token).getSubject();
     }
 
 }

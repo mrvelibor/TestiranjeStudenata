@@ -1,14 +1,12 @@
 package com.mrvelibor.testiranjestudenata.security;
 
+import com.mrvelibor.testiranjestudenata.data.model.User;
+import com.mrvelibor.testiranjestudenata.data.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 
@@ -19,9 +17,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -33,6 +28,9 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
 
     @Autowired
     private TokenUtils tokenUtils;
+
+    @Autowired
+    UserRepository userRepository;
 
     /**
      * Filters all REST calls and logs the user in if the token in the request Header is valid.
@@ -56,8 +54,8 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
                 if (claims != null) {
                     String username = claims.getSubject();
                     // TODO: Get real authorities and capabilities from the database
-                    UserDetails userDetails = new User(username, "", Arrays.asList(new GrantedAuthority[]{new SimpleGrantedAuthority("ROLE_USER")}));
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    User user = userRepository.findOneByUsername(username);
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                     session.setAttribute("token", token);

@@ -1,5 +1,7 @@
 package com.mrvelibor.testiranjestudenata.security;
 
+import com.mrvelibor.testiranjestudenata.security.json.AuthenticationDetailsJson;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,8 +14,11 @@ import javax.servlet.http.HttpSession;
 public class AuthTestRestController {
 
     @GetMapping("tokentest")
-    public String test(HttpSession session) {
-        return "Logged in with token: " + session.getAttribute("token");
+    public AuthenticationDetailsJson test(HttpSession session, Authentication authentication) {
+        return new AuthenticationDetailsJson(
+                (String) session.getAttribute("token"),
+                authentication
+        );
     }
 
 }

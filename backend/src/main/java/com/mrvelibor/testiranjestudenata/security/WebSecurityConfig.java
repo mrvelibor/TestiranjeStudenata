@@ -25,6 +25,12 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Value("${spring.queries.users-query}")
+    private String usersQuery;
+
+    @Value("${spring.queries.roles-query}")
+    private String rolesQuery;
+
     @Autowired
     private DataSource dataSource;
 
@@ -49,10 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS,"**").permitAll()
-                .antMatchers(
-                        "/",
-                        "/login"
-                ).permitAll()
+                .antMatchers("/", "/login").permitAll()
+                .antMatchers("/users**").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
             .and()
             .logout()
@@ -64,11 +68,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.inMemoryAuthentication().withUser("velja").password("passw0rd").roles("USER");
         auth.jdbcAuthentication()
-                .usersByUsernameQuery("select username, password, 1 from users where username=?")
-                .authoritiesByUsernameQuery("select 'ROLE_ADMIN'")
-                //.authoritiesByUsernameQuery("select role_name from users left join user_role on user.user_role=user_role.role_id where username=?")
+                .usersByUsernameQuery(usersQuery)
+                .authoritiesByUsernameQuery(rolesQuery)
                 .dataSource(dataSource);
                 //.passwordEncoder(passwordEncoder());
     }

@@ -2,6 +2,7 @@ package com.mrvelibor.testiranjestudenata.security;
 
 import com.mrvelibor.testiranjestudenata.data.model.User;
 import com.mrvelibor.testiranjestudenata.data.model.UserRole;
+import com.mrvelibor.testiranjestudenata.data.repository.UserRepository;
 import com.mrvelibor.testiranjestudenata.security.json.AuthenticationRequestJson;
 import com.mrvelibor.testiranjestudenata.security.json.AuthenticationResponseJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class AuthenticationController {
     @Autowired
     private TokenUtils tokenUtils;
 
-    /*@Autowired
-    private UserDetailsService userDetailsService;*/
+    @Autowired
+    private UserRepository userRepository;
 
     /**
      * Gets the authentication parameters from the POST call and logs the user in if the parameters match the ones in the database.
@@ -41,24 +42,18 @@ public class AuthenticationController {
      */
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity<AuthenticationResponseJson> authenticationRequest(@RequestBody AuthenticationRequestJson authenticationRequest) throws AuthenticationException {
+        User user = userRepository.findOneByUsernameOrEmail(authenticationRequest.getUsername(), authenticationRequest.getUsername());
         Authentication authentication = this.authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        authenticationRequest.getUsername(),
+                        user,
                         authenticationRequest.getPassword()
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        //UserDetails userDetails = this.userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put("sub", authenticationRequest.getUsername());
-
+        claims.put("sub", user.getUsername());
         String token = tokenUtils.generateToken(claims);
-        User user = new User();
-        user.setUserId(123l);
-        user.setUsername(authenticationRequest.getUsername());
-        user.setEmail("velibor.bacujkov.2493@metropolitan.ac.rs");
-        user.setUserRole(new UserRole(3l, "ROLE_STUDENT"));
 
         AuthenticationResponseJson response = new AuthenticationResponseJson(user, token);
         return ResponseEntity.ok(response);
