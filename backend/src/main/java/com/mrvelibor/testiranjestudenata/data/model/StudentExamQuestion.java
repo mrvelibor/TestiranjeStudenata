@@ -37,7 +37,7 @@ public class StudentExamQuestion implements Serializable {
     @Basic(optional = false)
     @Column(name = "STUDEN_EXAM_QUESTION_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long studenExamQuestionId;
+    private Long studentExamQuestionId;
 
     @NotNull
     @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")

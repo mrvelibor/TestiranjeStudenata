@@ -62,6 +62,6 @@ public class StudentExam {
     private BigDecimal points;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentExam")
-    private Collection<StudentExamQuestion> studentExamQuestions;
+    private Collection<StudentExamQuestion> questions;
     
 }

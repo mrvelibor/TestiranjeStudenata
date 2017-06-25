@@ -61,6 +61,11 @@ public class StudentRestController {
         return studentExamRepository.findAll();
     }
 
+    @GetMapping("exams/{studentExamId}")
+    public StudentExam getCompletedExam(@PathVariable Long studentExamId) {
+        return studentExamRepository.findOne(studentExamId);
+    }
+
     @PostMapping("exams/{examId}/start")
     public StudentExam startExam(@PathVariable Long examId, @RequestBody ExamJson entity) {
         User user = userRepository.findOne(entity.user.getUserId());
@@ -88,7 +93,7 @@ public class StudentRestController {
             examQuestion = studentExamQuestionRepository.save(examQuestion);
             examQuestions.add(examQuestion);
         }
-        studentExam.setStudentExamQuestions(examQuestions);
+        studentExam.setQuestions(examQuestions);
         
         return studentExam;
     }
@@ -98,7 +103,7 @@ public class StudentRestController {
         StudentExam studentExam = studentExamRepository.findOne(studentExamId);
         BigDecimal points = new BigDecimal(0);
         
-        for(StudentExamQuestion examQuestion : studentExam.getStudentExamQuestions()) {
+        for(StudentExamQuestion examQuestion : studentExam.getQuestions()) {
             try {
                 Question question = examQuestion.getQuestion();
                 QuestionAnswerJson answer = entity.answers.stream()

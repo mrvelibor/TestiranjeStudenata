@@ -73,9 +73,11 @@ export class ExamTestComponent implements OnInit, OnDestroy {
     this.studentService.startExam(this.currentUser, this.examId)
       .subscribe(
         data => {
-          this.prepareAnswers(data);
-          this.studentExam = data;
           console.log(data);
+          this.answers = this.prepareAnswers(data);
+          console.log(this.answers);
+          this.studentExam = data;
+          debugger;
           this.loading = false;
         },
         error => {
@@ -97,7 +99,7 @@ export class ExamTestComponent implements OnInit, OnDestroy {
       };
       answers[examQuestion.studentExamQuestionId] = answer;
     });
-    this.answers = answers;
+    return answers;
   }
 
   finishExam() {

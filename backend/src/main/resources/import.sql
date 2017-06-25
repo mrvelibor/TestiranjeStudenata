@@ -69,7 +69,7 @@ INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text,
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1142, 114, 'iOS je operativni sistem za mobilne uređaje.', 1);
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1143, 114, 'Windows 10 desktop računari i mobilni uređaji koriste isti operativni sistem.', 0);
 
-INSERT INTO question(question_id, exam_id, question_type, text) VALUES (118, 11, 'multiple', 'Koji od navedenih fakulteta pripadaju Univerzitetu Metropolian?');
+INSERT INTO question(question_id, exam_id, question_type, text) VALUES (118, 11, 'multiple', 'Koji od navedenih fakulteta pripadaju Univerzitetu Metropolitan?');
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1181, 118, 'FPM', 0);
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1182, 118, 'FDU', 1);
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1183, 118, 'FIT', 1);
