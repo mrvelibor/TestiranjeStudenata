@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "student")
 public class StudentRestController {
     
-    static Logger logger = Logger.getLogger("ExamRestController");
+    static Logger logger = Logger.getLogger("StudentRestController");
 
     @Autowired
     private UserRepository userRepository;

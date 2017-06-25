@@ -111,6 +111,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_admin_panel_exam_editor_exam_editor_component__ = __webpack_require__("../../../../../src/app/pages/admin-panel/exam-editor/exam-editor.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_admin_panel_course_users_list_course_users_list_component__ = __webpack_require__("../../../../../src/app/pages/admin-panel/course-users-list/course-users-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_profesor_panel_student_exams_student_exams_component__ = __webpack_require__("../../../../../src/app/pages/profesor-panel/student-exams/student-exams.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__services_profesor_service__ = __webpack_require__("../../../../../src/app/services/profesor.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -118,6 +119,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -207,6 +209,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_12__services_rest_service__["a" /* RestService */],
             __WEBPACK_IMPORTED_MODULE_11__services_authentication_service__["a" /* AuthenticationService */],
             __WEBPACK_IMPORTED_MODULE_20__services_student_service__["a" /* StudentService */],
+            __WEBPACK_IMPORTED_MODULE_35__services_profesor_service__["a" /* ProfesorService */],
             __WEBPACK_IMPORTED_MODULE_28__services_admin_service__["a" /* AdminService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
@@ -1489,6 +1492,9 @@ var ExamOverviewComponent = (function () {
                     if (question.singleChoiceAnswer) {
                         question.singleChoiceAnswerId = question.singleChoiceAnswer.singleChoiceAnswerId;
                     }
+                    if (question.question.singleChoiceCorrectAnswer) {
+                        question.question.singleChoiceCorrectAnswerId = question.question.singleChoiceCorrectAnswer.singleChoiceAnswerId;
+                    }
                     break;
                 case 'multiple':
                     question['multipleChoiceAnswerMap'] = {};
@@ -1547,9 +1553,9 @@ module.exports = module.exports.toString();
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_student_service__ = __webpack_require__("../../../../../src/app/services/student.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_alert_service__ = __webpack_require__("../../../../../src/app/services/alert.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_alert_service__ = __webpack_require__("../../../../../src/app/services/alert.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_profesor_service__ = __webpack_require__("../../../../../src/app/services/profesor.service.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StudentExamsComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1565,8 +1571,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var StudentExamsComponent = (function () {
-    function StudentExamsComponent(studentService, alertService) {
-        this.studentService = studentService;
+    function StudentExamsComponent(profesorService, alertService) {
+        this.profesorService = profesorService;
         this.alertService = alertService;
         this.courses = [];
     }
@@ -1580,7 +1586,7 @@ var StudentExamsComponent = (function () {
         var _this = this;
         this.loading = true;
         this.alertService.clearMessage();
-        this.studentService.getCompletedExams()
+        this.profesorService.getCompletedExams()
             .subscribe(function (data) {
             console.log(data);
             _this.courses = _this.processStudentExams(data);
@@ -1613,8 +1619,8 @@ var StudentExamsComponent = (function () {
     return StudentExamsComponent;
 }());
 __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_3__angular_material__["k" /* MdSidenav */]),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_material__["k" /* MdSidenav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_material__["k" /* MdSidenav */]) === "function" && _a || Object)
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_2__angular_material__["k" /* MdSidenav */]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_material__["k" /* MdSidenav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_material__["k" /* MdSidenav */]) === "function" && _a || Object)
 ], StudentExamsComponent.prototype, "sidenav", void 0);
 StudentExamsComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
@@ -1622,7 +1628,7 @@ StudentExamsComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/pages/profesor-panel/student-exams/student-exams.component.html"),
         styles: [__webpack_require__("../../../../../src/app/pages/profesor-panel/student-exams/student-exams.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_student_service__["a" /* StudentService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_student_service__["a" /* StudentService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_alert_service__["a" /* AlertService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_alert_service__["a" /* AlertService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__services_profesor_service__["a" /* ProfesorService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_profesor_service__["a" /* ProfesorService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__services_alert_service__["a" /* AlertService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_alert_service__["a" /* AlertService */]) === "function" && _c || Object])
 ], StudentExamsComponent);
 
 var _a, _b, _c;
@@ -1918,7 +1924,7 @@ var ExamTestComponent = (function () {
         var _this = this;
         this.loading = true;
         this.alertService.clearMessage();
-        this.studentService.startExam(this.currentUser, this.examId)
+        this.studentService.startExam(this.examId)
             .subscribe(function (data) {
             console.log(data);
             _this.answers = _this.prepareAnswers(data);
@@ -2333,6 +2339,64 @@ OverlayService = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/profesor.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest_service__ = __webpack_require__("../../../../../src/app/services/rest.service.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProfesorService; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ProfesorService = (function (_super) {
+    __extends(ProfesorService, _super);
+    function ProfesorService(http) {
+        return _super.call(this, http) || this;
+    }
+    ProfesorService.prototype.getCompletedExams = function () {
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/profesor/exams/completed", options).map(function (res) { return res.json(); });
+    };
+    ProfesorService.prototype.getStudentExam = function (studentExamId) {
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/profesor/exams/" + studentExamId, options).map(function (res) { return res.json(); });
+    };
+    return ProfesorService;
+}(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]));
+ProfesorService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === "function" && _a || Object])
+], ProfesorService);
+
+var _a;
+//# sourceMappingURL=profesor.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/rest.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2436,14 +2500,9 @@ var StudentService = (function (_super) {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/student/exams/" + studentExamId, options).map(function (res) { return res.json(); });
     };
-    StudentService.prototype.startExam = function (user, examId) {
-        var params = {
-            "user": user
-        };
-        var body = JSON.stringify(params);
-        console.log(body);
+    StudentService.prototype.startExam = function (examId) {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/student/exams/" + examId + "/start", body, options).map(function (res) { return res.json(); });
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/student/exams/" + examId + "/start", null, options).map(function (res) { return res.json(); });
     };
     StudentService.prototype.finishExam = function (exam, answers) {
         var params = {

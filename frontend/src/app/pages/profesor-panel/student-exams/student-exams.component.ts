@@ -4,6 +4,7 @@ import {AlertService} from "../../../services/alert.service";
 import {Course} from "../../../models/course";
 import {StudentExam} from "../../../models/student-exam";
 import {MdSidenav} from "@angular/material";
+import {ProfesorService} from "../../../services/profesor.service";
 
 @Component({
   selector: 'app-student-exams',
@@ -21,7 +22,7 @@ export class StudentExamsComponent implements OnInit, OnDestroy {
 
   loading: boolean;
 
-  constructor(private studentService: StudentService,
+  constructor(private profesorService: ProfesorService,
               private alertService: AlertService) {
   }
 
@@ -36,7 +37,7 @@ export class StudentExamsComponent implements OnInit, OnDestroy {
   loadStudentExams() {
     this.loading = true;
     this.alertService.clearMessage();
-    this.studentService.getCompletedExams()
+    this.profesorService.getCompletedExams()
       .subscribe(
         data => {
           console.log(data);

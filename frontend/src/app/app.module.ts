@@ -37,6 +37,7 @@ import {UserEditorComponent} from "./pages/admin-panel/user-editor/user-editor.c
 import {ExamEditorComponent} from "./pages/admin-panel/exam-editor/exam-editor.component";
 import {CourseUsersListComponent} from "./pages/admin-panel/course-users-list/course-users-list.component";
 import {StudentExamsComponent} from "./pages/profesor-panel/student-exams/student-exams.component";
+import {ProfesorService} from "./services/profesor.service";
 
 @NgModule({
   imports: [
@@ -86,6 +87,7 @@ import {StudentExamsComponent} from "./pages/profesor-panel/student-exams/studen
     RestService,
     AuthenticationService,
     StudentService,
+    ProfesorService,
     AdminService
   ],
   bootstrap: [AppComponent]
