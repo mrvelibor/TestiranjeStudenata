@@ -42,17 +42,11 @@ export class StudentService extends RestService {
     ).map(res => res.json());
   }
 
-  startExam(user, examId) {
-    let params = {
-      "user": user
-    };
-    let body = JSON.stringify(params);
-    console.log(body);
-
+  startExam(examId) {
     let options = RestService.options();
     return this.http.post(
       `${RestService._host}/student/exams/${examId}/start`,
-      body,
+      null,
       options
     ).map(res => res.json());
   }

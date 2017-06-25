@@ -22,6 +22,8 @@ import javax.websocket.server.PathParam;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -49,8 +51,9 @@ public class StudentRestController {
     private StudentExamQuestionRepository studentExamQuestionRepository;
 
     @GetMapping("exams/available")
-    public Collection<Exam> getAvailableExams() {
-        return examRepository.findAll();
+    public Collection<Exam> getAvailableExams(Authentication authentication) {
+        User currentUser = (User) authentication.getPrincipal();
+        return examRepository.findAvailable(currentUser.getUserId());
     }
 
     @GetMapping("exams/completed")
@@ -65,14 +68,13 @@ public class StudentRestController {
     }
 
     @PostMapping("exams/{examId}/start")
-    public StudentExam startExam(@PathVariable Long examId, @RequestBody ExamJson entity) {
-        User user = userRepository.findOne(entity.user.getUserId());
-
+    public ResponseEntity<StudentExam> startExam(@PathVariable Long examId, Authentication authentication) {
+        User currentUser = (User) authentication.getPrincipal();
         Exam exam = examRepository.findOne(examId);
         
         StudentExam studentExam = new StudentExam();
         studentExam.setExam(exam);
-        studentExam.setStudent(user);
+        studentExam.setStudent(currentUser);
         studentExam.setStartTime(new Date());        
         studentExam = studentExamRepository.save(studentExam);
 
@@ -93,14 +95,25 @@ public class StudentRestController {
         }
         studentExam.setQuestions(examQuestions);
         
-        return studentExam;
+        return new ResponseEntity<>(studentExam, HttpStatus.OK);
     }
 
     @PostMapping("exams/{studentExamId}/finish")
-    public StudentExam finishExam(@PathVariable Long studentExamId, @RequestBody StudentExamAnswersJson entity) {
+    public ResponseEntity<StudentExam> finishExam(@PathVariable Long studentExamId, @RequestBody StudentExamAnswersJson entity, Authentication authentication) {
+        User currentUser = (User) authentication.getPrincipal();
         StudentExam studentExam = studentExamRepository.findOne(studentExamId);
+
+        if(studentExam == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        if(!Objects.equals(currentUser.getUserId(), studentExam.getStudent().getUserId())) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        if(studentExam.getEndTime() != null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         BigDecimal points = new BigDecimal(0);
-        
         for(StudentExamQuestion examQuestion : studentExam.getQuestions()) {
             try {
                 Question question = examQuestion.getQuestion();
@@ -124,7 +137,7 @@ public class StudentRestController {
                         SingleChoiceAnswer singleChoiceAnswer = new SingleChoiceAnswer();
                         singleChoiceAnswer.setSingleChoiceAnswerId(answer.singleChoiceAnswerId);
                         examQuestion.setSingleChoiceAnswer(singleChoiceAnswer);
-                        if(Objects.equals(answer.singleChoiceAnswerId, question.getSingleChoiceAnswer().getSingleChoiceAnswerId())) {
+                        if(Objects.equals(answer.singleChoiceAnswerId, question.getSingleChoiceCorrectAnswer().getSingleChoiceAnswerId())) {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
@@ -149,11 +162,11 @@ public class StudentRestController {
             catch (NoSuchElementException ex) {                
             }
         }
-        
         studentExam.setEndTime(new Date());
         studentExam.setPoints(points);
         studentExam = studentExamRepository.save(studentExam);
-        return studentExam;
+
+        return new ResponseEntity<>(studentExam, HttpStatus.OK);
     }
     
 }

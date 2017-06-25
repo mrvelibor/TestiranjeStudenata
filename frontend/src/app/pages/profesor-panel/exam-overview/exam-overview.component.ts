@@ -72,6 +72,9 @@ export class ExamOverviewComponent implements OnInit, OnDestroy {
           if(question.singleChoiceAnswer) {
             question.singleChoiceAnswerId = question.singleChoiceAnswer.singleChoiceAnswerId;
           }
+          if(question.question.singleChoiceCorrectAnswer) {
+            question.question.singleChoiceCorrectAnswerId = question.question.singleChoiceCorrectAnswer.singleChoiceAnswerId;
+          }
           break;
         case 'multiple':
           question['multipleChoiceAnswerMap'] = {};

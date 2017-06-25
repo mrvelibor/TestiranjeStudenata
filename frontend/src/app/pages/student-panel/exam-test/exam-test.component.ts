@@ -70,7 +70,7 @@ export class ExamTestComponent implements OnInit, OnDestroy {
   startExam() {
     this.loading = true;
     this.alertService.clearMessage();
-    this.studentService.startExam(this.currentUser, this.examId)
+    this.studentService.startExam(this.examId)
       .subscribe(
         data => {
           console.log(data);

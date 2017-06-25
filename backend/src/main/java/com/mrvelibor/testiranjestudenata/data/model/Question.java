@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
  * @author Velibor
  */
 @Data
-@EqualsAndHashCode(exclude={"singleChoiceAnswer"})
+@EqualsAndHashCode(exclude={"singleChoiceCorrectAnswer"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -55,7 +55,7 @@ public class Question {
 
     @JoinColumn(name = "SINGLE_CHOICE_ANSWER_ID", referencedColumnName = "SINGLE_CHOICE_ANSWER_ID")
     @ManyToOne
-    private SingleChoiceAnswer singleChoiceAnswer;
+    private SingleChoiceAnswer singleChoiceCorrectAnswer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
     private Collection<MultipleChoiceAnswer> multipleChoiceAnswers;
