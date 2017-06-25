@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mrvelibor.testiranjestudenata.rest;
 
 import com.mrvelibor.testiranjestudenata.data.model.Exam;
@@ -27,6 +22,8 @@ import javax.websocket.server.PathParam;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -52,13 +49,14 @@ public class StudentRestController {
     private StudentExamQuestionRepository studentExamQuestionRepository;
 
     @GetMapping("exams/available")
-    public List<Exam> getAvailableExams() {
+    public Collection<Exam> getAvailableExams() {
         return examRepository.findAll();
     }
 
     @GetMapping("exams/completed")
-    public List<StudentExam> getCompletedExams() {
-        return studentExamRepository.findAll();
+    public Collection<StudentExam> getCompletedExams(Authentication authentication) {
+        User currentUser = (User) authentication.getPrincipal();
+        return studentExamRepository.findByStudent(currentUser);
     }
 
     @GetMapping("exams/{studentExamId}")

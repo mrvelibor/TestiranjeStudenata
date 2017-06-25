@@ -49,6 +49,6 @@ public class Course {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-    private Collection<Exam> examList;
+    private Collection<Exam> exams;
     
 }
