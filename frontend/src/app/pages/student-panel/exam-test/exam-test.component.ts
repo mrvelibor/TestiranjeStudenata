@@ -77,7 +77,6 @@ export class ExamTestComponent implements OnInit, OnDestroy {
           this.answers = this.prepareAnswers(data);
           console.log(this.answers);
           this.studentExam = data;
-          debugger;
           this.loading = false;
         },
         error => {

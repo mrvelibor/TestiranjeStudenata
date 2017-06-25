@@ -51,11 +51,11 @@ public class StudentExamQuestion implements Serializable {
     @XmlTransient
     private StudentExam studentExam;
 
-    @Column(name = "SELECTED_STATEMENT")
-    private Boolean selectedStatement;
+    @Column(name = "ANSWER_STATEMENT")
+    private Boolean answerStatement;
 
-    @Column(name = "SELECTED_VALUE")
-    private BigDecimal selectedValue;
+    @Column(name = "ANSWER_VALUE")
+    private BigDecimal answerValue;
 
     @JoinTable(name = "student_multiple_choice_answers",
             joinColumns = {@JoinColumn(name = "STUDEN_EXAM_QUESTION_ID", referencedColumnName = "STUDEN_EXAM_QUESTION_ID")},

@@ -111,13 +111,13 @@ public class StudentRestController {
                     .findFirst().get();
                 switch(question.getQuestionType()) {
                     case "truefalse":
-                        examQuestion.setSelectedStatement(answer.answerStatement);
+                        examQuestion.setAnswerStatement(answer.answerStatement);
                         if(Objects.equals(answer.answerStatement, question.getCorrectStatement())) {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
                     case "numerical":
-                        examQuestion.setSelectedValue(answer.answerValue);
+                        examQuestion.setAnswerValue(answer.answerValue);
                         if(Objects.equals(answer.answerValue, question.getCorrectValue())) {
                             points = points.add(BigDecimal.ONE);
                         }

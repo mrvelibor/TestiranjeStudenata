@@ -66,12 +66,21 @@ export class ExamOverviewComponent implements OnInit, OnDestroy {
   }
 
   prepareExam(studentExam: StudentExam) {
-    studentExam.questions.filter(q => q.question.questionType == 'multiple').forEach(question => {
-      question['multipleChoiceAnswerMap'] = {};
-      if(question.multipleChoiceAnswerIds) {
-        question.multipleChoiceAnswerIds.forEach(id => {
-          question['multipleChoiceAnswerMap'][id] = true;
-        });
+    studentExam.questions.forEach(question => {
+      switch(question.question.questionType) {
+        case 'single':
+          if(question.singleChoiceAnswer) {
+            question.singleChoiceAnswerId = question.singleChoiceAnswer.singleChoiceAnswerId;
+          }
+          break;
+        case 'multiple':
+          question['multipleChoiceAnswerMap'] = {};
+          if(question.multipleChoiceAnswers) {
+            question.multipleChoiceAnswers.forEach(answer => {
+              question['multipleChoiceAnswerMap'][answer.multipleChoiceAnswerId] = true;
+            });
+          }
+          break;
       }
     });
   }
