@@ -3,22 +3,12 @@ package com.mrvelibor.testiranjestudenata.data.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.Collection;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 /**
@@ -26,6 +16,7 @@ import javax.validation.constraints.Size;
  * @author Velibor
  */
 @Data
+@EqualsAndHashCode(exclude={"singleChoiceAnswer"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -67,9 +58,9 @@ public class Question {
     private SingleChoiceAnswer singleChoiceAnswer;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
-    private List<MultipleChoiceAnswer> multipleChoiceAnswers;
+    private Collection<MultipleChoiceAnswer> multipleChoiceAnswers;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
-    private List<SingleChoiceAnswer> singleChoiceAnswers;
+    private Collection<SingleChoiceAnswer> singleChoiceAnswers;
     
 }

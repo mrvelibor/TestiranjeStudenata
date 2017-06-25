@@ -37,25 +37,25 @@ INSERT INTO exam(exam_id, description, name, number_of_questions, course_id) VAL
 /*
  * QUESTIONS TrueFalse
  */
-INSERT INTO question(question_id, exam_id, text, correct_statement) VALUES (111, 11, 'Java je programski jezik', 1);
-INSERT INTO question(question_id, exam_id, text, correct_statement) VALUES (115, 11, 'Windows operativni sistem je baziran na Linux-u.', 0);
+INSERT INTO question(question_id, exam_id, question_type, text, correct_statement) VALUES (111, 11, 'truefalse', 'Java je programski jezik', 1);
+INSERT INTO question(question_id, exam_id, question_type, text, correct_statement) VALUES (115, 11, 'truefalse', 'Windows operativni sistem je baziran na Linux-u.', 0);
 
 /*
  * QUESTIONS Numerical
  */
-INSERT INTO question(question_id, exam_id, text, correct_value) VALUES (112, 11, 'Koliko je 2+2/2', 3);
-INSERT INTO question(question_id, exam_id, text, correct_value) VALUES (116, 11, 'Koliko je 1+1/2', 1.5);
+INSERT INTO question(question_id, exam_id, question_type, text, correct_value) VALUES (112, 11, 'numerical', 'Koliko je 2+2/2', 3);
+INSERT INTO question(question_id, exam_id, question_type, text, correct_value) VALUES (116, 11, 'numerical', 'Koliko je 1+1/2', 1.5);
 
 /*
  * QUESTIONS Single
  */
-INSERT INTO question(question_id, exam_id, text) VALUES (113, 11, 'Koji od navedenih pojmova nije programski jezik?');
+INSERT INTO question(question_id, exam_id, question_type, text) VALUES (113, 11, 'single', 'Koji od navedenih pojmova nije programski jezik?');
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1131, 113, 'CD');
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1132, 113, 'C#');
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1133, 113, 'Java');
 UPDATE question SET single_choice_answer_id=1131 WHERE question_id=113;
 
-INSERT INTO question(question_id, exam_id, text) VALUES (117, 11, 'Koji od navedenih pojmova je Java frejmvork?');
+INSERT INTO question(question_id, exam_id, question_type, text) VALUES (117, 11, 'single', 'Koji od navedenih pojmova je Java frejmvork?');
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1171, 117, 'Spring');
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1172, 117, 'Angular');
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1173, 117, 'JavaScript');
@@ -64,12 +64,12 @@ UPDATE question SET single_choice_answer_id=1173 WHERE question_id=117;
 /*
  * QUESTIONS Multiple
  */
-INSERT INTO question(question_id, exam_id, text) VALUES (114, 11, 'Štiklirajte tačna tvrđenja.');
+INSERT INTO question(question_id, exam_id, question_type, text) VALUES (114, 11, 'multiple', 'Štiklirajte tačna tvrđenja.');
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1141, 114, 'Android radi na operativnom sistemu Linux.', 1);
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1142, 114, 'iOS je operativni sistem za mobilne uređaje.', 1);
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1143, 114, 'Windows 10 desktop računari i mobilni uređaji koriste isti operativni sistem.', 0);
 
-INSERT INTO question(question_id, exam_id, text) VALUES (118, 11, 'Koji od navedenih fakulteta pripadaju Univerzitetu Metropolian?');
+INSERT INTO question(question_id, exam_id, question_type, text) VALUES (118, 11, 'multiple', 'Koji od navedenih fakulteta pripadaju Univerzitetu Metropolian?');
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1181, 118, 'FPM', 0);
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1182, 118, 'FDU', 1);
 INSERT INTO multiple_choice_answer(multiple_choice_answer_id, question_id, text, answer_correct) VALUES (1183, 118, 'FIT', 1);

@@ -35,6 +35,11 @@ public class MultipleChoiceAnswer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long multipleChoiceAnswerId;
 
+    @JsonIgnore
+    @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
+    @ManyToOne(optional = false)
+    private Question question;
+
     @Lob
     @Size(max = 65535)
     @Column(name = "TEXT")
@@ -48,10 +53,5 @@ public class MultipleChoiceAnswer {
     @NotNull
     @Column(name = "ANSWER_CORRECT")
     private Boolean answerCorrect;
-
-    @JsonIgnore
-    @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
-    @ManyToOne(optional = false)
-    private Question question;
     
 }

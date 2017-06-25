@@ -37,6 +37,12 @@ public class SingleChoiceAnswer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long singleChoiceAnswerId;
 
+    @JsonIgnore
+    @NotNull
+    @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
+    @ManyToOne(optional = false)
+    private Question question;
+
     @Lob
     @Size(max = 65535)
     @Column(name = "TEXT")
@@ -45,11 +51,5 @@ public class SingleChoiceAnswer implements Serializable {
     @Size(max = 100)
     @Column(name = "IMAGE_URL")
     private String imageUrl;
-
-    @JsonIgnore
-    @NotNull
-    @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
-    @ManyToOne(optional = false)
-    private Question question;
     
 }

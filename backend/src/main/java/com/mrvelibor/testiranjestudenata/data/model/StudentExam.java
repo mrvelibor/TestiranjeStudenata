@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -61,6 +62,6 @@ public class StudentExam {
     private BigDecimal points;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentExam")
-    private List<StudentExamQuestion> studentExamQuestions;
+    private Collection<StudentExamQuestion> studentExamQuestions;
     
 }

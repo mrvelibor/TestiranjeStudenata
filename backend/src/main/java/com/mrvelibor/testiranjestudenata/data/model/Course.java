@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -48,6 +49,6 @@ public class Course {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-    private List<Exam> examList;
+    private Collection<Exam> examList;
     
 }

@@ -68,11 +68,11 @@ public class User implements Serializable, UserDetails {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
-    private List<StudentExam> studentExamList;
+    private Collection<StudentExam> studentExamList;
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<StudentCourse> studentCourses;
+    private Collection<StudentCourse> studentCourses;
 
     @JsonIgnore
     @Override

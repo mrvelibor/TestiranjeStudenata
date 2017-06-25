@@ -1,11 +1,10 @@
 package com.mrvelibor.testiranjestudenata.data.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -59,8 +58,7 @@ public class Exam {
     @Column(name = "NUMBER_OF_QUESTIONS")
     private Integer numberOfQuestions;
 
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "exam")
-    private List<Question> questions;
+    private Collection<Question> questions;
     
 }

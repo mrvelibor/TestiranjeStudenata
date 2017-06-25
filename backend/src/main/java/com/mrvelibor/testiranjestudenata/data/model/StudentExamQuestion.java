@@ -1,12 +1,13 @@
 package com.mrvelibor.testiranjestudenata.data.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,6 +44,7 @@ public class StudentExamQuestion implements Serializable {
     @ManyToOne(optional = false)
     private Question question;
 
+    @JsonIgnore
     @NotNull
     @JoinColumn(name = "STUDENT_EXAM_ID", referencedColumnName = "STUDENT_EXAM_ID")
     @ManyToOne(optional = false)
@@ -60,10 +62,10 @@ public class StudentExamQuestion implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "MULTIPLE_CHOICE_ANSWER_ID", referencedColumnName = "MULTIPLE_CHOICE_ANSWER_ID")}
             )
     @ManyToMany
-    private List<MultipleChoiceAnswer> multipleChoiceAnswerList;
+    private Collection<MultipleChoiceAnswer> multipleChoiceAnswers;
 
     @JoinColumn(name = "SINGLE_CHOICE_ANSWER_ID", referencedColumnName = "SINGLE_CHOICE_ANSWER_ID")
     @ManyToOne
-    private SingleChoiceAnswer singleChoiceAnswerId;
+    private SingleChoiceAnswer singleChoiceAnswer;
     
 }
