@@ -112,6 +112,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_admin_panel_course_users_list_course_users_list_component__ = __webpack_require__("../../../../../src/app/pages/admin-panel/course-users-list/course-users-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_profesor_panel_student_exams_student_exams_component__ = __webpack_require__("../../../../../src/app/pages/profesor-panel/student-exams/student-exams.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__services_profesor_service__ = __webpack_require__("../../../../../src/app/services/profesor.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__guards_confirm_close_guard__ = __webpack_require__("../../../../../src/app/guards/confirm-close.guard.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -119,6 +120,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -204,6 +206,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_17__guards_admin_guard__["a" /* AdminGuard */],
             __WEBPACK_IMPORTED_MODULE_18__guards_profesor_guard__["a" /* ProfesorGuard */],
             __WEBPACK_IMPORTED_MODULE_19__guards_student_guard__["a" /* StudentGuard */],
+            __WEBPACK_IMPORTED_MODULE_36__guards_confirm_close_guard__["a" /* ConfirmCloseGuard */],
             __WEBPACK_IMPORTED_MODULE_8__services_alert_service__["a" /* AlertService */],
             __WEBPACK_IMPORTED_MODULE_15__services_overlay_service__["a" /* OverlayService */],
             __WEBPACK_IMPORTED_MODULE_12__services_rest_service__["a" /* RestService */],
@@ -239,7 +242,9 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_admin_panel_exam_editor_exam_editor_component__ = __webpack_require__("../../../../../src/app/pages/admin-panel/exam-editor/exam-editor.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_admin_panel_course_users_list_course_users_list_component__ = __webpack_require__("../../../../../src/app/pages/admin-panel/course-users-list/course-users-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_profesor_panel_student_exams_student_exams_component__ = __webpack_require__("../../../../../src/app/pages/profesor-panel/student-exams/student-exams.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__guards_confirm_close_guard__ = __webpack_require__("../../../../../src/app/guards/confirm-close.guard.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routing; });
+
 
 
 
@@ -263,7 +268,7 @@ var appRoutes = [
     { path: 'courses/:id', component: __WEBPACK_IMPORTED_MODULE_13__pages_admin_panel_course_users_list_course_users_list_component__["a" /* CourseUsersListComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__guards_admin_guard__["a" /* AdminGuard */]] },
     { path: 'exams', component: __WEBPACK_IMPORTED_MODULE_12__pages_admin_panel_exam_editor_exam_editor_component__["a" /* ExamEditorComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__guards_admin_guard__["a" /* AdminGuard */]] },
     { path: 'exams/available', component: __WEBPACK_IMPORTED_MODULE_3__pages_student_panel_available_exams_available_exams_component__["a" /* AvailableExamsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_student_guard__["a" /* StudentGuard */]] },
-    { path: 'exams/available/:id', component: __WEBPACK_IMPORTED_MODULE_4__pages_student_panel_exam_test_exam_test_component__["a" /* ExamTestComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_student_guard__["a" /* StudentGuard */]] },
+    { path: 'exams/available/:id', component: __WEBPACK_IMPORTED_MODULE_4__pages_student_panel_exam_test_exam_test_component__["a" /* ExamTestComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_student_guard__["a" /* StudentGuard */]], canDeactivate: [__WEBPACK_IMPORTED_MODULE_15__guards_confirm_close_guard__["a" /* ConfirmCloseGuard */]] },
     { path: 'exams/completed', component: __WEBPACK_IMPORTED_MODULE_8__pages_student_panel_completed_exams_completed_exams_component__["a" /* CompletedExamsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_student_guard__["a" /* StudentGuard */]] },
     { path: 'exams/completed/:id', component: __WEBPACK_IMPORTED_MODULE_5__pages_profesor_panel_exam_overview_exam_overview_component__["a" /* ExamOverviewComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_student_guard__["a" /* StudentGuard */]] },
     { path: 'overview', component: __WEBPACK_IMPORTED_MODULE_14__pages_profesor_panel_student_exams_student_exams_component__["a" /* StudentExamsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_7__guards_profesor_guard__["a" /* ProfesorGuard */]] },
@@ -551,6 +556,38 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/guards/confirm-close.guard.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ConfirmCloseGuard; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var ConfirmCloseGuard = (function () {
+    function ConfirmCloseGuard() {
+    }
+    ConfirmCloseGuard.prototype.canDeactivate = function (target) {
+        if (target.examStarted) {
+            return confirm('Da li sigurno želite da napustite test? Kasnije nećete moći da se vratite.');
+        }
+        return true;
+    };
+    return ConfirmCloseGuard;
+}());
+ConfirmCloseGuard = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])()
+], ConfirmCloseGuard);
+
+//# sourceMappingURL=confirm-close.guard.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/guards/profesor.guard.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -819,7 +856,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/pages/admin-panel/course-users-list/course-users-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<md-sidenav-container class=\"editor-container\">\r\n  <md-sidenav class=\"editor-sidenav\" #sidenav mode=\"side\" disableClose=\"true\" >\r\n    <h2>Predmet</h2>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Šifra predmeta\" disabled [(ngModel)]=\"course.courseCode\">\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Naziv predmeta\" disabled [(ngModel)]=\"course.name\">\r\n    </md-input-container>\r\n    <button *ngIf=\"!loading\" md-raised-button (click)=\"updateCourse()\">Sačuvaj korisnike</button>\r\n  </md-sidenav>\r\n  <ng2-md-datatable *ngIf=\"!loading\" selectable=\"true\" (selectionChange)=\"onUserSelectionChanged($event)\">\r\n    <ng2-md-datatable-header>\r\n      <ng2-md-datatable-column>Puno ime</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Korisničko ime</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Imejl adresa</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Tip korisnika</ng2-md-datatable-column>\r\n    </ng2-md-datatable-header>\r\n    <tbody>\r\n    <ng2-md-datatable-row *ngFor=\"let user of allUsers\" [selectableValue]=\"user\">\r\n      <td>{{user.fullName}}</td>\r\n      <td>{{user.username}}</td>\r\n      <td>{{user.email}}</td>\r\n      <td>{{user.userRole | user_type}}</td>\r\n    </ng2-md-datatable-row>\r\n    </tbody>\r\n  </ng2-md-datatable>\r\n</md-sidenav-container>\r\n"
+module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<md-sidenav-container class=\"editor-container\">\r\n  <md-sidenav class=\"editor-sidenav\" #sidenav mode=\"side\" disableClose=\"true\" >\r\n    <h2>Predmet</h2>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Šifra predmeta\" disabled [(ngModel)]=\"course.courseCode\">\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Naziv predmeta\" disabled [(ngModel)]=\"course.name\">\r\n    </md-input-container>\r\n    <button *ngIf=\"!loading\" md-raised-button (click)=\"updateCourse()\">Sačuvaj korisnike</button>\r\n  </md-sidenav>\r\n  <ng2-md-datatable selectable=\"true\" (selectionChange)=\"onUserSelectionChanged($event)\">\r\n    <ng2-md-datatable-header>\r\n      <ng2-md-datatable-column>Puno ime</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Korisničko ime</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Imejl adresa</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Tip korisnika</ng2-md-datatable-column>\r\n    </ng2-md-datatable-header>\r\n    <tbody>\r\n    <ng2-md-datatable-row *ngFor=\"let user of allUsers\" [selectableValue]=\"user.userId\" (checked$)=\"true\">\r\n      <td>{{user.fullName}}</td>\r\n      <td>{{user.username}}</td>\r\n      <td>{{user.email}}</td>\r\n      <td>{{user.userRole | user_type}}</td>\r\n    </ng2-md-datatable-row>\r\n    </tbody>\r\n  </ng2-md-datatable>\r\n</md-sidenav-container>\r\n"
 
 /***/ }),
 
@@ -851,6 +888,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_admin_service__ = __webpack_require__("../../../../../src/app/services/admin.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ng2_md_datatable__ = __webpack_require__("../../../../ng2-md-datatable/index.js");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CourseUsersListComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -861,6 +899,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -893,7 +932,9 @@ var CourseUsersListComponent = (function () {
         this.adminService.getCourse(this.courseId)
             .subscribe(function (data) {
             console.log(data);
-            _this.course = data;
+            var course = data.course;
+            course.users = data.users;
+            _this.course = course;
         }, function (error) {
             console.log(error);
             _this.alertService.error(error);
@@ -921,6 +962,9 @@ var CourseUsersListComponent = (function () {
         this.adminService.updateCourse(this.course, this.selectedUsers)
             .subscribe(function (data) {
             console.log(data);
+            var course = data.course;
+            course.users = data.users;
+            _this.course = course;
             _this.loading = false;
         }, function (error) {
             console.log(error);
@@ -937,16 +981,20 @@ __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_4__angular_material__["k" /* MdSidenav */]),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_material__["k" /* MdSidenav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_material__["k" /* MdSidenav */]) === "function" && _a || Object)
 ], CourseUsersListComponent.prototype, "sidenav", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_6_ng2_md_datatable__["b" /* MdDataTableComponent */]),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_6_ng2_md_datatable__["b" /* MdDataTableComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ng2_md_datatable__["b" /* MdDataTableComponent */]) === "function" && _b || Object)
+], CourseUsersListComponent.prototype, "datatable", void 0);
 CourseUsersListComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
         selector: 'app-course-users-list',
         template: __webpack_require__("../../../../../src/app/pages/admin-panel/course-users-list/course-users-list.component.html"),
         styles: [__webpack_require__("../../../../../src/app/pages/admin-panel/course-users-list/course-users-list.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_admin_service__["a" /* AdminService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_admin_service__["a" /* AdminService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_alert_service__["a" /* AlertService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_alert_service__["a" /* AlertService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_admin_service__["a" /* AdminService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_admin_service__["a" /* AdminService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__services_alert_service__["a" /* AlertService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_alert_service__["a" /* AlertService */]) === "function" && _e || Object])
 ], CourseUsersListComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=course-users-list.component.js.map
 
 /***/ }),
@@ -1931,6 +1979,7 @@ var ExamTestComponent = (function () {
             console.log(_this.answers);
             _this.studentExam = data;
             _this.loading = false;
+            _this.examStarted = true;
         }, function (error) {
             _this.alertService.error(error);
             _this.loading = false;
@@ -1954,12 +2003,19 @@ var ExamTestComponent = (function () {
     };
     ExamTestComponent.prototype.finishExam = function () {
         var _this = this;
-        this.loading = true;
         this.alertService.clearMessage();
-        var answers = this.processAnswers();
-        console.log(answers);
-        this.studentService.finishExam(this.studentExam, answers)
+        var processedAnswers = this.processAnswers();
+        console.log(processedAnswers);
+        if (processedAnswers.unanswered) {
+            var confirmation = confirm("Niste odgovorili na " + processedAnswers.unanswered + " pitanja. Da li sigurno \u017Eelite da zavr\u0161ite?");
+            if (!confirmation) {
+                return;
+            }
+        }
+        this.loading = true;
+        this.studentService.finishExam(this.studentExam, processedAnswers.answers)
             .subscribe(function (data) {
+            _this.examStarted = false;
             console.log(data);
             _this.router.navigate(['exams/completed', _this.studentExam.studentExamId]);
         }, function (error) {
@@ -1969,18 +2025,19 @@ var ExamTestComponent = (function () {
     };
     ExamTestComponent.prototype.processAnswers = function () {
         var _this = this;
+        var unanswered = 0;
         var answers = [];
         Object.keys(this.answers).forEach(function (key) {
             var answer = _this.answers[key];
             switch (answer.question.questionType) {
                 case 'truefalse':
                     if (answer.answerStatement == null) {
-                        // TODO: Display confirmation
+                        ++unanswered;
                     }
                     break;
                 case 'numerical':
                     if (answer.answerValue == null) {
-                        // TODO: Display confirmation
+                        ++unanswered;
                     }
                     else {
                         answer.answerValue = +answer.answerValue;
@@ -1988,16 +2045,22 @@ var ExamTestComponent = (function () {
                     break;
                 case 'single':
                     if (answer.singleChoiceAnswerId == null) {
-                        // TODO: Display confirmation
+                        ++unanswered;
                     }
                     break;
                 case 'multiple':
-                    answer.multipleChoiceAnswerIds = Object.keys(answer['multipleChoiceAnswerMap']).filter(function (mc) { return answer['multipleChoiceAnswerMap'][mc]; });
+                    answer.multipleChoiceAnswerIds = Object.keys(answer.multipleChoiceAnswerMap).filter(function (mc) { return answer.multipleChoiceAnswerMap[mc]; });
+                    if (answer.multipleChoiceAnswerIds.length == 0) {
+                        ++unanswered;
+                    }
                     break;
             }
             answers.push(answer);
         });
-        return answers;
+        return {
+            'answers': answers,
+            'unanswered': unanswered
+        };
     };
     return ExamTestComponent;
 }());
@@ -2071,7 +2134,7 @@ var AdminService = (function (_super) {
         var body = JSON.stringify(selectedUsers);
         console.log(body);
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/courses/" + course.courseId + "/users", body, options).map(function (res) { return res.json(); });
+        return this.http.put(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/courses/" + course.courseId + "/users", body, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.deleteCourse = function (course) {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();

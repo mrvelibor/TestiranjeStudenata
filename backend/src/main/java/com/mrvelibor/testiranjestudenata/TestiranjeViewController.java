@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestiranjeViewController {
 
     @RequestMapping(value={"/testiranje/**"})
-    public String angular(Model model) {
+    public String angular() {
         return "testiranje";
     }
 
     @RequestMapping(value={"/"})
-    public String home(Model model) {
+    public String home() {
         return "redirect:testiranje";
     }
 

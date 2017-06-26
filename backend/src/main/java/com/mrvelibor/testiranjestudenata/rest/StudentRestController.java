@@ -10,22 +10,16 @@ import com.mrvelibor.testiranjestudenata.data.model.User;
 import com.mrvelibor.testiranjestudenata.data.repository.ExamRepository;
 import com.mrvelibor.testiranjestudenata.data.repository.StudentExamQuestionRepository;
 import com.mrvelibor.testiranjestudenata.data.repository.StudentExamRepository;
-import com.mrvelibor.testiranjestudenata.data.repository.UserRepository;
-import com.mrvelibor.testiranjestudenata.rest.json.ExamJson;
 import com.mrvelibor.testiranjestudenata.rest.json.QuestionAnswerJson;
 import com.mrvelibor.testiranjestudenata.rest.json.StudentExamAnswersJson;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
-import javax.persistence.EntityManager;
-import javax.websocket.server.PathParam;
 
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -35,11 +29,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "student")
 public class StudentRestController {
-    
-    static Logger logger = Logger.getLogger("StudentRestController");
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private ExamRepository examRepository;
