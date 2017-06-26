@@ -52,7 +52,9 @@ export class CourseUsersListComponent implements OnInit, AfterViewInit {
       .subscribe(
         data => {
           console.log(data);
-          this.course = data;
+          let course = data.course;
+          course.users = data.users;
+          this.course = course;
         },
         error => {
           console.log(error);

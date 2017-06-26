@@ -5,22 +5,20 @@
  */
 package com.mrvelibor.testiranjestudenata.rest.json;
 
+import com.mrvelibor.testiranjestudenata.data.model.Course;
 import com.mrvelibor.testiranjestudenata.data.model.User;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  *
  * @author Velibor
  */
-public class AuthJson {
-    public User user;
-    public String token;
-    
-    public AuthJson() {
-    }
-    
-    public AuthJson(User user, String token) {
-        this.user = user;
-        this.token = token;
-    }
-    
+@AllArgsConstructor
+@NoArgsConstructor
+public class CourseUsersJson {
+    public Course course;
+    public List<User> users;
 }

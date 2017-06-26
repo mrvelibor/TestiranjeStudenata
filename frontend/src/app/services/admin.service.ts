@@ -46,7 +46,7 @@ export class AdminService extends RestService {
     console.log(body);
 
     let options = RestService.options();
-    return this.http.post(
+    return this.http.put(
       `${RestService._host}/courses/${course.courseId}/users`,
       body,
       options

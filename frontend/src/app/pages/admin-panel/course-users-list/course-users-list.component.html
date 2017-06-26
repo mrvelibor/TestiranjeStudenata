@@ -20,7 +20,7 @@
       <ng2-md-datatable-column>Tip korisnika</ng2-md-datatable-column>
     </ng2-md-datatable-header>
     <tbody>
-    <ng2-md-datatable-row *ngFor="let user of allUsers" [selectableValue]="user">
+    <ng2-md-datatable-row *ngFor="let user of allUsers" [selectableValue]="user.userId">
       <td>{{user.fullName}}</td>
       <td>{{user.username}}</td>
       <td>{{user.email}}</td>
