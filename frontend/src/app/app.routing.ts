@@ -14,6 +14,7 @@ import {UserEditorComponent} from "./pages/admin-panel/user-editor/user-editor.c
 import {ExamEditorComponent} from "./pages/admin-panel/exam-editor/exam-editor.component";
 import {CourseUsersListComponent} from "./pages/admin-panel/course-users-list/course-users-list.component";
 import {StudentExamsComponent} from "./pages/profesor-panel/student-exams/student-exams.component";
+import {ConfirmCloseGuard} from "./guards/confirm-close.guard";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,7 +24,7 @@ const appRoutes: Routes = [
   {path: 'courses/:id', component: CourseUsersListComponent, canActivate: [AdminGuard]},
   {path: 'exams', component: ExamEditorComponent, canActivate: [AdminGuard]},
   {path: 'exams/available', component: AvailableExamsComponent, canActivate: [StudentGuard]},
-  {path: 'exams/available/:id', component: ExamTestComponent, canActivate: [StudentGuard]},
+  {path: 'exams/available/:id', component: ExamTestComponent, canActivate: [StudentGuard], canDeactivate: [ConfirmCloseGuard]},
   {path: 'exams/completed', component: CompletedExamsComponent, canActivate: [StudentGuard]},
   {path: 'exams/completed/:id', component: ExamOverviewComponent, canActivate: [StudentGuard]},
   {path: 'overview', component: StudentExamsComponent, canActivate: [ProfesorGuard]},

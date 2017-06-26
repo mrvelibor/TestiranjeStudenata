@@ -38,6 +38,7 @@ import {ExamEditorComponent} from "./pages/admin-panel/exam-editor/exam-editor.c
 import {CourseUsersListComponent} from "./pages/admin-panel/course-users-list/course-users-list.component";
 import {StudentExamsComponent} from "./pages/profesor-panel/student-exams/student-exams.component";
 import {ProfesorService} from "./services/profesor.service";
+import {ConfirmCloseGuard} from "./guards/confirm-close.guard";
 
 @NgModule({
   imports: [
@@ -82,6 +83,7 @@ import {ProfesorService} from "./services/profesor.service";
     AdminGuard,
     ProfesorGuard,
     StudentGuard,
+    ConfirmCloseGuard,
     AlertService,
     OverlayService,
     RestService,
