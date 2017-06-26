@@ -26,6 +26,7 @@ export class ExamTestComponent implements OnInit, OnDestroy {
   studentExam: StudentExam;
   answers: any;
 
+  examStarted: boolean;
   loading: boolean;
 
   constructor(private router: Router,
@@ -78,6 +79,7 @@ export class ExamTestComponent implements OnInit, OnDestroy {
           console.log(this.answers);
           this.studentExam = data;
           this.loading = false;
+          this.examStarted = true;
         },
         error => {
           this.alertService.error(error);
@@ -115,6 +117,7 @@ export class ExamTestComponent implements OnInit, OnDestroy {
     this.studentService.finishExam(this.studentExam, processedAnswers.answers)
       .subscribe(
         data => {
+          this.examStarted = false;
           console.log(data);
           this.router.navigate(['exams/completed', this.studentExam.studentExamId]);
         },
