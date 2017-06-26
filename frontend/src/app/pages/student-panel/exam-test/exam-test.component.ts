@@ -102,11 +102,17 @@ export class ExamTestComponent implements OnInit, OnDestroy {
   }
 
   finishExam() {
-    this.loading = true;
     this.alertService.clearMessage();
-    let answers = this.processAnswers();
-    console.log(answers);
-    this.studentService.finishExam(this.studentExam, answers)
+    let processedAnswers = this.processAnswers();
+    console.log(processedAnswers);
+    if(processedAnswers.unanswered) {
+      let confirmation = confirm(`Niste odgovorili na ${processedAnswers.unanswered} pitanja. Da li sigurno želite da završite?`);
+      if(!confirmation) {
+        return;
+      }
+    }
+    this.loading = true;
+    this.studentService.finishExam(this.studentExam, processedAnswers.answers)
       .subscribe(
         data => {
           console.log(data);
@@ -119,18 +125,19 @@ export class ExamTestComponent implements OnInit, OnDestroy {
   }
 
   processAnswers() {
+    let unanswered = 0;
     let answers = [];
     Object.keys(this.answers).forEach(key => {
       let answer = this.answers[key];
       switch(answer.question.questionType) {
         case 'truefalse':
           if(answer.answerStatement == null) {
-            // TODO: Display confirmation
+            ++unanswered;
           }
           break;
         case 'numerical':
           if(answer.answerValue == null) {
-            // TODO: Display confirmation
+            ++unanswered;
           }
           else {
             answer.answerValue = +answer.answerValue;
@@ -138,16 +145,22 @@ export class ExamTestComponent implements OnInit, OnDestroy {
           break;
         case 'single':
           if(answer.singleChoiceAnswerId == null) {
-            // TODO: Display confirmation
+            ++unanswered;
           }
           break;
         case 'multiple':
-          answer.multipleChoiceAnswerIds = Object.keys(answer['multipleChoiceAnswerMap']).filter(mc => answer['multipleChoiceAnswerMap'][mc]);
+          answer.multipleChoiceAnswerIds = Object.keys(answer.multipleChoiceAnswerMap).filter(mc => answer.multipleChoiceAnswerMap[mc]);
+          if(answer.multipleChoiceAnswerIds.length == 0) {
+            ++unanswered;
+          }
           break;
       }
       answers.push(answer);
     });
-    return answers;
+    return {
+      'answers': answers,
+      'unanswered': unanswered
+    };
   }
 
 }

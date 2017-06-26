@@ -3,10 +3,10 @@ import {AlertService} from "../../../services/alert.service";
 import {Course} from "../../../models/course";
 import {AdminService} from "../../../services/admin.service";
 import {MdSidenav} from "@angular/material"
-import {Subscription, Observable, Subject} from "rxjs";
-import {Router, ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
 import {User} from "../../../models/user";
-import {MdDataTableComponent, IDatatableSelectionEvent} from "ng2-md-datatable";
+import {MdDataTableComponent} from "ng2-md-datatable";
 
 @Component({
   selector: 'app-course-users-list',
@@ -20,6 +20,9 @@ export class CourseUsersListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MdSidenav)
   sidenav: MdSidenav;
+
+  @ViewChild(MdDataTableComponent)
+  datatable: MdDataTableComponent;
 
   courseId: number;
   course: Course = new Course();
@@ -86,6 +89,9 @@ export class CourseUsersListComponent implements OnInit, AfterViewInit {
       .subscribe(
         data => {
           console.log(data);
+          let course = data.course;
+          course.users = data.users;
+          this.course = course;
           this.loading = false;
         },
         error => {

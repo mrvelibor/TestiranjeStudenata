@@ -12,7 +12,7 @@
     </md-input-container>
     <button *ngIf="!loading" md-raised-button (click)="updateCourse()">Sačuvaj korisnike</button>
   </md-sidenav>
-  <ng2-md-datatable *ngIf="!loading" selectable="true" (selectionChange)="onUserSelectionChanged($event)">
+  <ng2-md-datatable selectable="true" (selectionChange)="onUserSelectionChanged($event)">
     <ng2-md-datatable-header>
       <ng2-md-datatable-column>Puno ime</ng2-md-datatable-column>
       <ng2-md-datatable-column>Korisničko ime</ng2-md-datatable-column>
@@ -20,7 +20,7 @@
       <ng2-md-datatable-column>Tip korisnika</ng2-md-datatable-column>
     </ng2-md-datatable-header>
     <tbody>
-    <ng2-md-datatable-row *ngFor="let user of allUsers" [selectableValue]="user.userId">
+    <ng2-md-datatable-row *ngFor="let user of allUsers" [selectableValue]="user.userId" (checked$)="true">
       <td>{{user.fullName}}</td>
       <td>{{user.username}}</td>
       <td>{{user.email}}</td>
