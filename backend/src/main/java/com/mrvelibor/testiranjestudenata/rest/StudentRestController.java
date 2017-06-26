@@ -122,18 +122,27 @@ public class StudentRestController {
                     .findFirst().get();
                 switch(question.getQuestionType()) {
                     case "truefalse":
+                        if(answer.answerStatement == null) {
+                            continue;
+                        }
                         examQuestion.setAnswerStatement(answer.answerStatement);
                         if(Objects.equals(answer.answerStatement, question.getCorrectStatement())) {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
                     case "numerical":
+                        if(answer.answerValue == null) {
+                            continue;
+                        }
                         examQuestion.setAnswerValue(answer.answerValue);
                         if(Objects.equals(answer.answerValue, question.getCorrectValue())) {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
                     case "single":
+                        if(answer.singleChoiceAnswerId == null) {
+                            continue;
+                        }
                         SingleChoiceAnswer singleChoiceAnswer = new SingleChoiceAnswer();
                         singleChoiceAnswer.setSingleChoiceAnswerId(answer.singleChoiceAnswerId);
                         examQuestion.setSingleChoiceAnswer(singleChoiceAnswer);
@@ -165,7 +174,6 @@ public class StudentRestController {
         studentExam.setEndTime(new Date());
         studentExam.setPoints(points);
         studentExam = studentExamRepository.save(studentExam);
-
         return new ResponseEntity<>(studentExam, HttpStatus.OK);
     }
     
