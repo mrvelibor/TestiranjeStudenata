@@ -14,8 +14,8 @@ public interface StudentExamRepository extends JpaRepository<StudentExam, Long> 
             "SELECT student_exam.* FROM student_exam " +
                     "INNER JOIN exam ON exam.exam_id = student_exam.exam_id " +
                     "INNER JOIN course ON course.course_id = exam.course_id " +
-                    "INNER JOIN student_course ON student_course.course_id = course.course_id " +
-                    "WHERE student_course.user_id = ?1",
+                    "INNER JOIN course_user ON course_user.course_id = course.course_id " +
+                    "WHERE course_user.user_id = ?1",
             nativeQuery = true
     )
     Collection<StudentExam> findByProfesor(Long userId);

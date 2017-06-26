@@ -24,14 +24,14 @@ INSERT INTO course(course_id, course_code, name) VALUES (3, 'AA003', 'Predmet Tr
 /* */
 /* USER COURSES */
 /* */
-INSERT INTO student_course(course_id, user_id) VALUES (1, 2);
-INSERT INTO student_course(course_id, user_id) VALUES (2, 2);
-INSERT INTO student_course(course_id, user_id) VALUES (3, 2);
-INSERT INTO student_course(course_id, user_id) VALUES (1, 4);
-INSERT INTO student_course(course_id, user_id) VALUES (2, 4);
-INSERT INTO student_course(course_id, user_id) VALUES (3, 4);
-INSERT INTO student_course(course_id, user_id) VALUES (1, 3);
-INSERT INTO student_course(course_id, user_id) VALUES (1, 5);
+INSERT INTO course_user(course_id, user_id) VALUES (1, 2);
+INSERT INTO course_user(course_id, user_id) VALUES (2, 2);
+INSERT INTO course_user(course_id, user_id) VALUES (3, 2);
+INSERT INTO course_user(course_id, user_id) VALUES (1, 4);
+INSERT INTO course_user(course_id, user_id) VALUES (2, 4);
+INSERT INTO course_user(course_id, user_id) VALUES (3, 4);
+INSERT INTO course_user(course_id, user_id) VALUES (1, 3);
+INSERT INTO course_user(course_id, user_id) VALUES (1, 5);
 
 /* */
 /* EXAMS */

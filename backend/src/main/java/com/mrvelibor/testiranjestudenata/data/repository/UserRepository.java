@@ -11,9 +11,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findOneByUsernameOrEmail(String username, String email);
 
     @Query(value =
-            "SELECT user.* FROM student_course " +
-                    "INNER JOIN user ON student_course.user_id = user.user_id " +
-                    "WHERE student_course.course_id = ?1",
+            "SELECT user.* FROM course_user " +
+                    "INNER JOIN user ON course_user.user_id = user.user_id " +
+                    "WHERE course_user.course_id = ?1",
             nativeQuery = true
     )
     List<User> findByCourse(Long courseId);

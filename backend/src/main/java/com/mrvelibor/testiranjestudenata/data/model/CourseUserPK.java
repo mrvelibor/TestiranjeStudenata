@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class StudentCoursePK implements Serializable {
+public class CourseUserPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull

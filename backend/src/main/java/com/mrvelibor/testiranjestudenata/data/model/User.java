@@ -13,7 +13,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -72,7 +71,7 @@ public class User implements Serializable, UserDetails {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Collection<StudentCourse> studentCourses;
+    private Collection<CourseUser> courseUsers;
 
     @JsonIgnore
     @Override

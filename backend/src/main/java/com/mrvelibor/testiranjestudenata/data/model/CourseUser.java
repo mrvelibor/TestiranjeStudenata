@@ -20,11 +20,11 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "student_course")
-public class StudentCourse implements Serializable {
+@Table(name = "course_user")
+public class CourseUser implements Serializable {
 
     @EmbeddedId
-    protected StudentCoursePK studentCoursePK;
+    protected CourseUserPK courseUserPK;
 
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
