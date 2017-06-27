@@ -107,7 +107,10 @@ public class ExamRestController {
                 if (answers.stream().anyMatch(a -> a.getText() == null || a.getText().isEmpty())) {
                     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
-                answers.forEach(answer -> answer.setQuestion(question));
+                answers.forEach(a -> {
+                    a.setQuestion(question);
+                    a.setMultipleChoiceAnswerId(null);
+                });
                 question.setMultipleChoiceAnswers(answers);
                 break;
             }

@@ -3,4 +3,9 @@ export class MultipleChoiceAnswer {
   text: string;
   imageUrl: string;
   answerCorrect: boolean;
+
+  constructor(multipleChoiceAnswerId: number = null) {
+    this.multipleChoiceAnswerId = multipleChoiceAnswerId;
+  }
+
 }

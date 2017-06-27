@@ -16,10 +16,10 @@
   display: block;
 }
 
-.course-code-column {
-  cursor: pointer;
+.course-row:hover .course-highlight-column {
+  font-weight: bold;
 }
 
-.course-code-column:hover {
-  font-weight: bold;
+.course-highlight-column {
+  cursor: pointer;
 }

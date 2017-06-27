@@ -88,13 +88,17 @@ export class ExamQuestionEditorComponent implements OnInit, AfterViewInit {
 
   resetQuestion() {
     let question: Question = new Question();
-    question.singleChoiceAnswers = [new SingleChoiceAnswer(), new SingleChoiceAnswer(), new SingleChoiceAnswer()];
-    question.multipleChoiceAnswers = [new MultipleChoiceAnswer(), new MultipleChoiceAnswer(), new MultipleChoiceAnswer()];
+    question.singleChoiceAnswers = [new SingleChoiceAnswer(1), new SingleChoiceAnswer(2), new SingleChoiceAnswer(3)];
+    question.multipleChoiceAnswers = [new MultipleChoiceAnswer(1), new MultipleChoiceAnswer(2), new MultipleChoiceAnswer(3)];
     this.question = question;
   }
 
   addSingleChoiceAnswer() {
-    this.question.singleChoiceAnswers.push(new SingleChoiceAnswer());
+    let index = 1;
+    if(this.question.singleChoiceAnswers.length) {
+      index = this.question.singleChoiceAnswers[this.question.singleChoiceAnswers.length - 1].singleChoiceAnswerId + 1;
+    }
+    this.question.singleChoiceAnswers.push(new SingleChoiceAnswer(index));
   }
 
   deleteSingleChoiceAnswer(answer: SingleChoiceAnswer) {
@@ -108,7 +112,11 @@ export class ExamQuestionEditorComponent implements OnInit, AfterViewInit {
   }
 
   addMultipleChoiceAnswer() {
-    this.question.multipleChoiceAnswers.push(new MultipleChoiceAnswer());
+    let index = 1;
+    if(this.question.multipleChoiceAnswers.length) {
+      index = this.question.multipleChoiceAnswers[this.question.multipleChoiceAnswers.length - 1].multipleChoiceAnswerId + 1;
+    }
+    this.question.multipleChoiceAnswers.push(new MultipleChoiceAnswer(index));
   }
 
   deleteMultipleChoiceAnswer(answer: MultipleChoiceAnswer) {

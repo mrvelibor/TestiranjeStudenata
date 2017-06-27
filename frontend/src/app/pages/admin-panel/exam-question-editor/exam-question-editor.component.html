@@ -55,7 +55,7 @@
       <md-radio-group [(ngModel)]="question.singleChoiceCorrectAnswer">
         <md-radio-button *ngFor="let answer of question.singleChoiceAnswers; let answerIndex = index" class="exam-question-answer" [value]="answer">
           <md-input-container>
-            <input mdInput [placeholder]="'Odgovor ' + (answerIndex+1)" [(ngModel)]="answer.text">
+            <input mdInput [placeholder]="'Odgovor ' + answer.singleChoiceAnswerId" [(ngModel)]="answer.text">
           </md-input-container>
           <a (click)="deleteSingleChoiceAnswer(answer)"><md-icon>delete</md-icon></a>
         </md-radio-button>
@@ -65,7 +65,7 @@
     <div *ngIf="question.questionType === 'multiple'">
       <md-checkbox *ngFor="let answer of question.multipleChoiceAnswers; let answerIndex = index" class="exam-question-answer" [(ngModel)]="answer.answerCorrect">
         <md-input-container>
-          <input mdInput [placeholder]="'Odgovor ' + (answerIndex+1)" [(ngModel)]="answer.text">
+          <input mdInput [placeholder]="'Odgovor ' + answer.multipleChoiceAnswerId" [(ngModel)]="answer.text">
         </md-input-container>
         <a (click)="deleteMultipleChoiceAnswer(answer)"><md-icon>delete</md-icon></a>
       </md-checkbox>

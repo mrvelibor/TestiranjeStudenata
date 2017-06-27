@@ -21,8 +21,8 @@
     </ng2-md-datatable-header>
     <tbody>
     <ng2-md-datatable-row *ngFor="let course of courses" class="course-row">
-      <td [routerLink]="['/courses', course.courseId]" class="course-code-column">{{course.courseCode}}</td>
-      <td>{{course.name}}</td>
+      <td [routerLink]="['/courses', course.courseId]" class="course-highlight-column">{{course.courseCode}}</td>
+      <td [routerLink]="['/courses', course.courseId]" class="course-highlight-column">{{course.name}}</td>
       <td><a (click)="deleteCourse(course)"><md-icon>delete</md-icon></a></td>
     </ng2-md-datatable-row>
     </tbody>

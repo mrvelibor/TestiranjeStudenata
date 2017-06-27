@@ -30,10 +30,10 @@
       <ng2-md-datatable-column>Akcije</ng2-md-datatable-column>
     </ng2-md-datatable-header>
     <tbody>
-    <ng2-md-datatable-row *ngFor="let exam of exams">
-      <td [routerLink]="['/exams', exam.examId]">{{exam.course.courseCode}}</td>
-      <td [routerLink]="['/exams', exam.examId]">{{exam.name}}</td>
-      <td>{{exam.description}}</td>
+    <ng2-md-datatable-row *ngFor="let exam of exams" class="exam-row">
+      <td [routerLink]="['/exams', exam.examId]" class="exam-highlight-column">{{exam.course.courseCode}}</td>
+      <td [routerLink]="['/exams', exam.examId]" class="exam-highlight-column">{{exam.name}}</td>
+      <td [routerLink]="['/exams', exam.examId]" class="exam-highlight-column">{{exam.description}}</td>
       <td>{{exam.numberOfQuestions}}</td>
       <td><a (click)="deleteExam(exam)"><md-icon>delete</md-icon></a></td>
     </ng2-md-datatable-row>

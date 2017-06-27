@@ -24,11 +24,11 @@ const appRoutes: Routes = [
   {path: 'courses', component: CourseEditorComponent, canActivate: [AdminGuard]},
   {path: 'courses/:id', component: CourseUsersListComponent, canActivate: [AdminGuard]},
   {path: 'exams', component: ExamEditorComponent, canActivate: [AdminGuard]},
-  {path: 'exams/:id', component: ExamQuestionEditorComponent, canActivate: [AdminGuard]},
   {path: 'exams/available', component: AvailableExamsComponent, canActivate: [StudentGuard]},
   {path: 'exams/available/:id', component: ExamTestComponent, canActivate: [StudentGuard], canDeactivate: [ConfirmCloseGuard]},
   {path: 'exams/completed', component: CompletedExamsComponent, canActivate: [StudentGuard]},
   {path: 'exams/completed/:id', component: ExamOverviewComponent, canActivate: [StudentGuard]},
+  {path: 'exams/:id', component: ExamQuestionEditorComponent, canActivate: [AdminGuard]},
   {path: 'overview', component: StudentExamsComponent, canActivate: [ProfesorGuard]},
   {path: 'overview/:id', component: ExamOverviewComponent, canActivate: [ProfesorGuard]},
   {path: '**', redirectTo: ''}
