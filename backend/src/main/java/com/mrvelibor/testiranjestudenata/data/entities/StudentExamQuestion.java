@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -27,6 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Velibor
  */
 @Data
+@ToString(exclude = "studentExam")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

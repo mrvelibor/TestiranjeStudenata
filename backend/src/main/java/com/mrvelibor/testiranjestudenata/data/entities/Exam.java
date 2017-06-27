@@ -3,6 +3,7 @@ package com.mrvelibor.testiranjestudenata.data.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -25,6 +26,7 @@ import javax.validation.constraints.Size;
  * @author Velibor
  */
 @Data
+@ToString(exclude="questions")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

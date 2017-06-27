@@ -66,14 +66,6 @@ public class User implements Serializable, UserDetails {
     private UserRole userRole;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
-    private Collection<StudentExam> studentExamList;
-
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Collection<CourseUser> courseUsers;
-
-    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return new HashSet<>(Arrays.asList(new SimpleGrantedAuthority(userRole.getRoleName())));

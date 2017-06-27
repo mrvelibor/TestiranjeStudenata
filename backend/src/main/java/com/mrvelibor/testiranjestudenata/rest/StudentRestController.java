@@ -14,6 +14,7 @@ import com.mrvelibor.testiranjestudenata.rest.json.QuestionAnswerJson;
 import com.mrvelibor.testiranjestudenata.rest.json.StudentExamAnswersJson;
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "student")
 public class StudentRestController {
+
+    private static final Logger log = Logger.getLogger(StudentRestController.class.getName());
 
     @Autowired
     private ExamRepository examRepository;
@@ -106,43 +109,52 @@ public class StudentRestController {
         for(StudentExamQuestion examQuestion : studentExam.getQuestions()) {
             try {
                 Question question = examQuestion.getQuestion();
+                log.info(question.toString());
                 QuestionAnswerJson answer = entity.answers.stream()
                     .filter(a -> Objects.equals(a.question.getQuestionId(), question.getQuestionId()))
                     .findFirst().get();
+                log.info(answer.toString());
                 switch(question.getQuestionType()) {
-                    case truefalse:
-                        if(answer.answerStatement == null) {
+                    case truefalse: {
+                        log.info("Answer statement: " + answer.answerStatement);
+                        if (answer.answerStatement == null) {
                             continue;
                         }
                         examQuestion.setAnswerStatement(answer.answerStatement);
-                        if(Objects.equals(answer.answerStatement, question.getCorrectStatement())) {
+                        if (Objects.equals(answer.answerStatement, question.getCorrectStatement())) {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
-                    case numerical:
-                        if(answer.answerValue == null) {
+                    }
+                    case numerical: {
+                        log.info("Answer value: " + answer.answerValue);
+                        if (answer.answerValue == null) {
                             continue;
                         }
                         examQuestion.setAnswerValue(answer.answerValue);
-                        if(Objects.equals(answer.answerValue, question.getCorrectValue())) {
+                        if (question.getCorrectValue().compareTo(answer.answerValue) == 0) {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
-                    case single:
-                        if(answer.singleChoiceAnswerId == null) {
+                    }
+                    case single: {
+                        log.info("Answer id: " + answer.singleChoiceAnswerId);
+                        if (answer.singleChoiceAnswerId == null) {
                             continue;
                         }
                         SingleChoiceAnswer singleChoiceAnswer = new SingleChoiceAnswer();
                         singleChoiceAnswer.setSingleChoiceAnswerId(answer.singleChoiceAnswerId);
                         examQuestion.setSingleChoiceAnswer(singleChoiceAnswer);
-                        if(Objects.equals(answer.singleChoiceAnswerId, question.getSingleChoiceCorrectAnswer().getSingleChoiceAnswerId())) {
+                        if (Objects.equals(answer.singleChoiceAnswerId, question.getSingleChoiceCorrectAnswer().getSingleChoiceAnswerId())) {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
-                    case multiple:
+                    }
+                    case multiple: {
                         List<MultipleChoiceAnswer> mcAnswers = question.getMultipleChoiceAnswers().stream()
                                 .filter(a -> answer.multipleChoiceAnswerIds.contains(a.getMultipleChoiceAnswerId()))
                                 .collect(Collectors.toList());
+                        log.info("Answers: " + mcAnswers);
                         examQuestion.setMultipleChoiceAnswers(mcAnswers);
                         long totalCorrectAnswers = question.getMultipleChoiceAnswers().stream()
                                 .filter(MultipleChoiceAnswer::getAnswerCorrect)
@@ -150,14 +162,17 @@ public class StudentRestController {
                         long correctAnswers = mcAnswers.stream()
                                 .filter(MultipleChoiceAnswer::getAnswerCorrect)
                                 .count();
-                        if(correctAnswers == mcAnswers.size()) {
+                        if (correctAnswers == mcAnswers.size()) {
                             points = points.add(new BigDecimal(correctAnswers).divide(new BigDecimal(totalCorrectAnswers)));
                         }
                         break;
+                    }
                 }
+                log.info("Points: " + points);
                 studentExamQuestionRepository.save(examQuestion);
             }
-            catch (NoSuchElementException ex) {                
+            catch (NoSuchElementException ex) {
+                log.info("No answer.");
             }
         }
         studentExam.setEndTime(new Date());
