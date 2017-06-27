@@ -49,10 +49,11 @@ public class ExamRestController {
         if(exam == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Question question = new Question();
+        final Question question = new Question();
         question.setExam(exam);
         question.setText(questionJson.getText());
         question.setImageUrl(questionJson.getImageUrl());
+        question.setQuestionType(questionJson.getQuestionType());
         switch (question.getQuestionType()) {
             case truefalse:
                 if(questionJson.getCorrectStatement() == null) {
@@ -76,16 +77,17 @@ public class ExamRestController {
                 if(questionJson.getMultipleChoiceAnswers() == null || questionJson.getMultipleChoiceAnswers().size() < 3) {
                     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
-                if(question.getMultipleChoiceAnswers().stream().noneMatch(MultipleChoiceAnswer::getAnswerCorrect)) {
+                questionJson.getMultipleChoiceAnswers().stream().filter(answer -> answer.getAnswerCorrect() == null).forEach(answer -> answer.setAnswerCorrect(false));
+                if(questionJson.getMultipleChoiceAnswers().stream().noneMatch(MultipleChoiceAnswer::getAnswerCorrect)) {
                     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
+                questionJson.getMultipleChoiceAnswers().forEach(answer -> answer.setQuestion(question));
                 question.setMultipleChoiceAnswers(questionJson.getMultipleChoiceAnswers());
                 break;
             default:
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        question = questionRepository.save(question);
-        return new ResponseEntity<>(question, HttpStatus.OK);
+        return new ResponseEntity<>(questionRepository.save(question), HttpStatus.OK);
     }
 
 }

@@ -145,13 +145,13 @@ public class StudentRestController {
                                 .collect(Collectors.toList());
                         examQuestion.setMultipleChoiceAnswers(mcAnswers);
                         long totalCorrectAnswers = question.getMultipleChoiceAnswers().stream()
-                                .filter(a -> a.getAnswerCorrect())
+                                .filter(MultipleChoiceAnswer::getAnswerCorrect)
                                 .count();
                         long correctAnswers = mcAnswers.stream()
-                                .filter(a -> a.getAnswerCorrect())
+                                .filter(MultipleChoiceAnswer::getAnswerCorrect)
                                 .count();
                         if(correctAnswers == mcAnswers.size()) {
-                            points = points.add(BigDecimal.ONE.divide(new BigDecimal(totalCorrectAnswers)).multiply(new BigDecimal(correctAnswers)));
+                            points = points.add(new BigDecimal(correctAnswers).divide(new BigDecimal(totalCorrectAnswers)));
                         }
                         break;
                 }
