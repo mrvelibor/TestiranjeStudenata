@@ -87,7 +87,7 @@ INSERT INTO question(question_id, exam_id, question_type, text) VALUES (117, 11,
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1171, 117, 'Spring');
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1172, 117, 'Angular');
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1173, 117, 'JavaScript');
-UPDATE question SET single_choice_answer_id=1173 WHERE question_id=117;
+UPDATE question SET single_choice_answer_id=1171 WHERE question_id=117;
 
 INSERT INTO question(question_id, exam_id, question_type, text) VALUES (123, 12, 'single', 'Odaberi da:');
 INSERT INTO single_choice_answer(single_choice_answer_id, question_id, text) VALUES (1231, 123, 'Da');
