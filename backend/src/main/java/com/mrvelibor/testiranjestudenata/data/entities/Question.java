@@ -36,7 +36,7 @@ public class Question {
 
     @Size(max = 10)
     @Column(name = "QUESTION_TYPE")
-    private String questionType;
+    private QuestionType questionType;
 
     @Lob
     @Size(max = 65535)

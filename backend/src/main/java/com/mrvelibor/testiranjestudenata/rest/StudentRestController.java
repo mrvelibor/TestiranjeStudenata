@@ -110,7 +110,7 @@ public class StudentRestController {
                     .filter(a -> Objects.equals(a.question.getQuestionId(), question.getQuestionId()))
                     .findFirst().get();
                 switch(question.getQuestionType()) {
-                    case "truefalse":
+                    case truefalse:
                         if(answer.answerStatement == null) {
                             continue;
                         }
@@ -119,7 +119,7 @@ public class StudentRestController {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
-                    case "numerical":
+                    case numerical:
                         if(answer.answerValue == null) {
                             continue;
                         }
@@ -128,7 +128,7 @@ public class StudentRestController {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
-                    case "single":
+                    case single:
                         if(answer.singleChoiceAnswerId == null) {
                             continue;
                         }
@@ -139,7 +139,7 @@ public class StudentRestController {
                             points = points.add(BigDecimal.ONE);
                         }
                         break;
-                    case "multiple":
+                    case multiple:
                         List<MultipleChoiceAnswer> mcAnswers = question.getMultipleChoiceAnswers().stream()
                                 .filter(a -> answer.multipleChoiceAnswerIds.contains(a.getMultipleChoiceAnswerId()))
                                 .collect(Collectors.toList());

@@ -1,7 +1,10 @@
 package com.mrvelibor.testiranjestudenata.rest;
 
 import com.mrvelibor.testiranjestudenata.data.entities.Exam;
+import com.mrvelibor.testiranjestudenata.data.entities.MultipleChoiceAnswer;
+import com.mrvelibor.testiranjestudenata.data.entities.Question;
 import com.mrvelibor.testiranjestudenata.data.repository.ExamRepository;
+import com.mrvelibor.testiranjestudenata.data.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,9 @@ public class ExamRestController {
 
     @Autowired
     private ExamRepository examRepository;
+
+    @Autowired
+    private QuestionRepository questionRepository;
 
     @GetMapping
     public List<Exam> getAllExams() {
@@ -35,6 +41,51 @@ public class ExamRestController {
     @PostMapping
     public Exam createExam(@RequestBody Exam exam) {
         return examRepository.save(exam);
+    }
+
+    @PostMapping("{examId}/add_question")
+    public ResponseEntity<Question> addQuestion(@PathVariable Long examId, @RequestBody Question questionJson) {
+        Exam exam = examRepository.findOne(examId);
+        if(exam == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Question question = new Question();
+        question.setExam(exam);
+        question.setText(questionJson.getText());
+        question.setImageUrl(questionJson.getImageUrl());
+        switch (question.getQuestionType()) {
+            case truefalse:
+                if(questionJson.getCorrectStatement() == null) {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+                question.setCorrectStatement(questionJson.getCorrectStatement());
+                break;
+            case numerical:
+                if(questionJson.getCorrectValue() == null) {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+                question.setCorrectValue(questionJson.getCorrectValue());
+                break;
+            case single:
+                if(questionJson.getSingleChoiceAnswers() == null || questionJson.getSingleChoiceAnswers().size() < 3) {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+                question.setSingleChoiceAnswers(questionJson.getSingleChoiceAnswers());
+                break;
+            case multiple:
+                if(questionJson.getMultipleChoiceAnswers() == null || questionJson.getMultipleChoiceAnswers().size() < 3) {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+                if(question.getMultipleChoiceAnswers().stream().noneMatch(MultipleChoiceAnswer::getAnswerCorrect)) {
+                    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+                question.setMultipleChoiceAnswers(questionJson.getMultipleChoiceAnswers());
+                break;
+            default:
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        question = questionRepository.save(question);
+        return new ResponseEntity<>(question, HttpStatus.OK);
     }
 
 }
