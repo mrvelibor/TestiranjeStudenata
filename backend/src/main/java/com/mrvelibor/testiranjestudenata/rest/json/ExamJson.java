@@ -5,8 +5,8 @@
  */
 package com.mrvelibor.testiranjestudenata.rest.json;
 
-import com.mrvelibor.testiranjestudenata.data.model.Exam;
-import com.mrvelibor.testiranjestudenata.data.model.User;
+import com.mrvelibor.testiranjestudenata.data.entities.Exam;
+import com.mrvelibor.testiranjestudenata.data.entities.User;
 
 /**
  *

@@ -1,7 +1,7 @@
 package com.mrvelibor.testiranjestudenata.data.repository;
 
-import com.mrvelibor.testiranjestudenata.data.model.StudentExam;
-import com.mrvelibor.testiranjestudenata.data.model.User;
+import com.mrvelibor.testiranjestudenata.data.entities.StudentExam;
+import com.mrvelibor.testiranjestudenata.data.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

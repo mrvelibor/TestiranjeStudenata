@@ -1,4 +1,4 @@
-package com.mrvelibor.testiranjestudenata.data.model;
+package com.mrvelibor.testiranjestudenata.data.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *

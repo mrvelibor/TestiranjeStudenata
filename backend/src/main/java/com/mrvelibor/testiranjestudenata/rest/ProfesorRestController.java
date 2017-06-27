@@ -1,22 +1,13 @@
 package com.mrvelibor.testiranjestudenata.rest;
 
-import com.mrvelibor.testiranjestudenata.data.model.*;
-import com.mrvelibor.testiranjestudenata.data.repository.ExamRepository;
-import com.mrvelibor.testiranjestudenata.data.repository.StudentExamQuestionRepository;
+import com.mrvelibor.testiranjestudenata.data.entities.*;
 import com.mrvelibor.testiranjestudenata.data.repository.StudentExamRepository;
-import com.mrvelibor.testiranjestudenata.data.repository.UserRepository;
-import com.mrvelibor.testiranjestudenata.rest.json.QuestionAnswerJson;
-import com.mrvelibor.testiranjestudenata.rest.json.StudentExamAnswersJson;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  *

@@ -1,6 +1,6 @@
 package com.mrvelibor.testiranjestudenata.rest;
 
-import com.mrvelibor.testiranjestudenata.data.model.UserRole;
+import com.mrvelibor.testiranjestudenata.data.entities.UserRole;
 import com.mrvelibor.testiranjestudenata.data.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

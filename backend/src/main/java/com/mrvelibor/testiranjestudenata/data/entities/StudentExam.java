@@ -1,4 +1,4 @@
-package com.mrvelibor.testiranjestudenata.data.model;
+package com.mrvelibor.testiranjestudenata.data.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

@@ -1,9 +1,9 @@
 package com.mrvelibor.testiranjestudenata.rest;
 
-import com.mrvelibor.testiranjestudenata.data.model.Course;
-import com.mrvelibor.testiranjestudenata.data.model.CourseUser;
-import com.mrvelibor.testiranjestudenata.data.model.CourseUserPK;
-import com.mrvelibor.testiranjestudenata.data.model.User;
+import com.mrvelibor.testiranjestudenata.data.entities.Course;
+import com.mrvelibor.testiranjestudenata.data.entities.CourseUser;
+import com.mrvelibor.testiranjestudenata.data.entities.CourseUserPK;
+import com.mrvelibor.testiranjestudenata.data.entities.User;
 import com.mrvelibor.testiranjestudenata.data.repository.CourseRepository;
 import com.mrvelibor.testiranjestudenata.data.repository.CourseUserRepository;
 import com.mrvelibor.testiranjestudenata.data.repository.UserRepository;

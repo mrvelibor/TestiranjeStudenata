@@ -1,12 +1,12 @@
 package com.mrvelibor.testiranjestudenata.rest;
 
-import com.mrvelibor.testiranjestudenata.data.model.Exam;
-import com.mrvelibor.testiranjestudenata.data.model.MultipleChoiceAnswer;
-import com.mrvelibor.testiranjestudenata.data.model.Question;
-import com.mrvelibor.testiranjestudenata.data.model.SingleChoiceAnswer;
-import com.mrvelibor.testiranjestudenata.data.model.StudentExam;
-import com.mrvelibor.testiranjestudenata.data.model.StudentExamQuestion;
-import com.mrvelibor.testiranjestudenata.data.model.User;
+import com.mrvelibor.testiranjestudenata.data.entities.Exam;
+import com.mrvelibor.testiranjestudenata.data.entities.MultipleChoiceAnswer;
+import com.mrvelibor.testiranjestudenata.data.entities.Question;
+import com.mrvelibor.testiranjestudenata.data.entities.SingleChoiceAnswer;
+import com.mrvelibor.testiranjestudenata.data.entities.StudentExam;
+import com.mrvelibor.testiranjestudenata.data.entities.StudentExamQuestion;
+import com.mrvelibor.testiranjestudenata.data.entities.User;
 import com.mrvelibor.testiranjestudenata.data.repository.ExamRepository;
 import com.mrvelibor.testiranjestudenata.data.repository.StudentExamQuestionRepository;
 import com.mrvelibor.testiranjestudenata.data.repository.StudentExamRepository;

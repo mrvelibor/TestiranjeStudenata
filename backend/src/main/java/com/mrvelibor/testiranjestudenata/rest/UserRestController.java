@@ -1,6 +1,6 @@
 package com.mrvelibor.testiranjestudenata.rest;
 
-import com.mrvelibor.testiranjestudenata.data.model.User;
+import com.mrvelibor.testiranjestudenata.data.entities.User;
 import com.mrvelibor.testiranjestudenata.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

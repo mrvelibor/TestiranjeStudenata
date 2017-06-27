@@ -1,6 +1,6 @@
 package com.mrvelibor.testiranjestudenata.security;
 
-import com.mrvelibor.testiranjestudenata.data.model.User;
+import com.mrvelibor.testiranjestudenata.data.entities.User;
 import com.mrvelibor.testiranjestudenata.data.repository.UserRepository;
 import com.mrvelibor.testiranjestudenata.security.json.AuthenticationRequestJson;
 import com.mrvelibor.testiranjestudenata.security.json.AuthenticationResponseJson;

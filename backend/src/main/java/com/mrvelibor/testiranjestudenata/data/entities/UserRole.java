@@ -1,4 +1,4 @@
-package com.mrvelibor.testiranjestudenata.data.model;
+package com.mrvelibor.testiranjestudenata.data.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

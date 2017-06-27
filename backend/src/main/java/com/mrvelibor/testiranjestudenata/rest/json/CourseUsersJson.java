@@ -5,8 +5,8 @@
  */
 package com.mrvelibor.testiranjestudenata.rest.json;
 
-import com.mrvelibor.testiranjestudenata.data.model.Course;
-import com.mrvelibor.testiranjestudenata.data.model.User;
+import com.mrvelibor.testiranjestudenata.data.entities.Course;
+import com.mrvelibor.testiranjestudenata.data.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

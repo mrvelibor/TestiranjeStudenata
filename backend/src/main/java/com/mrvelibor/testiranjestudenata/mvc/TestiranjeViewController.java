@@ -1,4 +1,4 @@
-package com.mrvelibor.testiranjestudenata;
+package com.mrvelibor.testiranjestudenata.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

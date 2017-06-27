@@ -5,7 +5,7 @@
  */
 package com.mrvelibor.testiranjestudenata.rest.json;
 
-import com.mrvelibor.testiranjestudenata.data.model.Question;
+import com.mrvelibor.testiranjestudenata.data.entities.Question;
 import java.math.BigDecimal;
 import java.util.List;
 
