@@ -113,6 +113,7 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__pages_profesor_panel_student_exams_student_exams_component__ = __webpack_require__("../../../../../src/app/pages/profesor-panel/student-exams/student-exams.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__services_profesor_service__ = __webpack_require__("../../../../../src/app/services/profesor.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__guards_confirm_close_guard__ = __webpack_require__("../../../../../src/app/guards/confirm-close.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__pages_admin_panel_exam_question_editor_exam_question_editor_component__ = __webpack_require__("../../../../../src/app/pages/admin-panel/exam-question-editor/exam-question-editor.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -120,6 +121,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -198,6 +200,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_29__pages_admin_panel_course_editor_course_editor_component__["a" /* CourseEditorComponent */],
             __WEBPACK_IMPORTED_MODULE_33__pages_admin_panel_course_users_list_course_users_list_component__["a" /* CourseUsersListComponent */],
             __WEBPACK_IMPORTED_MODULE_32__pages_admin_panel_exam_editor_exam_editor_component__["a" /* ExamEditorComponent */],
+            __WEBPACK_IMPORTED_MODULE_37__pages_admin_panel_exam_question_editor_exam_question_editor_component__["a" /* ExamQuestionEditorComponent */],
             __WEBPACK_IMPORTED_MODULE_13__directives_nospace_validator__["a" /* NospaceValidator */],
             __WEBPACK_IMPORTED_MODULE_14__directives_user_type_pipe__["a" /* UserTypePipe */]
         ],
@@ -243,7 +246,9 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_admin_panel_course_users_list_course_users_list_component__ = __webpack_require__("../../../../../src/app/pages/admin-panel/course-users-list/course-users-list.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_profesor_panel_student_exams_student_exams_component__ = __webpack_require__("../../../../../src/app/pages/profesor-panel/student-exams/student-exams.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__guards_confirm_close_guard__ = __webpack_require__("../../../../../src/app/guards/confirm-close.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_admin_panel_exam_question_editor_exam_question_editor_component__ = __webpack_require__("../../../../../src/app/pages/admin-panel/exam-question-editor/exam-question-editor.component.ts");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routing; });
+
 
 
 
@@ -271,6 +276,7 @@ var appRoutes = [
     { path: 'exams/available/:id', component: __WEBPACK_IMPORTED_MODULE_4__pages_student_panel_exam_test_exam_test_component__["a" /* ExamTestComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_student_guard__["a" /* StudentGuard */]], canDeactivate: [__WEBPACK_IMPORTED_MODULE_15__guards_confirm_close_guard__["a" /* ConfirmCloseGuard */]] },
     { path: 'exams/completed', component: __WEBPACK_IMPORTED_MODULE_8__pages_student_panel_completed_exams_completed_exams_component__["a" /* CompletedExamsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_student_guard__["a" /* StudentGuard */]] },
     { path: 'exams/completed/:id', component: __WEBPACK_IMPORTED_MODULE_5__pages_profesor_panel_exam_overview_exam_overview_component__["a" /* ExamOverviewComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_student_guard__["a" /* StudentGuard */]] },
+    { path: 'exams/:id', component: __WEBPACK_IMPORTED_MODULE_16__pages_admin_panel_exam_question_editor_exam_question_editor_component__["a" /* ExamQuestionEditorComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_10__guards_admin_guard__["a" /* AdminGuard */]] },
     { path: 'overview', component: __WEBPACK_IMPORTED_MODULE_14__pages_profesor_panel_student_exams_student_exams_component__["a" /* StudentExamsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_7__guards_profesor_guard__["a" /* ProfesorGuard */]] },
     { path: 'overview/:id', component: __WEBPACK_IMPORTED_MODULE_5__pages_profesor_panel_exam_overview_exam_overview_component__["a" /* ExamOverviewComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_7__guards_profesor_guard__["a" /* ProfesorGuard */]] },
     { path: '**', redirectTo: '' }
@@ -708,6 +714,55 @@ var Exam = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/models/multiple-choice-answer.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MultipleChoiceAnswer; });
+var MultipleChoiceAnswer = (function () {
+    function MultipleChoiceAnswer(multipleChoiceAnswerId) {
+        if (multipleChoiceAnswerId === void 0) { multipleChoiceAnswerId = null; }
+        this.multipleChoiceAnswerId = multipleChoiceAnswerId;
+    }
+    return MultipleChoiceAnswer;
+}());
+
+//# sourceMappingURL=multiple-choice-answer.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/models/question.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Question; });
+var Question = (function () {
+    function Question() {
+    }
+    return Question;
+}());
+
+//# sourceMappingURL=question.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/models/single-choice-answer.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SingleChoiceAnswer; });
+var SingleChoiceAnswer = (function () {
+    function SingleChoiceAnswer(singleChoiceAnswerId) {
+        if (singleChoiceAnswerId === void 0) { singleChoiceAnswerId = null; }
+        this.singleChoiceAnswerId = singleChoiceAnswerId;
+    }
+    return SingleChoiceAnswer;
+}());
+
+//# sourceMappingURL=single-choice-answer.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/models/user.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -726,7 +781,7 @@ var User = (function () {
 /***/ "../../../../../src/app/pages/admin-panel/course-editor/course-editor.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<md-sidenav-container class=\"editor-container\">\r\n  <md-sidenav class=\"editor-sidenav\" #sidenav mode=\"side\" disableClose=\"true\" >\r\n    <h2>Predmeti</h2>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Šifra predmeta\" [(ngModel)]=\"course.courseCode\">\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Naziv predmeta\" [(ngModel)]=\"course.name\">\r\n    </md-input-container>\r\n    <button *ngIf=\"!working\" md-raised-button (click)=\"addCourse()\">Dodaj predmet</button>\r\n    <md-spinner *ngIf=\"working\"></md-spinner>\r\n  </md-sidenav>\r\n  <ng2-md-datatable *ngIf=\"!loading\" selectable=\"false\">\r\n    <ng2-md-datatable-header>\r\n      <ng2-md-datatable-column>Šifra predmeta</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Naziv predmeta</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Akcije</ng2-md-datatable-column>\r\n    </ng2-md-datatable-header>\r\n    <tbody>\r\n    <ng2-md-datatable-row *ngFor=\"let course of courses\" class=\"course-row\">\r\n      <td [routerLink]=\"['/courses', course.courseId]\" class=\"course-code-column\">{{course.courseCode}}</td>\r\n      <td>{{course.name}}</td>\r\n      <td><a (click)=\"deleteCourse(course)\"><md-icon>delete</md-icon></a></td>\r\n    </ng2-md-datatable-row>\r\n    </tbody>\r\n  </ng2-md-datatable>\r\n</md-sidenav-container>\r\n"
+module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<md-sidenav-container class=\"editor-container\">\r\n  <md-sidenav class=\"editor-sidenav\" #sidenav mode=\"side\" disableClose=\"true\" >\r\n    <h2>Predmeti</h2>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Šifra predmeta\" [(ngModel)]=\"course.courseCode\">\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Naziv predmeta\" [(ngModel)]=\"course.name\">\r\n    </md-input-container>\r\n    <button *ngIf=\"!working\" md-raised-button (click)=\"addCourse()\">Dodaj predmet</button>\r\n    <md-spinner *ngIf=\"working\"></md-spinner>\r\n  </md-sidenav>\r\n  <ng2-md-datatable *ngIf=\"!loading\" selectable=\"false\">\r\n    <ng2-md-datatable-header>\r\n      <ng2-md-datatable-column>Šifra predmeta</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Naziv predmeta</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Akcije</ng2-md-datatable-column>\r\n    </ng2-md-datatable-header>\r\n    <tbody>\r\n    <ng2-md-datatable-row *ngFor=\"let course of courses\" class=\"course-row\">\r\n      <td [routerLink]=\"['/courses', course.courseId]\" class=\"course-highlight-column\">{{course.courseCode}}</td>\r\n      <td [routerLink]=\"['/courses', course.courseId]\" class=\"course-highlight-column\">{{course.name}}</td>\r\n      <td><a (click)=\"deleteCourse(course)\"><md-icon>delete</md-icon></a></td>\r\n    </ng2-md-datatable-row>\r\n    </tbody>\r\n  </ng2-md-datatable>\r\n</md-sidenav-container>\r\n"
 
 /***/ }),
 
@@ -738,7 +793,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".editor-container {\n  min-height: 100%; }\n\n.editor-sidenav {\n  padding: 10px; }\n\n.editor-sidenav md-input-container {\n  display: block; }\n\n.editor-sidenav md-select {\n  margin-top: 10px;\n  margin-bottom: 20px;\n  display: block; }\n\n.course-code-column {\n  cursor: pointer; }\n\n.course-code-column:hover {\n  font-weight: bold; }\n", ""]);
+exports.push([module.i, ".editor-container {\n  min-height: 100%; }\n\n.editor-sidenav {\n  padding: 10px; }\n\n.editor-sidenav md-input-container {\n  display: block; }\n\n.editor-sidenav md-select {\n  margin-top: 10px;\n  margin-bottom: 20px;\n  display: block; }\n\n.course-row:hover .course-highlight-column {\n  font-weight: bold; }\n\n.course-highlight-column {\n  cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -1002,7 +1057,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/pages/admin-panel/exam-editor/exam-editor.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<md-sidenav-container class=\"editor-container\">\r\n  <md-sidenav class=\"editor-sidenav\" #sidenav mode=\"side\" disableClose=\"true\" >\r\n    <h2>Ispiti</h2>\r\n    <md-select placeholder=\"Predmet\" [(ngModel)]=\"exam.course\">\r\n      <md-option *ngFor=\"let course of courses\" [value]=\"course\">\r\n        {{course.courseCode}}\r\n      </md-option>\r\n    </md-select>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Naziv ispita\" [(ngModel)]=\"exam.name\">\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <textarea mdInput placeholder=\"Opis ispita\" [(ngModel)]=\"exam.description\"></textarea>\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Broj pitanja\" [(ngModel)]=\"exam.numberOfQuestions\">\r\n    </md-input-container>\r\n    <button *ngIf=\"!working\" md-raised-button (click)=\"addExam()\">Dodaj ispit</button>\r\n    <md-spinner *ngIf=\"working\"></md-spinner>\r\n  </md-sidenav>\r\n  <ng2-md-datatable *ngIf=\"!loading\" selectable=\"false\">\r\n    <ng2-md-datatable-header>\r\n      <ng2-md-datatable-column>Predmet</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Naziv ispita</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Opis ispita</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Broj pitanja</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Akcije</ng2-md-datatable-column>\r\n    </ng2-md-datatable-header>\r\n    <tbody>\r\n    <ng2-md-datatable-row *ngFor=\"let exam of exams\">\r\n      <td>{{exam.course.courseCode}}</td>\r\n      <td>{{exam.name}}</td>\r\n      <td>{{exam.description}}</td>\r\n      <td>{{exam.numberOfQuestions}}</td>\r\n      <td><a (click)=\"deleteExam(exam)\"><md-icon>delete</md-icon></a></td>\r\n    </ng2-md-datatable-row>\r\n    </tbody>\r\n  </ng2-md-datatable>\r\n</md-sidenav-container>\r\n"
+module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<md-sidenav-container class=\"editor-container\">\r\n  <md-sidenav class=\"editor-sidenav\" #sidenav mode=\"side\" disableClose=\"true\" >\r\n    <h2>Ispiti</h2>\r\n    <md-select placeholder=\"Predmet\" [(ngModel)]=\"exam.course\">\r\n      <md-option *ngFor=\"let course of courses\" [value]=\"course\">\r\n        {{course.courseCode}}\r\n      </md-option>\r\n    </md-select>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Naziv ispita\" [(ngModel)]=\"exam.name\">\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <textarea mdInput placeholder=\"Opis ispita\" [(ngModel)]=\"exam.description\"></textarea>\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Broj pitanja\" [(ngModel)]=\"exam.numberOfQuestions\">\r\n    </md-input-container>\r\n    <button *ngIf=\"!working\" md-raised-button (click)=\"addExam()\">Dodaj ispit</button>\r\n    <md-spinner *ngIf=\"working\"></md-spinner>\r\n  </md-sidenav>\r\n  <ng2-md-datatable *ngIf=\"!loading\" selectable=\"false\">\r\n    <ng2-md-datatable-header>\r\n      <ng2-md-datatable-column>Predmet</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Naziv ispita</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Opis ispita</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Broj pitanja</ng2-md-datatable-column>\r\n      <ng2-md-datatable-column>Akcije</ng2-md-datatable-column>\r\n    </ng2-md-datatable-header>\r\n    <tbody>\r\n    <ng2-md-datatable-row *ngFor=\"let exam of exams\" class=\"exam-row\">\r\n      <td [routerLink]=\"['/exams', exam.examId]\" class=\"exam-highlight-column\">{{exam.course.courseCode}}</td>\r\n      <td [routerLink]=\"['/exams', exam.examId]\" class=\"exam-highlight-column\">{{exam.name}}</td>\r\n      <td [routerLink]=\"['/exams', exam.examId]\" class=\"exam-highlight-column\">{{exam.description}}</td>\r\n      <td>{{exam.numberOfQuestions}}</td>\r\n      <td><a (click)=\"deleteExam(exam)\"><md-icon>delete</md-icon></a></td>\r\n    </ng2-md-datatable-row>\r\n    </tbody>\r\n  </ng2-md-datatable>\r\n</md-sidenav-container>\r\n"
 
 /***/ }),
 
@@ -1014,7 +1069,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".editor-container {\n  min-height: 100%; }\n\n.editor-sidenav {\n  padding: 10px; }\n\n.editor-sidenav md-input-container {\n  display: block; }\n\n.editor-sidenav md-select {\n  margin-top: 10px;\n  margin-bottom: 20px;\n  display: block; }\n", ""]);
+exports.push([module.i, ".editor-container {\n  min-height: 100%; }\n\n.editor-sidenav {\n  padding: 10px; }\n\n.editor-sidenav md-input-container {\n  display: block; }\n\n.editor-sidenav md-select {\n  margin-top: 10px;\n  margin-bottom: 20px;\n  display: block; }\n\n.exam-row:hover .exam-highlight-column {\n  font-weight: bold; }\n\n.exam-highlight-column {\n  cursor: pointer; }\n", ""]);
 
 // exports
 
@@ -1143,6 +1198,170 @@ ExamEditorComponent = __decorate([
 
 var _a, _b, _c;
 //# sourceMappingURL=exam-editor.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/pages/admin-panel/exam-question-editor/exam-question-editor.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<md-sidenav-container class=\"editor-container\">\r\n  <md-sidenav class=\"editor-sidenav\" #sidenav mode=\"side\" disableClose=\"true\" >\r\n    <h2>Predmet</h2>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Predmet\" disabled [(ngModel)]=\"exam.course.courseCode\">\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Naziv ispita\" disabled [(ngModel)]=\"exam.name\">\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <textarea mdInput placeholder=\"Opis ispita\" disabled [(ngModel)]=\"exam.description\"></textarea>\r\n    </md-input-container>\r\n    <md-input-container>\r\n      <input mdInput placeholder=\"Broj pitanja\" disabled [(ngModel)]=\"exam.numberOfQuestions\">\r\n    </md-input-container>\r\n  </md-sidenav>\r\n  <div class=\"exam-question\">\r\n    <h2>Dodaj pitanje</h2>\r\n    <md-select placeholder=\"Tip pitanja\" class=\"exam-question-type\" [(ngModel)]=\"question.questionType\">\r\n      <md-option value=\"truefalse\">\r\n        Tačno-netačno\r\n      </md-option>\r\n      <md-option value=\"numerical\">\r\n        Numeričko\r\n      </md-option>\r\n      <md-option value=\"single\">\r\n        Jedan tačan odgovor\r\n      </md-option>\r\n      <md-option value=\"multiple\">\r\n        Više tačnih odgovora\r\n      </md-option>\r\n    </md-select>\r\n    <md-input-container class=\"exam-question-text\" >\r\n      <textarea mdInput placeholder=\"Tekst pitanja\" [(ngModel)]=\"question.text\"></textarea>\r\n    </md-input-container>\r\n    <div *ngIf=\"question.questionType === 'truefalse'\">\r\n      <md-radio-group [(ngModel)]=\"question.correctStatement\">\r\n        <md-radio-button class=\"exam-question-answer\" [value]=\"true\">\r\n          Tačno\r\n        </md-radio-button>\r\n        <md-radio-button class=\"exam-question-answer\" [value]=\"false\">\r\n          Netačno\r\n        </md-radio-button>\r\n      </md-radio-group>\r\n    </div>\r\n    <div *ngIf=\"question.questionType === 'numerical'\">\r\n      <md-input-container>\r\n        <input mdInput placeholder=\"Odgovor\" [(ngModel)]=\"question.correctValue\">\r\n      </md-input-container>\r\n    </div>\r\n    <div *ngIf=\"question.questionType === 'single'\">\r\n      <md-radio-group [(ngModel)]=\"question.singleChoiceCorrectAnswer\">\r\n        <md-radio-button *ngFor=\"let answer of question.singleChoiceAnswers; let answerIndex = index\" class=\"exam-question-answer\" [value]=\"answer\">\r\n          <md-input-container>\r\n            <input mdInput [placeholder]=\"'Odgovor ' + answer.singleChoiceAnswerId\" [(ngModel)]=\"answer.text\">\r\n          </md-input-container>\r\n          <a (click)=\"deleteSingleChoiceAnswer(answer)\"><md-icon>delete</md-icon></a>\r\n        </md-radio-button>\r\n      </md-radio-group>\r\n      <button md-button (click)=\"addSingleChoiceAnswer()\"><md-icon>add</md-icon> Dodaj odgovor</button>\r\n    </div>\r\n    <div *ngIf=\"question.questionType === 'multiple'\">\r\n      <md-checkbox *ngFor=\"let answer of question.multipleChoiceAnswers; let answerIndex = index\" class=\"exam-question-answer\" [(ngModel)]=\"answer.answerCorrect\">\r\n        <md-input-container>\r\n          <input mdInput [placeholder]=\"'Odgovor ' + answer.multipleChoiceAnswerId\" [(ngModel)]=\"answer.text\">\r\n        </md-input-container>\r\n        <a (click)=\"deleteMultipleChoiceAnswer(answer)\"><md-icon>delete</md-icon></a>\r\n      </md-checkbox>\r\n      <button md-button (click)=\"addMultipleChoiceAnswer()\"><md-icon>add</md-icon> Dodaj odgovor</button>\r\n    </div>\r\n    <div *ngIf=\"question.questionType !== 'numerical'\" class=\"exam-question-margin\"></div>\r\n    <button *ngIf=\"!loading && question.questionType\" md-raised-button (click)=\"addQuestion()\">Dodaj pitanje</button>\r\n  </div>\r\n</md-sidenav-container>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/pages/admin-panel/exam-question-editor/exam-question-editor.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".editor-container {\n  min-height: 100%; }\n\n.editor-sidenav {\n  padding: 10px; }\n\n.editor-sidenav md-input-container {\n  display: block; }\n\n.editor-sidenav md-select {\n  margin-top: 10px;\n  margin-bottom: 20px;\n  display: block; }\n\n.exam-question {\n  padding: 10px; }\n\n.exam-question h2 {\n  margin-bottom: 20px; }\n\n.exam-question-text {\n  display: block; }\n\n.exam-question-margin {\n  height: 20px; }\n\n.exam-question-answer {\n  display: block;\n  margin-bottom: 2px; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/pages/admin-panel/exam-question-editor/exam-question-editor.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_alert_service__ = __webpack_require__("../../../../../src/app/services/alert.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_course__ = __webpack_require__("../../../../../src/app/models/course.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_admin_service__ = __webpack_require__("../../../../../src/app/services/admin.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_exam__ = __webpack_require__("../../../../../src/app/models/exam.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__models_question__ = __webpack_require__("../../../../../src/app/models/question.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__models_single_choice_answer__ = __webpack_require__("../../../../../src/app/models/single-choice-answer.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__models_multiple_choice_answer__ = __webpack_require__("../../../../../src/app/models/multiple-choice-answer.ts");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ExamQuestionEditorComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+var ExamQuestionEditorComponent = (function () {
+    function ExamQuestionEditorComponent(route, adminService, alertService) {
+        this.route = route;
+        this.adminService = adminService;
+        this.alertService = alertService;
+        this.exam = new __WEBPACK_IMPORTED_MODULE_6__models_exam__["a" /* Exam */]();
+        this.exam.course = new __WEBPACK_IMPORTED_MODULE_2__models_course__["a" /* Course */]();
+        this.resetQuestion();
+    }
+    ExamQuestionEditorComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.routeSubscription = this.route.params.subscribe(function (params) {
+            _this.examId = +params['id'];
+        });
+        this.loadExam();
+    };
+    ExamQuestionEditorComponent.prototype.ngAfterViewInit = function () {
+        this.sidenav.open();
+    };
+    ExamQuestionEditorComponent.prototype.loadExam = function () {
+        var _this = this;
+        this.loading = true;
+        this.alertService.clearMessage();
+        this.adminService.getExam(this.examId)
+            .subscribe(function (data) {
+            console.log(data);
+            _this.exam = data;
+            _this.loading = false;
+        }, function (error) {
+            console.log(error);
+            _this.alertService.error(error);
+            _this.loading = false;
+        });
+    };
+    ExamQuestionEditorComponent.prototype.addQuestion = function () {
+        var _this = this;
+        this.loading = true;
+        this.alertService.clearMessage();
+        this.adminService.createQuestion(this.question, this.exam)
+            .subscribe(function (data) {
+            console.log(data);
+            _this.resetQuestion();
+            _this.alertService.success('Pitanje dodato!');
+            _this.loading = false;
+        }, function (error) {
+            console.log(error);
+            _this.alertService.error(error);
+            _this.loading = false;
+        });
+    };
+    ExamQuestionEditorComponent.prototype.resetQuestion = function () {
+        var question = new __WEBPACK_IMPORTED_MODULE_7__models_question__["a" /* Question */]();
+        question.singleChoiceAnswers = [new __WEBPACK_IMPORTED_MODULE_8__models_single_choice_answer__["a" /* SingleChoiceAnswer */](1), new __WEBPACK_IMPORTED_MODULE_8__models_single_choice_answer__["a" /* SingleChoiceAnswer */](2), new __WEBPACK_IMPORTED_MODULE_8__models_single_choice_answer__["a" /* SingleChoiceAnswer */](3)];
+        question.multipleChoiceAnswers = [new __WEBPACK_IMPORTED_MODULE_9__models_multiple_choice_answer__["a" /* MultipleChoiceAnswer */](1), new __WEBPACK_IMPORTED_MODULE_9__models_multiple_choice_answer__["a" /* MultipleChoiceAnswer */](2), new __WEBPACK_IMPORTED_MODULE_9__models_multiple_choice_answer__["a" /* MultipleChoiceAnswer */](3)];
+        this.question = question;
+    };
+    ExamQuestionEditorComponent.prototype.addSingleChoiceAnswer = function () {
+        var index = 1;
+        if (this.question.singleChoiceAnswers.length) {
+            index = this.question.singleChoiceAnswers[this.question.singleChoiceAnswers.length - 1].singleChoiceAnswerId + 1;
+        }
+        this.question.singleChoiceAnswers.push(new __WEBPACK_IMPORTED_MODULE_8__models_single_choice_answer__["a" /* SingleChoiceAnswer */](index));
+    };
+    ExamQuestionEditorComponent.prototype.deleteSingleChoiceAnswer = function (answer) {
+        var index = this.question.singleChoiceAnswers.indexOf(answer);
+        if (index >= 0) {
+            this.question.singleChoiceAnswers.splice(index, 1);
+        }
+        if (this.question.singleChoiceCorrectAnswer == answer) {
+            this.question.singleChoiceCorrectAnswer = null;
+        }
+    };
+    ExamQuestionEditorComponent.prototype.addMultipleChoiceAnswer = function () {
+        var index = 1;
+        if (this.question.multipleChoiceAnswers.length) {
+            index = this.question.multipleChoiceAnswers[this.question.multipleChoiceAnswers.length - 1].multipleChoiceAnswerId + 1;
+        }
+        this.question.multipleChoiceAnswers.push(new __WEBPACK_IMPORTED_MODULE_9__models_multiple_choice_answer__["a" /* MultipleChoiceAnswer */](index));
+    };
+    ExamQuestionEditorComponent.prototype.deleteMultipleChoiceAnswer = function (answer) {
+        var index = this.question.multipleChoiceAnswers.indexOf(answer);
+        if (index >= 0) {
+            this.question.multipleChoiceAnswers.splice(index, 1);
+        }
+    };
+    return ExamQuestionEditorComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_4__angular_material__["k" /* MdSidenav */]),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4__angular_material__["k" /* MdSidenav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_material__["k" /* MdSidenav */]) === "function" && _a || Object)
+], ExamQuestionEditorComponent.prototype, "sidenav", void 0);
+ExamQuestionEditorComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
+        selector: 'app-exam-question-editor',
+        template: __webpack_require__("../../../../../src/app/pages/admin-panel/exam-question-editor/exam-question-editor.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/pages/admin-panel/exam-question-editor/exam-question-editor.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_admin_service__["a" /* AdminService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_admin_service__["a" /* AdminService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_alert_service__["a" /* AlertService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_alert_service__["a" /* AlertService */]) === "function" && _d || Object])
+], ExamQuestionEditorComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=exam-question-editor.component.js.map
 
 /***/ }),
 
@@ -1451,7 +1670,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/pages/profesor-panel/exam-overview/exam-overview.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<div *ngIf=\"!loading\" class=\"exam-wrapper\">\r\n  <div *ngIf=\"studentExam\" class=\"exam-details\">\r\n    <h2>{{studentExam.exam.name}}</h2>\r\n    <div class=\"exam-description\">{{studentExam.exam.description}}</div>\r\n    <div class=\"student-name\">Student: {{studentExam.student.fullName}} <small>({{studentExam.student.email}})</small></div>\r\n    <div class=\"exam-points\">Bodovi: {{studentExam.points}}/{{studentExam.exam.numberOfQuestions}}</div>\r\n    <div class=\"exam-time\">Ispit započet: {{studentExam.startTime | date:'dd.MM.yyyy. hh:mm:ss'}}</div>\r\n    <div class=\"exam-time\">Ispit završen: {{studentExam.endTime | date:'dd.MM.yyyy. hh:mm:ss'}}</div>\r\n  </div>\r\n  <div *ngIf=\"studentExam.questions\">\r\n    <div class=\"exam-test\">\r\n      <div *ngFor=\"let examQuestion of studentExam.questions\" class=\"exam-question\">\r\n        <h4>{{examQuestion.question.text}}</h4>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType === 'truefalse'\">\r\n          <md-radio-group [(ngModel)]=\"examQuestion.answerStatement\">\r\n            <md-radio-button #rdbTrue disabled [value]=\"true\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': rdbTrue.checked && examQuestion.answerStatement === examQuestion.question.correctStatement,\r\n                             'exam-answer-incorrect': rdbTrue.checked && examQuestion.answerStatement !== examQuestion.question.correctStatement,\r\n                             'exam-answer-missed': examQuestion.answerStatement == null && examQuestion.question.correctStatement\r\n                             }\">\r\n              Tačno\r\n            </md-radio-button>\r\n            <md-radio-button #rdbFalse disabled [value]=\"false\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': rdbFalse.checked && examQuestion.answerStatement === examQuestion.question.correctStatement,\r\n                             'exam-answer-incorrect': rdbFalse.checked && examQuestion.answerStatement !== examQuestion.question.correctStatement,\r\n                             'exam-answer-missed': examQuestion.answerStatement == null && !examQuestion.question.correctStatement\r\n                             }\">\r\n              Netačno\r\n            </md-radio-button>\r\n          </md-radio-group>\r\n        </div>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType === 'numerical'\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': examQuestion.answerValue === examQuestion.question.correctValue,\r\n                             'exam-answer-incorrect': examQuestion.answerValue != null && examQuestion.answerValue !== examQuestion.question.correctValue,\r\n                             'exam-answer-missed': examQuestion.answerValue == null\r\n                             }\">\r\n          <md-input-container>\r\n            <input mdInput disabled placeholder=\"Odgovor\" [(ngModel)]=\"examQuestion.answerValue\">\r\n          </md-input-container>\r\n        </div>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType === 'single'\">\r\n          <md-radio-group [(ngModel)]=\"examQuestion.singleChoiceAnswerId\">\r\n            <md-radio-button #rdbSingle *ngFor=\"let answer of examQuestion.question.singleChoiceAnswers\" disabled [value]=\"answer.singleChoiceAnswerId\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': rdbSingle.checked && examQuestion.singleChoiceAnswerId === examQuestion.question.singleChoiceCorrectAnswerId,\r\n                             'exam-answer-incorrect': rdbSingle.checked && examQuestion.singleChoiceAnswerId !== examQuestion.question.singleChoiceCorrectAnswerId,\r\n                             'exam-answer-missed': examQuestion.singleChoiceAnswerId == null && answer.singleChoiceAnswerId === examQuestion.question.singleChoiceCorrectAnswerId\r\n                             }\">\r\n              {{answer.text}}\r\n            </md-radio-button>\r\n          </md-radio-group>\r\n        </div>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType === 'multiple'\">\r\n          <md-checkbox #chbMultiple *ngFor=\"let answer of examQuestion.question.multipleChoiceAnswers; let i = index\" disabled [(ngModel)]=\"examQuestion.multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': chbMultiple.checked && examQuestion.question.multipleChoiceAnswers[i].answerCorrect,\r\n                             'exam-answer-incorrect': chbMultiple.checked && !examQuestion.question.multipleChoiceAnswers[i].answerCorrect,\r\n                             'exam-answer-missed': !chbMultiple.checked && examQuestion.question.multipleChoiceAnswers[i].answerCorrect\r\n                             }\">\r\n            {{answer.text}}\r\n          </md-checkbox>\r\n        </div>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType !== 'numerical'\" class=\"exam-question-margin\"></div>\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<div *ngIf=\"!loading\" class=\"exam-wrapper\">\r\n  <div *ngIf=\"studentExam\" class=\"exam-details\">\r\n    <h2>{{studentExam.exam.name}}</h2>\r\n    <div class=\"exam-description\">{{studentExam.exam.description}}</div>\r\n    <div class=\"student-name\">Student: {{studentExam.student.fullName}} <small>({{studentExam.student.email}})</small></div>\r\n    <div class=\"exam-points\">Bodovi: {{studentExam.points}}/{{studentExam.exam.numberOfQuestions}}</div>\r\n    <div class=\"exam-time\">Ispit započet: {{studentExam.startTime | date:'dd.MM.yyyy. hh:mm:ss'}}</div>\r\n    <div class=\"exam-time\">Ispit završen: {{studentExam.endTime | date:'dd.MM.yyyy. hh:mm:ss'}}</div>\r\n  </div>\r\n  <div *ngIf=\"studentExam.questions\">\r\n    <div class=\"exam-test\">\r\n      <div *ngFor=\"let examQuestion of studentExam.questions\" class=\"exam-question\">\r\n        <h4>{{examQuestion.question.text}}</h4>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType === 'truefalse'\">\r\n          <md-radio-group [(ngModel)]=\"examQuestion.answerStatement\">\r\n            <md-radio-button #rdbTrue disabled class=\"exam-question-answer\" [value]=\"true\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': rdbTrue.checked && examQuestion.answerStatement === examQuestion.question.correctStatement,\r\n                             'exam-answer-incorrect': rdbTrue.checked && examQuestion.answerStatement !== examQuestion.question.correctStatement,\r\n                             'exam-answer-missed': examQuestion.answerStatement == null && examQuestion.question.correctStatement\r\n                             }\">\r\n              Tačno\r\n            </md-radio-button>\r\n            <md-radio-button #rdbFalse disabled class=\"exam-question-answer\" [value]=\"false\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': rdbFalse.checked && examQuestion.answerStatement === examQuestion.question.correctStatement,\r\n                             'exam-answer-incorrect': rdbFalse.checked && examQuestion.answerStatement !== examQuestion.question.correctStatement,\r\n                             'exam-answer-missed': examQuestion.answerStatement == null && !examQuestion.question.correctStatement\r\n                             }\">\r\n              Netačno\r\n            </md-radio-button>\r\n          </md-radio-group>\r\n        </div>\r\n        <div *ngIf=\"examQuestion.question.questionType === 'numerical'\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': examQuestion.answerValue === examQuestion.question.correctValue,\r\n                             'exam-answer-incorrect': examQuestion.answerValue != null && examQuestion.answerValue !== examQuestion.question.correctValue,\r\n                             'exam-answer-missed': examQuestion.answerValue == null\r\n                             }\">\r\n          <md-input-container>\r\n            <input mdInput disabled placeholder=\"Odgovor\" [(ngModel)]=\"examQuestion.answerValue\">\r\n          </md-input-container>\r\n        </div>\r\n        <div *ngIf=\"examQuestion.question.questionType === 'single'\">\r\n          <md-radio-group [(ngModel)]=\"examQuestion.singleChoiceAnswerId\">\r\n            <md-radio-button #rdbSingle *ngFor=\"let answer of examQuestion.question.singleChoiceAnswers\" class=\"exam-question-answer\" disabled [value]=\"answer.singleChoiceAnswerId\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': rdbSingle.checked && examQuestion.singleChoiceAnswerId === examQuestion.question.singleChoiceCorrectAnswerId,\r\n                             'exam-answer-incorrect': rdbSingle.checked && examQuestion.singleChoiceAnswerId !== examQuestion.question.singleChoiceCorrectAnswerId,\r\n                             'exam-answer-missed': examQuestion.singleChoiceAnswerId == null && answer.singleChoiceAnswerId === examQuestion.question.singleChoiceCorrectAnswerId\r\n                             }\">\r\n              {{answer.text}}\r\n            </md-radio-button>\r\n          </md-radio-group>\r\n        </div>\r\n        <div *ngIf=\"examQuestion.question.questionType === 'multiple'\">\r\n          <md-checkbox #chbMultiple *ngFor=\"let answer of examQuestion.question.multipleChoiceAnswers; let i = index\" class=\"exam-question-answer\" disabled [(ngModel)]=\"examQuestion.multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]\"\r\n                             [ngClass]=\"{\r\n                             'exam-answer-correct': chbMultiple.checked && examQuestion.question.multipleChoiceAnswers[i].answerCorrect,\r\n                             'exam-answer-incorrect': chbMultiple.checked && !examQuestion.question.multipleChoiceAnswers[i].answerCorrect,\r\n                             'exam-answer-missed': !chbMultiple.checked && examQuestion.question.multipleChoiceAnswers[i].answerCorrect\r\n                             }\">\r\n            {{answer.text}}\r\n          </md-checkbox>\r\n        </div>\r\n        <div *ngIf=\"examQuestion.question.questionType !== 'numerical'\" class=\"exam-question-margin\"></div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1463,7 +1682,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".exam-wrapper {\n  padding: 20px; }\n\n.exam-wrapper p {\n  margin-bottom: 10px; }\n\n.exam-wrapper a {\n  color: #31708f; }\n\n.exam-details {\n  margin-bottom: 20px; }\n\n.exam-details h2 {\n  font-size: 30px; }\n\n.exam-description {\n  font-style: italic;\n  margin-bottom: 10px; }\n\n.exam-time {\n  color: #b0b0b0;\n  font-size: 13px; }\n\n.exam-question-margin {\n  height: 20px; }\n\n.exam-question h4 {\n  font-size: 20px;\n  margin-bottom: 5px; }\n\n.material-icons, .exam-answer-correct::after, .exam-answer-missed::after, .exam-answer-incorrect::after {\n  direction: ltr;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -ms-flex-line-pack: center;\n      align-content: center;\n  vertical-align: middle;\n  font-family: 'Material Icons';\n  font-size: 30px;\n  margin-left: 5px;\n  -webkit-font-feature-settings: 'liga';\n  -webkit-font-smoothing: antialiased; }\n\n.exam-answer-correct::after {\n  content: 'check';\n  color: #388e3c; }\n\n.exam-answer-missed::after {\n  content: 'label';\n  color: #fdd835; }\n\n.exam-answer-incorrect::after {\n  content: 'close';\n  color: #d32f2f; }\n\n.exam-question md-checkbox {\n  display: block;\n  margin-bottom: 2px; }\n\n.exam-question md-radio-button {\n  display: block;\n  margin-bottom: 2px; }\n", ""]);
+exports.push([module.i, ".exam-wrapper {\n  padding: 20px; }\n\n.exam-wrapper p {\n  margin-bottom: 10px; }\n\n.exam-wrapper a {\n  color: #31708f; }\n\n.exam-details {\n  margin-bottom: 20px; }\n\n.exam-details h2 {\n  font-size: 30px; }\n\n.exam-description {\n  font-style: italic;\n  margin-bottom: 10px; }\n\n.exam-time {\n  color: #b0b0b0;\n  font-size: 13px; }\n\n.exam-question-margin {\n  height: 20px; }\n\n.exam-question h4 {\n  font-size: 20px;\n  margin-bottom: 5px; }\n\n.material-icons, .exam-answer-correct::after, .exam-answer-missed::after, .exam-answer-incorrect::after {\n  direction: ltr;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -ms-flex-line-pack: center;\n      align-content: center;\n  vertical-align: middle;\n  font-family: 'Material Icons';\n  font-size: 30px;\n  margin-left: 5px;\n  -webkit-font-feature-settings: 'liga';\n  -webkit-font-smoothing: antialiased; }\n\n.exam-answer-correct::after {\n  content: 'check';\n  color: #388e3c; }\n\n.exam-answer-missed::after {\n  content: 'label';\n  color: #fdd835; }\n\n.exam-answer-incorrect::after {\n  content: 'close';\n  color: #d32f2f; }\n\n.exam-question-answer {\n  display: block;\n  margin-bottom: 2px; }\n", ""]);
 
 // exports
 
@@ -1887,7 +2106,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/pages/student-panel/exam-test/exam-test.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<div *ngIf=\"!loading\" class=\"exam-wrapper\">\r\n  <div *ngIf=\"exam\" class=\"exam-details\">\r\n    <h2>{{exam.name}}</h2>\r\n    <div class=\"exam-description\">{{exam.description}}</div>\r\n    <div class=\"exam-points\">Maksimum bodova: {{exam.numberOfQuestions}}</div>\r\n    <div *ngIf=\"studentExam\" class=\"exam-time\">Ispit započet: {{studentExam.startTime | date:'dd.MM.yyyy. hh:mm:ss'}}</div>\r\n  </div>\r\n  <div *ngIf=\"!studentExam\">\r\n    <p>\r\n      Kada počnete ispit, trenutak započinjanja ispita biće zabeležen i nećete moći da pokušate ponovo.\r\n      <br/>\r\n      U slučaju greške u sistemu molimo Vas da to što pre prijavite administratoru.\r\n    </p>\r\n    <a (click)=\"startExam()\">Kliknite ovde da počnete.</a>\r\n  </div>\r\n  <div *ngIf=\"studentExam\">\r\n    <div class=\"exam-test\">\r\n      <div *ngFor=\"let examQuestion of studentExam.questions\" class=\"exam-question\">\r\n        <h4>{{examQuestion.question.text}}</h4>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType === 'truefalse'\">\r\n          <md-radio-group [(ngModel)]=\"answers[examQuestion.studentExamQuestionId].answerStatement\">\r\n            <md-radio-button [value]=\"true\">\r\n              Tačno\r\n            </md-radio-button>\r\n            <md-radio-button [value]=\"false\">\r\n              Netačno\r\n            </md-radio-button>\r\n          </md-radio-group>\r\n        </div>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType === 'numerical'\">\r\n          <md-input-container>\r\n            <input mdInput placeholder=\"Odgovor\" [(ngModel)]=\"answers[examQuestion.studentExamQuestionId].answerValue\">\r\n          </md-input-container>\r\n        </div>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType === 'single'\">\r\n          <md-radio-group [(ngModel)]=\"answers[examQuestion.studentExamQuestionId].singleChoiceAnswerId\">\r\n            <md-radio-button *ngFor=\"let answer of examQuestion.question.singleChoiceAnswers\" [value]=\"answer.singleChoiceAnswerId\">\r\n              {{answer.text}}\r\n            </md-radio-button>\r\n          </md-radio-group>\r\n        </div>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType === 'multiple'\">\r\n          <md-checkbox *ngFor=\"let answer of examQuestion.question.multipleChoiceAnswers\" [(ngModel)]=\"answers[examQuestion.studentExamQuestionId].multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]\">\r\n            {{answer.text}}\r\n          </md-checkbox>\r\n        </div>\r\n\r\n        <div *ngIf=\"examQuestion.question.questionType !== 'numerical'\" class=\"exam-question-margin\"></div>\r\n\r\n      </div>\r\n    </div>\r\n    <button md-raised-button (click)=\"finishExam()\">Završi</button>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"loading\">\r\n  <md-progress-bar mode=\"indeterminate\"></md-progress-bar>\r\n</div>\r\n<div *ngIf=\"!loading\" class=\"exam-wrapper\">\r\n  <div *ngIf=\"exam\" class=\"exam-details\">\r\n    <h2>{{exam.name}}</h2>\r\n    <div class=\"exam-description\">{{exam.description}}</div>\r\n    <div class=\"exam-points\">Maksimum bodova: {{exam.numberOfQuestions}}</div>\r\n    <div *ngIf=\"studentExam\" class=\"exam-time\">Ispit započet: {{studentExam.startTime | date:'dd.MM.yyyy. hh:mm:ss'}}</div>\r\n  </div>\r\n  <div *ngIf=\"!studentExam\">\r\n    <p>\r\n      Kada počnete ispit, trenutak započinjanja ispita biće zabeležen i nećete moći da pokušate ponovo.\r\n      <br/>\r\n      U slučaju greške u sistemu molimo Vas da to što pre prijavite administratoru.\r\n    </p>\r\n    <a (click)=\"startExam()\">Kliknite ovde da počnete.</a>\r\n  </div>\r\n  <div *ngIf=\"studentExam\">\r\n    <div class=\"exam-test\">\r\n      <div *ngFor=\"let examQuestion of studentExam.questions\" class=\"exam-question\">\r\n        <h4>{{examQuestion.question.text}}</h4>\r\n        <div *ngIf=\"examQuestion.question.questionType === 'truefalse'\">\r\n          <md-radio-group [(ngModel)]=\"answers[examQuestion.studentExamQuestionId].answerStatement\">\r\n            <md-radio-button class=\"exam-question-answer\" [value]=\"true\">\r\n              Tačno\r\n            </md-radio-button>\r\n            <md-radio-button class=\"exam-question-answer\" [value]=\"false\">\r\n              Netačno\r\n            </md-radio-button>\r\n          </md-radio-group>\r\n        </div>\r\n        <div *ngIf=\"examQuestion.question.questionType === 'numerical'\">\r\n          <md-input-container>\r\n            <input mdInput placeholder=\"Odgovor\" [(ngModel)]=\"answers[examQuestion.studentExamQuestionId].answerValue\">\r\n          </md-input-container>\r\n        </div>\r\n        <div *ngIf=\"examQuestion.question.questionType === 'single'\">\r\n          <md-radio-group [(ngModel)]=\"answers[examQuestion.studentExamQuestionId].singleChoiceAnswerId\">\r\n            <md-radio-button *ngFor=\"let answer of examQuestion.question.singleChoiceAnswers\" class=\"exam-question-answer\" [value]=\"answer.singleChoiceAnswerId\">\r\n              {{answer.text}}\r\n            </md-radio-button>\r\n          </md-radio-group>\r\n        </div>\r\n        <div *ngIf=\"examQuestion.question.questionType === 'multiple'\">\r\n          <md-checkbox *ngFor=\"let answer of examQuestion.question.multipleChoiceAnswers\" class=\"exam-question-answer\" [(ngModel)]=\"answers[examQuestion.studentExamQuestionId].multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]\">\r\n            {{answer.text}}\r\n          </md-checkbox>\r\n        </div>\r\n        <div *ngIf=\"examQuestion.question.questionType !== 'numerical'\" class=\"exam-question-margin\"></div>\r\n      </div>\r\n    </div>\r\n    <button md-raised-button (click)=\"finishExam()\">Završi</button>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1899,7 +2118,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".exam-wrapper {\n  padding: 20px; }\n\n.exam-wrapper p {\n  margin-bottom: 10px; }\n\n.exam-details {\n  margin-bottom: 20px; }\n\n.exam-details h2 {\n  font-size: 30px; }\n\n.exam-description {\n  font-style: italic;\n  margin-bottom: 10px; }\n\n.exam-time {\n  color: #b0b0b0;\n  font-size: 13px; }\n\n.exam-question-margin {\n  height: 20px; }\n\n.exam-question h4 {\n  font-size: 20px;\n  margin-bottom: 5px; }\n\n.exam-answer-correct {\n  background: green; }\n\n.exam-answer-incorrect {\n  background: red; }\n\n.exam-question md-checkbox {\n  display: block;\n  margin-bottom: 2px; }\n\n.exam-question md-radio-button {\n  display: block;\n  margin-bottom: 2px; }\n", ""]);
+exports.push([module.i, ".exam-wrapper {\n  padding: 20px; }\n\n.exam-wrapper p {\n  margin-bottom: 10px; }\n\n.exam-details {\n  margin-bottom: 20px; }\n\n.exam-details h2 {\n  font-size: 30px; }\n\n.exam-description {\n  font-style: italic;\n  margin-bottom: 10px; }\n\n.exam-time {\n  color: #b0b0b0;\n  font-size: 13px; }\n\n.exam-question-margin {\n  height: 20px; }\n\n.exam-question h4 {\n  font-size: 20px;\n  margin-bottom: 5px; }\n\n.exam-answer-correct {\n  background: green; }\n\n.exam-answer-incorrect {\n  background: red; }\n\n.exam-question-answer {\n  display: block;\n  margin-bottom: 2px; }\n", ""]);
 
 // exports
 
@@ -2144,6 +2363,10 @@ var AdminService = (function (_super) {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams", options).map(function (res) { return res.json(); });
     };
+    AdminService.prototype.getExam = function (examId) {
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams/" + examId, options).map(function (res) { return res.json(); });
+    };
     AdminService.prototype.createExam = function (exam) {
         var body = JSON.stringify(exam);
         console.log(body);
@@ -2153,6 +2376,12 @@ var AdminService = (function (_super) {
     AdminService.prototype.deleteExam = function (exam) {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
         return this.http.delete(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams/" + exam.examId, options);
+    };
+    AdminService.prototype.createQuestion = function (question, exam) {
+        var body = JSON.stringify(question);
+        console.log(body);
+        var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */]._host + "/exams/" + exam.examId + "/add_question", body, options).map(function (res) { return res.json(); });
     };
     AdminService.prototype.getUsers = function () {
         var options = __WEBPACK_IMPORTED_MODULE_3__rest_service__["a" /* RestService */].options();
