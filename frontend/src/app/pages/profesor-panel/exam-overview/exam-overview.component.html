@@ -17,7 +17,7 @@
 
         <div *ngIf="examQuestion.question.questionType === 'truefalse'">
           <md-radio-group [(ngModel)]="examQuestion.answerStatement">
-            <md-radio-button #rdbTrue disabled [value]="true"
+            <md-radio-button #rdbTrue disabled class="exam-question-answer" [value]="true"
                              [ngClass]="{
                              'exam-answer-correct': rdbTrue.checked && examQuestion.answerStatement === examQuestion.question.correctStatement,
                              'exam-answer-incorrect': rdbTrue.checked && examQuestion.answerStatement !== examQuestion.question.correctStatement,
@@ -25,7 +25,7 @@
                              }">
               Tačno
             </md-radio-button>
-            <md-radio-button #rdbFalse disabled [value]="false"
+            <md-radio-button #rdbFalse disabled class="exam-question-answer" [value]="false"
                              [ngClass]="{
                              'exam-answer-correct': rdbFalse.checked && examQuestion.answerStatement === examQuestion.question.correctStatement,
                              'exam-answer-incorrect': rdbFalse.checked && examQuestion.answerStatement !== examQuestion.question.correctStatement,
@@ -35,7 +35,6 @@
             </md-radio-button>
           </md-radio-group>
         </div>
-
         <div *ngIf="examQuestion.question.questionType === 'numerical'"
                              [ngClass]="{
                              'exam-answer-correct': examQuestion.answerValue === examQuestion.question.correctValue,
@@ -46,10 +45,9 @@
             <input mdInput disabled placeholder="Odgovor" [(ngModel)]="examQuestion.answerValue">
           </md-input-container>
         </div>
-
         <div *ngIf="examQuestion.question.questionType === 'single'">
           <md-radio-group [(ngModel)]="examQuestion.singleChoiceAnswerId">
-            <md-radio-button #rdbSingle *ngFor="let answer of examQuestion.question.singleChoiceAnswers" disabled [value]="answer.singleChoiceAnswerId"
+            <md-radio-button #rdbSingle *ngFor="let answer of examQuestion.question.singleChoiceAnswers" class="exam-question-answer" disabled [value]="answer.singleChoiceAnswerId"
                              [ngClass]="{
                              'exam-answer-correct': rdbSingle.checked && examQuestion.singleChoiceAnswerId === examQuestion.question.singleChoiceCorrectAnswerId,
                              'exam-answer-incorrect': rdbSingle.checked && examQuestion.singleChoiceAnswerId !== examQuestion.question.singleChoiceCorrectAnswerId,
@@ -59,9 +57,8 @@
             </md-radio-button>
           </md-radio-group>
         </div>
-
         <div *ngIf="examQuestion.question.questionType === 'multiple'">
-          <md-checkbox #chbMultiple *ngFor="let answer of examQuestion.question.multipleChoiceAnswers; let i = index" disabled [(ngModel)]="examQuestion.multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]"
+          <md-checkbox #chbMultiple *ngFor="let answer of examQuestion.question.multipleChoiceAnswers; let i = index" class="exam-question-answer" disabled [(ngModel)]="examQuestion.multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]"
                              [ngClass]="{
                              'exam-answer-correct': chbMultiple.checked && examQuestion.question.multipleChoiceAnswers[i].answerCorrect,
                              'exam-answer-incorrect': chbMultiple.checked && !examQuestion.question.multipleChoiceAnswers[i].answerCorrect,
@@ -70,9 +67,7 @@
             {{answer.text}}
           </md-checkbox>
         </div>
-
         <div *ngIf="examQuestion.question.questionType !== 'numerical'" class="exam-question-margin"></div>
-
       </div>
     </div>
   </div>

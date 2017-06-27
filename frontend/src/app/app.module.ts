@@ -39,6 +39,7 @@ import {CourseUsersListComponent} from "./pages/admin-panel/course-users-list/co
 import {StudentExamsComponent} from "./pages/profesor-panel/student-exams/student-exams.component";
 import {ProfesorService} from "./services/profesor.service";
 import {ConfirmCloseGuard} from "./guards/confirm-close.guard";
+import {ExamQuestionEditorComponent} from "./pages/admin-panel/exam-question-editor/exam-question-editor.component";
 
 @NgModule({
   imports: [
@@ -75,6 +76,7 @@ import {ConfirmCloseGuard} from "./guards/confirm-close.guard";
     CourseEditorComponent,
     CourseUsersListComponent,
     ExamEditorComponent,
+    ExamQuestionEditorComponent,
     NospaceValidator,
     UserTypePipe
   ],

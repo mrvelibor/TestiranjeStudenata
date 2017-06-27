@@ -5,6 +5,7 @@ import {RestService} from "./rest.service";
 import {Course} from "../models/course";
 import {Exam} from "../models/exam";
 import {User} from "../models/user";
+import {Question} from "../models/question";
 
 @Injectable()
 export class AdminService extends RestService {
@@ -69,6 +70,14 @@ export class AdminService extends RestService {
     ).map(res => res.json());
   }
 
+  getExam(examId: number) {
+    let options = RestService.options();
+    return this.http.get(
+      `${RestService._host}/exams/${examId}`,
+      options
+    ).map(res => res.json());
+  }
+
   createExam(exam: Exam) {
     let body = JSON.stringify(exam);
     console.log(body);
@@ -87,6 +96,18 @@ export class AdminService extends RestService {
       `${RestService._host}/exams/${exam.examId}`,
       options
     );
+  }
+
+  createQuestion(question: Question, exam: Exam) {
+    let body = JSON.stringify(question);
+    console.log(body);
+
+    let options = RestService.options();
+    return this.http.post(
+      `${RestService._host}/exams/${exam.examId}/add_question`,
+      body,
+      options
+    ).map(res => res.json());
   }
 
   getUsers() {

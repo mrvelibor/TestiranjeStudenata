@@ -1,0 +1,77 @@
+<div *ngIf="loading">
+  <md-progress-bar mode="indeterminate"></md-progress-bar>
+</div>
+<md-sidenav-container class="editor-container">
+  <md-sidenav class="editor-sidenav" #sidenav mode="side" disableClose="true" >
+    <h2>Predmet</h2>
+    <md-input-container>
+      <input mdInput placeholder="Predmet" disabled [(ngModel)]="exam.course.courseCode">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Naziv ispita" disabled [(ngModel)]="exam.name">
+    </md-input-container>
+    <md-input-container>
+      <textarea mdInput placeholder="Opis ispita" disabled [(ngModel)]="exam.description"></textarea>
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Broj pitanja" disabled [(ngModel)]="exam.numberOfQuestions">
+    </md-input-container>
+  </md-sidenav>
+  <div class="exam-question">
+    <h2>Dodaj pitanje</h2>
+    <md-select placeholder="Tip pitanja" class="exam-question-type" [(ngModel)]="question.questionType">
+      <md-option value="truefalse">
+        Tačno-netačno
+      </md-option>
+      <md-option value="numerical">
+        Numeričko
+      </md-option>
+      <md-option value="single">
+        Jedan tačan odgovor
+      </md-option>
+      <md-option value="multiple">
+        Više tačnih odgovora
+      </md-option>
+    </md-select>
+    <md-input-container class="exam-question-text" >
+      <textarea mdInput placeholder="Tekst pitanja" [(ngModel)]="question.text"></textarea>
+    </md-input-container>
+    <div *ngIf="question.questionType === 'truefalse'">
+      <md-radio-group [(ngModel)]="question.correctStatement">
+        <md-radio-button class="exam-question-answer" [value]="true">
+          Tačno
+        </md-radio-button>
+        <md-radio-button class="exam-question-answer" [value]="false">
+          Netačno
+        </md-radio-button>
+      </md-radio-group>
+    </div>
+    <div *ngIf="question.questionType === 'numerical'">
+      <md-input-container>
+        <input mdInput placeholder="Odgovor" [(ngModel)]="question.correctValue">
+      </md-input-container>
+    </div>
+    <div *ngIf="question.questionType === 'single'">
+      <md-radio-group [(ngModel)]="question.singleChoiceCorrectAnswer">
+        <md-radio-button *ngFor="let answer of question.singleChoiceAnswers; let answerIndex = index" class="exam-question-answer" [value]="answer">
+          <md-input-container>
+            <input mdInput [placeholder]="'Odgovor ' + (answerIndex+1)" [(ngModel)]="answer.text">
+          </md-input-container>
+          <a (click)="deleteSingleChoiceAnswer(answer)"><md-icon>delete</md-icon></a>
+        </md-radio-button>
+      </md-radio-group>
+      <button md-button (click)="addSingleChoiceAnswer()"><md-icon>add</md-icon> Dodaj odgovor</button>
+    </div>
+    <div *ngIf="question.questionType === 'multiple'">
+      <md-checkbox *ngFor="let answer of question.multipleChoiceAnswers; let answerIndex = index" class="exam-question-answer" [(ngModel)]="answer.answerCorrect">
+        <md-input-container>
+          <input mdInput [placeholder]="'Odgovor ' + (answerIndex+1)" [(ngModel)]="answer.text">
+        </md-input-container>
+        <a (click)="deleteMultipleChoiceAnswer(answer)"><md-icon>delete</md-icon></a>
+      </md-checkbox>
+      <button md-button (click)="addMultipleChoiceAnswer()"><md-icon>add</md-icon> Dodaj odgovor</button>
+    </div>
+    <div *ngIf="question.questionType !== 'numerical'" class="exam-question-margin"></div>
+    <button *ngIf="!loading && question.questionType" md-raised-button (click)="addQuestion()">Dodaj pitanje</button>
+  </div>
+</md-sidenav-container>

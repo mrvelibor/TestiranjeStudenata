@@ -31,8 +31,8 @@
     </ng2-md-datatable-header>
     <tbody>
     <ng2-md-datatable-row *ngFor="let exam of exams">
-      <td>{{exam.course.courseCode}}</td>
-      <td>{{exam.name}}</td>
+      <td [routerLink]="['/exams', exam.examId]">{{exam.course.courseCode}}</td>
+      <td [routerLink]="['/exams', exam.examId]">{{exam.name}}</td>
       <td>{{exam.description}}</td>
       <td>{{exam.numberOfQuestions}}</td>
       <td><a (click)="deleteExam(exam)"><md-icon>delete</md-icon></a></td>

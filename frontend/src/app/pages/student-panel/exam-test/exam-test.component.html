@@ -20,40 +20,34 @@
     <div class="exam-test">
       <div *ngFor="let examQuestion of studentExam.questions" class="exam-question">
         <h4>{{examQuestion.question.text}}</h4>
-
         <div *ngIf="examQuestion.question.questionType === 'truefalse'">
           <md-radio-group [(ngModel)]="answers[examQuestion.studentExamQuestionId].answerStatement">
-            <md-radio-button [value]="true">
+            <md-radio-button class="exam-question-answer" [value]="true">
               Tačno
             </md-radio-button>
-            <md-radio-button [value]="false">
+            <md-radio-button class="exam-question-answer" [value]="false">
               Netačno
             </md-radio-button>
           </md-radio-group>
         </div>
-
         <div *ngIf="examQuestion.question.questionType === 'numerical'">
           <md-input-container>
             <input mdInput placeholder="Odgovor" [(ngModel)]="answers[examQuestion.studentExamQuestionId].answerValue">
           </md-input-container>
         </div>
-
         <div *ngIf="examQuestion.question.questionType === 'single'">
           <md-radio-group [(ngModel)]="answers[examQuestion.studentExamQuestionId].singleChoiceAnswerId">
-            <md-radio-button *ngFor="let answer of examQuestion.question.singleChoiceAnswers" [value]="answer.singleChoiceAnswerId">
+            <md-radio-button *ngFor="let answer of examQuestion.question.singleChoiceAnswers" class="exam-question-answer" [value]="answer.singleChoiceAnswerId">
               {{answer.text}}
             </md-radio-button>
           </md-radio-group>
         </div>
-
         <div *ngIf="examQuestion.question.questionType === 'multiple'">
-          <md-checkbox *ngFor="let answer of examQuestion.question.multipleChoiceAnswers" [(ngModel)]="answers[examQuestion.studentExamQuestionId].multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]">
+          <md-checkbox *ngFor="let answer of examQuestion.question.multipleChoiceAnswers" class="exam-question-answer" [(ngModel)]="answers[examQuestion.studentExamQuestionId].multipleChoiceAnswerMap[answer.multipleChoiceAnswerId]">
             {{answer.text}}
           </md-checkbox>
         </div>
-
         <div *ngIf="examQuestion.question.questionType !== 'numerical'" class="exam-question-margin"></div>
-
       </div>
     </div>
     <button md-raised-button (click)="finishExam()">Završi</button>
