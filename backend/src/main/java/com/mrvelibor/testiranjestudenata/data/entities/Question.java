@@ -34,7 +34,7 @@ public class Question {
     @ManyToOne(optional = false)
     private Exam exam;
 
-    @Size(max = 10)
+    @Enumerated(EnumType.STRING)
     @Column(name = "QUESTION_TYPE")
     private QuestionType questionType;
 
